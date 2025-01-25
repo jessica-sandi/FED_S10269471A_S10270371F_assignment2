@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head> 
+        <meta charset="UTF-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>Welcome!MokeSell</title>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"> 
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" /> 
+        <link href="Style.css" rel="stylesheet"> 
+        <link href="Fashion.css" rel="stylesheet"> 
+    </head>
+<body>
+    <header> 
+        <div class="container"> 
+            <div class="navbar"> 
+                <div class="logo"> 
+                    <a href="index.html"><img src="images/icon/icon1.png" width="125" alt="Logoicon"></a> 
+                </div> 
+                <nav> 
+                    <ul id="MenuItems"> 
+                        <li><a href="fashion.html">Fashion</a></li> 
+                        <li><a href="homeliving.html">Home Living</a></li> 
+                        <li><a href="electronics.html">Electronics</a></li> 
+                        <li><a href="allcategories.html">All Categories</a></li> 
+                    </ul> 
+                </nav> 
+                <div class="right-section"> 
+                    <div class="profile-container" id="profile-container"> 
+                        <span class="material-symbols-rounded">account_circle</span> 
+                        <span id="profile-text" class="clickable-text">Sign up/Login</span> 
+                    </div> 
+                    <a href="favorite.html" class="material-symbols-rounded" id="favorite">favorite</a> 
+                    <div class="cart-container" id="cart-container"> 
+                        <span class="material-symbols-rounded">shopping_cart</span> 
+                    </div> 
+                    <div class="notification-container"> 
+                        <div class="notification-icon" onclick="togglePopup()"> 
+                            <span class="material-symbols-rounded">notifications</span> 
+                        </div> 
+                    </div> 
+                    <div class="chatbox-container" id="chatbox-container"> 
+                        <span class="material-symbols-rounded">chat</span> 
+                    </div> 
+                    <button type="button">Sell</button> 
+                </div> 
+            </div> 
+        </div> 
+    </header>
+    <main class="main">
+       <div class="hero-image">
+    <img src="images/grey.png" alt="Hero Image" class="hero-image-bg">
+    <div class="search-bar">
+        <input type="text" placeholder="Search for anything" class="search-input">
+        <button class="search-button">Search</button>
+    </div>
+</div>
+<div class="cat-container">
+    <!-- Tab Navigation -->
+    <div class="tab-header">
+        <a href="#" class="active" id="womens-tab">Women's Fashion</a>
+        <a href="#" id="mens-tab">Men's Fashion</a>
+
+    </div>
+
+     <!-- Categories Section -->
+     <h2 style="text-align: left;" id="category-title">Shop by category</h2>
+     <div class="categories" id="categories-container">
+         
+</div>
+<div class="cat-container">
+ <!-- popular brands Section -->
+ <h2 style="text-align: left;">Popular Brands</h2>
+ <div class="popular-brands" id="brands-container">
+     
+ </div>
+    <div class="cat-container">
+        <!-- Trending Section -->
+        <h2>Trending <a href="#" class="see-more" id="trending-container">See more 'Dress'</a></h2>
+
+        <!-- Filter Buttons -->
+        <div class="filters">
+            <button class="filter-button active">Dress</button>
+            <button class="filter-button">Backpack</button>
+            <button class="filter-button">Sling bag</button>
+            <button class="filter-button">Cap</button>
+            <button class="filter-button">Vintage tee</button>
+            <button class="filter-button">Bucket hat</button>
+        </div>
+
+        <!-- Product Cards -->
+        <div class="cards-container">
+            <button class="scroll-btn left">&lt;</button>
+            <div class="cards" id="cards">
+                <div class="card">
+                    <img src="https://via.placeholder.com/200x180" alt="Elegant Lantern Sleeve Split Dress">
+                    <div class="info">
+                        <h3>Elegant Lantern Sleeve Split Dress</h3>
+                        <p class="price">S$15</p>
+                        <p class="details">Size: XL / EU 42 /...</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/200x180" alt="Blue Korean Dress">
+                    <div class="info">
+                        <h3>Blue Korean Dress</h3>
+                        <p class="price">S$22</p>
+                        <p class="details">Size: L / EU 40 /...</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/200x180" alt="Blue Korean Dress">
+                    <div class="info">
+                        <h3>Blue Korean Dress</h3>
+                        <p class="price">S$22</p>
+                        <p class="details">Size: L / EU 40 /...</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/200x180" alt="Blue Korean Dress">
+                    <div class="info">
+                        <h3>Blue Korean Dress</h3>
+                        <p class="price">S$22</p>
+                        <p class="details">Size: L / EU 40 /...</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/200x180" alt="Blue Korean Dress">
+                    <div class="info">
+                        <h3>Blue Korean Dress</h3>
+                        <p class="price">S$22</p>
+                        <p class="details">Size: L / EU 40 /...</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/200x180" alt="Blue Korean Dress">
+                    <div class="info">
+                        <h3>Blue Korean Dress</h3>
+                        <p class="price">S$22</p>
+                        <p class="details">Size: L / EU 40 /...</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/200x180" alt="Blue Korean Dress">
+                    <div class="info">
+                        <h3>Blue Korean Dress</h3>
+                        <p class="price">S$22</p>
+                        <p class="details">Size: L / EU 40 /...</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/200x180" alt="Blue Korean Dress">
+                    <div class="info">
+                        <h3>Blue Korean Dress</h3>
+                        <p class="price">S$22</p>
+                        <p class="details">Size: L / EU 40 /...</p>
+                    </div>
+                </div>
+            </div>
+            <button class="scroll-btn right">&gt;</button>
+        </div>
+    </div>
+
+    <!-- y2k 'fits'-->
+    <div class="cat-container">
+        <!-- Trending Section -->
+        <h2>y2k 'fits' <a href="#" class="see-more">See more 'Tops'</a></h2>
+
+        <!-- Filter Buttons -->
+        <div class="filters">
+            <button class="filter-button active">Tops</button>
+            <button class="filter-button">Dresses</button>
+            <button class="filter-button">Skirts</button>
+            <button class="filter-button">Bags</button>
+            <button class="filter-button">Bottoms</button>
+            <button class="filter-button">Jewelery</button>
+        </div>
+
+        <!-- Product Cards -->
+        <div class="cards-container">
+            <button class="scroll-btn left">&lt;</button>
+            <div class="cards" id="cards">
+                <div class="card">
+                    <img src="https://via.placeholder.com/200x180" alt="Elegant Lantern Sleeve Split Dress">
+                    <div class="info">
+                        <h3>Black mini skirt</h3>
+                        <p class="price">S$15</p>
+                        <p class="details">Like new</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/200x180" alt="Blue Korean Dress">
+                    <div class="info">
+                        <h3>Blue Korean Dress</h3>
+                        <p class="price">S$22</p>
+                        <p class="details">Size: L / EU 40 /...</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/200x180" alt="Blue Korean Dress">
+                    <div class="info">
+                        <h3>Babydoll tube top</h3>
+                        <p class="price">S$5</p>
+                        <p class="details">Brand new</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/200x180" alt="Blue Korean Dress">
+                    <div class="info">
+                        <h3>Blue Korean Dress</h3>
+                        <p class="price">S$22</p>
+                        <p class="details">Size: L / EU 40 /...</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/200x180" alt="Blue Korean Dress">
+                    <div class="info">
+                        <h3>Blue Korean Dress</h3>
+                        <p class="price">S$22</p>
+                        <p class="details">Size: L / EU 40 /...</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/200x180" alt="Blue Korean Dress">
+                    <div class="info">
+                        <h3>Blue Korean Dress</h3>
+                        <p class="price">S$22</p>
+                        <p class="details">Size: L / EU 40 /...</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/200x180" alt="Blue Korean Dress">
+                    <div class="info">
+                        <h3>Blue Korean Dress</h3>
+                        <p class="price">S$22</p>
+                        <p class="details">Size: L / EU 40 /...</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/200x180" alt="Blue Korean Dress">
+                    <div class="info">
+                        <h3>Blue Korean Dress</h3>
+                        <p class="price">S$22</p>
+                        <p class="details">Size: L / EU 40 /...</p>
+                    </div>
+                </div>
+            </div>
+            <button class="scroll-btn right">&gt;</button>
+        </div>
+    </div>
+
+
+    <script> //JAVASCRIPT
+        const cardsContainer = document.getElementById("cards");
+        const leftButton = document.querySelector(".scroll-btn.left");
+        const rightButton = document.querySelector(".scroll-btn.right");
+
+        // Scroll to the left
+        leftButton.addEventListener("click", () => {
+            cardsContainer.scrollBy({ left: -300, behavior: "smooth" });
+        });
+
+        // Scroll to the right
+        rightButton.addEventListener("click", () => {
+            cardsContainer.scrollBy({ left: 300, behavior: "smooth" });
+        });
+        // Data for Women's and Men's Fashion
+const data = {
+    womens: {
+        categories: [
+            { name: "Bags & Wallets", listings: "100,000+ listings", img: "https://via.placeholder.com/50" },
+            { name: "Footwear", listings: "80,000+ listings", img: "https://via.placeholder.com/50" },
+            { name: "Tops", listings: "120,000+ listings", img: "https://via.placeholder.com/50" },
+            { name: "Dresses & Sets", listings: "50,000+ listings", img: "https://via.placeholder.com/50" },
+            { name: "Jewelry & Organisers", listings: "70,000+ listings", img: "https://via.placeholder.com/50" },
+        ],
+        brands: [
+            { name: "Love Bonito", img: "https://via.placeholder.com/50" },
+            { name: "Lovet", img: "https://via.placeholder.com/50" },
+            { name: "Charles & Keith", img: "https://via.placeholder.com/50" },
+            { name: "Zara", img: "https://via.placeholder.com/50" },
+            { name: "Lululemon", img: "https://via.placeholder.com/50" },
+            { name: "Uniqulo", img: "https://via.placeholder.com/50" },
+            { name: "Nike", img: "https://via.placeholder.com/50" },
+            { name: "Adidas", img: "https://via.placeholder.com/50" },
+            { name: "H&M", img: "https://via.placeholder.com/50" },
+            { name: "Fayth", img: "https://via.placeholder.com/50" },
+            { name: "Kate Spade", img: "https://via.placeholder.com/50" },
+        ],
+        trending: `
+            <h2>Trending <a href="#" class="see-more">See more 'Dress'</a></h2>
+            <div class="filters">
+                <button class="filter-button active">Dress</button>
+                <button class="filter-button">Backpack</button>
+                <button class="filter-button">Sling bag</button>
+                <button class="filter-button">Cap</button>
+                <button class="filter-button">Vintage tee</button>
+                <button class="filter-button">Bucket hat</button>
+            </div>
+            <div class="cards-container">
+                <button class="scroll-btn left">&lt;</button>
+                <div class="cards">
+                    <div class="card">
+                        <img src="https://via.placeholder.com/200x180" alt="Elegant Lantern Sleeve Split Dress">
+                        <div class="info">
+                            <h3>Elegant Lantern Sleeve Split Dress</h3>
+                            <p class="price">S$15</p>
+                            <p class="details">Size: XL / EU 42 /...</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="scroll-btn right">&gt;</button>
+            </div>
+        `,
+        y2k: `
+            <h2>y2k 'fits' <a href="#" class="see-more">See more 'Tops'</a></h2>
+            <div class="filters">
+                <button class="filter-button active">Tops</button>
+                <button class="filter-button">Dresses</button>
+                <button class="filter-button">Skirts</button>
+                <button class="filter-button">Bags</button>
+                <button class="filter-button">Bottoms</button>
+                <button class="filter-button">Jewelery</button>
+            </div>
+            <div class="cards-container">
+                <button class="scroll-btn left">&lt;</button>
+                <div class="cards">
+                    <div class="card">
+                        <img src="https://via.placeholder.com/200x180" alt="Black mini skirt">
+                        <div class="info">
+                            <h3>Black mini skirt</h3>
+                            <p class="price">S$15</p>
+                            <p class="details">Like new</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="scroll-btn right">&gt;</button>
+            </div>
+        `,
+    },
+    mens: {
+        categories: [
+            { name: "Shirts", listings: "90,000+ listings", img: "https://via.placeholder.com/50" },
+            { name: "Jeans", listings: "110,000+ listings", img: "https://via.placeholder.com/50" },
+            { name: "Jackets", listings: "40,000+ listings", img: "https://via.placeholder.com/50" },
+            { name: "Shoes", listings: "60,000+ listings", img: "https://via.placeholder.com/50" },
+            { name: "Watches", listings: "30,000+ listings", img: "https://via.placeholder.com/50" },
+        ],
+        brands: [
+            { name: "Essentials", img: "https://via.placeholder.com/50" },
+            { name: "Adidas", img: "https://via.placeholder.com/50" },
+            { name: "Uniqlo", img: "https://via.placeholder.com/50" },
+            { name: "Nike", img: "https://via.placeholder.com/50" },
+            { name: "New Balance", img: "https://via.placeholder.com/50" },
+            { name: "Gym Shark", img: "https://via.placeholder.com/50" },
+            { name: "Bape", img: "https://via.placeholder.com/50" },
+            { name: "Supreme", img: "https://via.placeholder.com/50" },
+            { name: "Stussy", img: "https://via.placeholder.com/50" },
+        ],
+        trending: `
+            <h2>Trending <a href="#" class="see-more">See more 'Shoes'</a></h2>
+            <div class="filters">
+                <button class="filter-button active">Shoes</button>
+                <button class="filter-button">Jeans</button>
+                <button class="filter-button">Shirts</button>
+                <button class="filter-button">Hats</button>
+                <button class="filter-button">Watches</button>
+            </div>
+            <div class="cards-container">
+                <button class="scroll-btn left">&lt;</button>
+                <div class="cards">
+                    <div class="card">
+                        <img src="https://via.placeholder.com/200x180" alt="Running Shoes">
+                        <div class="info">
+                            <h3>Running Shoes</h3>
+                            <p class="price">S$50</p>
+                            <p class="details">Brand new</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="scroll-btn right">&gt;</button>
+            </div>
+        `,
+        y2k: `
+            <h2>y2k 'fits' <a href="#" class="see-more">See more 'Outerwear'</a></h2>
+            <div class="filters">
+                <button class="filter-button active">Outerwear</button>
+                <button class="filter-button">Jeans</button>
+                <button class="filter-button">Shirts</button>
+                <button class="filter-button">Hats</button>
+            </div>
+            <div class="cards-container">
+                <button class="scroll-btn left">&lt;</button>
+                <div class="cards">
+                    <div class="card">
+                        <img src="https://via.placeholder.com/200x180" alt="Leather Jacket">
+                        <div class="info">
+                            <h3>Leather Jacket</h3>
+                            <p class="price">S$120</p>
+                            <p class="details">Like new</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="scroll-btn right">&gt;</button>
+            </div>
+        `,
+    },
+    
+};
+
+// Function to update content dynamically
+function updateContent(type) {
+    // Update Categories
+    const categoriesContainer = document.getElementById("categories-container");
+    categoriesContainer.innerHTML = ""; // Clear previous content
+    data[type].categories.forEach((category) => {
+        const categoryItem = `
+            <div class="category-item">
+                <div class="circle">
+                    <img src="${category.img}" alt="${category.name}">
+                </div>
+                <h3>${category.name}</h3>
+                <p>${category.listings}</p>
+            </div>
+        `;
+        categoriesContainer.innerHTML += categoryItem;
+    });
+
+    // Update Brands
+    const brandsContainer = document.getElementById("brands-container");
+    brandsContainer.innerHTML = ""; // Clear previous content
+    data[type].brands.forEach((brand) => {
+        const brandItem = `
+            <div class="pop-item">
+                <div class="circle">
+                    <img src="${brand.img}" alt="${brand.name}">
+                </div>
+                <h3>${brand.name}</h3>
+            </div>
+        `;
+        brandsContainer.innerHTML += brandItem;
+    });
+}
+
+// Tab Click Event Listeners
+document.getElementById("womens-tab").addEventListener("click", (e) => {
+    e.preventDefault();
+    updateContent("womens");
+
+    // Update active tab
+    document.querySelectorAll(".tab-header a").forEach((tab) => tab.classList.remove("active"));
+    e.target.classList.add("active");
+});
+
+document.getElementById("mens-tab").addEventListener("click", (e) => {
+    e.preventDefault();
+    updateContent("mens");
+
+    // Update active tab
+    document.querySelectorAll(".tab-header a").forEach((tab) => tab.classList.remove("active"));
+    e.target.classList.add("active");
+});
+
+// Initialize with Women's Fashion
+updateContent("womens");
+
+    </script>
+    </main>
+
+    <footer class="footer">
+        <p>Footer</p>
+    </footer>
+</body>
+</html>
