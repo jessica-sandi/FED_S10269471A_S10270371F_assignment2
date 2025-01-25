@@ -1,0 +1,103 @@
+/*carousel*/
+.carousel {
+    margin: 20px auto;
+    width: 80%; 
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    height: 300px; /* Fixed height for the carousel */
+}
+
+.carousel-images {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-images img {
+    width: 50%; /* Each image should take up 50% of the container width */
+    height: 100%; /* Ensure the image height fills the container */
+    object-fit: cover; /* Ensure the images are properly cropped without distortion */
+    flex-shrink: 0; /* Prevent image shrinking */
+}
+
+.carousel-buttons {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+
+.carousel-buttons button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+
+/*categories boxes*/
+.categories-boxes {
+  position: relative; /* Make this the positioning context for the button */
+  max-width: 80%;
+  margin: 0 auto;
+}
+h1 { 
+  padding-top: 30px;
+  margin: 0px auto;
+}
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    margin: 0 auto;
+}
+.category-card {
+  background-color: #333;
+  padding: 25px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s;
+}
+
+.category-card:hover {
+  transform: scale(1.05);
+}
+
+.category-card img {
+  width: 100px;
+  height: 100px;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.category-card p {
+  margin: 0;
+  
+  font-size: 12px;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.see-all {
+  position: absolute;
+  top: 40px;
+  right: 20px;
+  color: #00b4d8;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.see-all:hover {
+  text-decoration: underline;
+}
+
+

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Sign-up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #003366;
+        }
+        .container {
+            width: 450px;
+            height: 450px;
+            padding: 20px;
+            background: #E6E6FA;
+            box-shadow: 0 25px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 25px;
+            position: absolute;
+            align-content: center;
+            text-align: center;
+        }
+        .back-icon {
+            position: absolute;
+            top: 50px;
+            left: 25px;
+            cursor: pointer;
+            font-size: 18px;
+            color: #003366;
+        }
+        .back-icon:hover {
+            color: #4B6A8C;
+        }
+        h2 {
+            text-align: left;
+            padding-left: 50px;
+        }
+        .hidden {
+            display: none;
+        }
+        .link {
+            color: #003366;
+            cursor: pointer;
+            text-align: center;
+            display: block;
+            margin-top: 10px;
+        }
+        .link:hover {
+            text-decoration: underline;
+        }
+        button {
+            width: 80%;
+            padding: 10px;
+            margin-top: 15px;
+            background-color: #003366;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4B6A8C;
+            color: #E6E6FA;
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #003366;
+            border-radius: 15px;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="login-page">
+        <span class="back-icon" onclick="goBack()">&#8592; Back</span>
+        <h2>Login</h2>
+        <input type="email" id="login-email" placeholder="Email">
+        <input type="password" id="login-password" placeholder="Password">
+        <button onclick="loginUser()">Login</button>
+        <span class="link" onclick="showSignUp()">No account? Sign up</span>
+    </div>
+
+    <div id="signup-page" class="hidden">
+        <span class="back-icon" onclick="goBack()">&#8592; Back</span>
+        <h2>Sign Up</h2>
+        <input type="text" id="signup-name" placeholder="Name">
+        <input type="email" id="signup-email" placeholder="Email">
+        <input type="password" id="signup-password" placeholder="Password">
+        <button onclick="signUpUser()">Sign Up</button>
+        <span class="link" onclick="showLogin()">Already have an account? Login</span>
+    </div>
+</div>
+
+<script>
+    // Show the Sign-Up page and hide the Login page
+    function showSignUp() {
+        document.getElementById('login-page').classList.add('hidden');
+        document.getElementById('signup-page').classList.remove('hidden');
+    }
+
+    // Show the Login page and hide the Sign-Up page
+    function showLogin() {
+        document.getElementById('signup-page').classList.add('hidden');
+        document.getElementById('login-page').classList.remove('hidden');
+    }
+
+    // Handle the back icon (reloads the page or redirects)
+    function goBack() {
+        window.history.back(); // Go back to the previous page
+    }
+
+    // Login user function
+    function loginUser() {
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+
+        // REST API call for login (example)
+        fetch('https://assignment2db-2aad.restdb.io/rest/user-collection ', {
+            method: 'GET',
+            headers: {
+                'x-apikey': '678c8feb6f2ec083b7ee6d9c'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            const user = data.find(user => user.email === email && user.password === password);
+            if (user) {
+                alert('Login successful!');
+                localStorage.setItem('isAuthenticated', 'true');
+                localStorage.setItem('userName', user.name);
+                window.location.href = 'index.html';
+            } else {
+                alert('Invalid email or password.');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    function signUpUser() {
+    const name = document.getElementById('signup-name').value;
+    const email = document.getElementById('signup-email').value;
+    const password = document.getElementById('signup-password').value;
+
+    // Input validation
+    if (!name || !email || !password) {
+        alert('Please fill in all fields.');
+        return;  // Exit the function if any of the fields are empty
+    } 
+    // Add the role field, setting the default value to "user"
+    const role = "user";  // Default role value
+    // Get the current date in DD/MM/YYYY format using Singapore locale
+    const createdate = new Date().toLocaleDateString('en-SG'); // Format as DD/MM/YYYY for Singapore
+
+    // REST API call for sign-up
+    fetch('https://assignment2db-2aad.restdb.io/rest/user-collection', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-apikey': '678c8feb6f2ec083b7ee6d9c'
+        },
+        body: JSON.stringify({
+            name: name,
+            email: email,
+            password: password,
+            role: role,
+            createdate: createdate
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert('Sign-Up successful! Please log in.');
+        showLogin(); // Redirect to login page after sign-up
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error during sign-up. Please try again.');
+    });
+}
+</script>
+</body>
+</html>

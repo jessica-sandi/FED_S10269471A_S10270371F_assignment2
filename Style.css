@@ -8,7 +8,6 @@ header {
     background-color: #003366;
     padding: 10px 20px;
 }
-
 .container {
     display: flex;
     justify-content: space-between;
@@ -60,21 +59,26 @@ nav {
 .profile-container {
     display: flex;
     align-items: center; /* Vertically align items */
-    gap: 5px; /* Add spacing between icon and text */
+    gap: 8px; /* Add some spacing between the icon and the text */
 }
+
 .material-symbols-rounded {
     font-size: 24px;
     cursor: pointer;
-    text-decoration: none;
-    color: #F8D7D2 
+    color: #F8D7D2; /* Color for the icon */
 }
 
 .clickable-text {
     font-size: 13px;
     cursor: pointer;
     margin: 0;
+    color: #F8D7D2; /* Color for the text */
 }
 
+a {
+    text-decoration: none; /* Removes underline */
+    color: inherit; /* Inherit color from the parent (the clickable-text span) */
+}
 button {
     background-color:  #E6E6FA;
     color: #003366;
