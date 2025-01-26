@@ -4,14 +4,32 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Welcome!MokeSell</title>
+        <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"type="module"></script>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
-            <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-            <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
         <link href="Style.css" rel="stylesheet">
         <link href="index.css" rel="stylesheet">
     </head>
     <body>
+        <!-- overlay and Lottie container -->
+        <div class="overlay" id="overlay">
+            <div class="modal-content">
+            <!-- lottie Player (DotLottie Component) -->
+            <dotlottie-player 
+                id="lottie-player" 
+                src="https://lottie.host/db38cc8b-35c8-413d-b6f9-4f409d941b5e/szrstterbA.lottie" 
+                background="transparent" 
+                speed="1" 
+                style="width: 300px; height: 300px;" 
+                loop 
+                autoplay>
+            </dotlottie-player>
+            <p>Account Required!</p>
+            <p>You must be logged in to perform this action.</p>
+            </div>
+        </div>
         <header>
             <div class="container">
                 <div class="navbar">
@@ -32,7 +50,7 @@
                               <span class="material-symbols-rounded">account_circle</span>
                               <span id="profile-text" class="clickable-text">Sign up/Login</span>
                             </a>
-                          </div>
+                        </div>
                         <a href="favorite.html" class="material-symbols-rounded" id="favorite">favorite</a>
                         <div class="cart-container" id="cart-container">
                             <span class="material-symbols-rounded">shopping_cart</span>
@@ -109,6 +127,25 @@
                 </div>
             </div>
         </main>
+        <script>    
+        // redirect users if not authenticated
+            document.addEventListener('click', function(event) {
+                const isAuthenticated = sessionStorage.getItem('isAuthenticated') === 'true';
+                if (!isAuthenticated) {
+                    showLottieAlert();
+                }
+            });
+            // show Lottie animation as alert
+            function showLottieAlert() {
+                // show overlay with Lottie animation
+                const overlay = document.getElementById('overlay');
+                overlay.style.display = 'flex';  // show overlay
+                //a timer for redirection 
+              setTimeout(function() {
+                window.location.href = 'loginsignup.html';  // redirect after 3 seconds
+              }, 3000);
+              }
+        </script>
         <script src="script.js"></script>
         <script src="carousel.js"></script>
     </body>

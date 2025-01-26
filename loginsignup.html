@@ -28,7 +28,7 @@
         }
         .back-icon {
             position: absolute;
-            top: 50px;
+            top: 40px;
             left: 25px;
             cursor: pointer;
             font-size: 18px;
@@ -76,116 +76,175 @@
             border-radius: 15px;
             outline: none;
         }
+
+        /* Style reCAPTCHA similarly to input fields */
+        .g-recaptcha {
+            align-self: center;  /* Center the widget horizontally */
+            display: flex;       /* Use flexbox to help align it properly */
+            justify-content: center;  /* Ensure it is centered within the parent */
+
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div id="login-page">
-        <span class="back-icon" onclick="goBack()">&#8592; Back</span>
-        <h2>Login</h2>
-        <input type="email" id="login-email" placeholder="Email">
-        <input type="password" id="login-password" placeholder="Password">
-        <button onclick="loginUser()">Login</button>
-        <span class="link" onclick="showSignUp()">No account? Sign up</span>
+    <div class="container">
+        <!-- login Page -->
+        <div id="login-page">
+            <span class="back-icon" onclick="goBack()">&#8592; Back</span>
+            <h2>Login</h2>
+            <input type="email" id="login-email" placeholder="Email">
+            <input type="password" id="login-password" placeholder="Password">
+
+            <!-- google reCAPTCHA Widget -->
+            <div id="login-recaptcha"  class="g-recaptcha"></div> 
+
+            <button onclick="loginUser()">Login</button>
+            <span class="link" onclick="showSignUp()">No account? Sign up</span>
+        </div>
+
+        <!-- sign-up page -->
+        <div id="signup-page" class="hidden">
+            <span class="back-icon" onclick="goBack()">&#8592; Back</span>
+            <h2>Sign Up</h2>
+            <input type="text" id="signup-name" placeholder="Name">
+            <input type="email" id="signup-email" placeholder="Email">
+            <input type="password" id="signup-password" placeholder="Password">
+
+            <!-- google reCAPTCHA widget -->
+            <div id="signup-recaptcha" class="g-recaptcha"></div>
+
+            <button onclick="signUpUser()">Sign Up</button>
+            <span class="link" onclick="showLogin()">Already have an account? Login</span>
+        </div>
     </div>
 
-    <div id="signup-page" class="hidden">
-        <span class="back-icon" onclick="goBack()">&#8592; Back</span>
-        <h2>Sign Up</h2>
-        <input type="text" id="signup-name" placeholder="Name">
-        <input type="email" id="signup-email" placeholder="Email">
-        <input type="password" id="signup-password" placeholder="Password">
-        <button onclick="signUpUser()">Sign Up</button>
-        <span class="link" onclick="showLogin()">Already have an account? Login</span>
-    </div>
-</div>
+    <!-- reCAPTCHA script -->
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
 
-<script>
-    // Show the Sign-Up page and hide the Login page
-    function showSignUp() {
-        document.getElementById('login-page').classList.add('hidden');
-        document.getElementById('signup-page').classList.remove('hidden');
-    }
+    <script>
+        // show the Sign-Up page and hide the Login page
+        function showSignUp() {
+            document.getElementById('login-page').classList.add('hidden');
+            document.getElementById('signup-page').classList.remove('hidden');
+        }
 
-    // Show the Login page and hide the Sign-Up page
-    function showLogin() {
-        document.getElementById('signup-page').classList.add('hidden');
-        document.getElementById('login-page').classList.remove('hidden');
-    }
+        // show the Login page and hide the Sign-Up page
+        function showLogin() {
+            document.getElementById('signup-page').classList.add('hidden');
+            document.getElementById('login-page').classList.remove('hidden');
+        }
 
-    // Handle the back icon (reloads the page or redirects)
-    function goBack() {
-        window.history.back(); // Go back to the previous page
-    }
+        // handle the back icon (reloads the page or redirects)
+        function goBack() {
+            window.history.back(); // go back to the previous page
+        }
+        
+        // Store widget IDs globally
+        let loginWidgetId;
+        let signupWidgetId;
 
-    // Login user function
-    function loginUser() {
-        const email = document.getElementById('login-email').value;
-        const password = document.getElementById('login-password').value;
+        // callback for rendering reCAPTCHA widgets
+        function onloadCallback() {
+            // render reCAPTCHA for Login
+            loginWidgetId = grecaptcha.render('login-recaptcha', {
+                'sitekey': '6LcQrcMqAAAAAJlQzXgFpSGS1HY3UAHtW7pVowbC' // replace with your actual site key
+            });
 
-        // REST API call for login (example)
-        fetch('https://assignment2db-2aad.restdb.io/rest/user-collection ', {
-            method: 'GET',
-            headers: {
-                'x-apikey': '678c8feb6f2ec083b7ee6d9c'
+            // Render reCAPTCHA for Sign-Up
+            signupWidgetId = grecaptcha.render('signup-recaptcha', {
+                'sitekey': '6LcQrcMqAAAAAJlQzXgFpSGS1HY3UAHtW7pVowbC' // replace with your actual site key
+            });
+        }
+
+        // login user function
+        function loginUser() {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            // get reCAPTCHA response
+            const recaptchaResponse = grecaptcha.getResponse(loginWidgetId); 
+
+            // check if reCAPTCHA is solved
+            if (!recaptchaResponse) {
+                alert('Please complete the reCAPTCHA');
+                return;
             }
-        })
-        .then(response => response.json())
-        .then(data => {
-            const user = data.find(user => user.email === email && user.password === password);
-            if (user) {
-                alert('Login successful!');
-                localStorage.setItem('isAuthenticated', 'true');
-                localStorage.setItem('userName', user.name);
-                window.location.href = 'index.html';
-            } else {
-                alert('Invalid email or password.');
+
+            // REST API call for login
+            fetch('https://assignment2db-2aad.restdb.io/rest/user-collection', {
+                method: 'GET',
+                headers: {
+                    'x-apikey': '678c8feb6f2ec083b7ee6d9c'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                const user = data.find(user => user.email === email && user.password === password);
+                if (user) {
+                    alert('Login successful!');
+                    sessionStorage.setItem('isAuthenticated', 'true');
+                    sessionStorage.setItem('userName', user.name);
+                    window.location.href = 'index.html';
+                } else {
+                    alert('Invalid email or password.');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function signUpUser() {
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+
+            // input validation
+            if (!name || !email || !password) {
+                alert('Please fill in all fields.');
+                return;  // exit the function if any of the fields are empty
             }
-        })
-        .catch(error => console.error('Error:', error));
-    }
 
-    function signUpUser() {
-    const name = document.getElementById('signup-name').value;
-    const email = document.getElementById('signup-email').value;
-    const password = document.getElementById('signup-password').value;
+            // get reCAPTCHA response
+            const recaptchaResponse = grecaptcha.getResponse(signupWidgetId); 
 
-    // Input validation
-    if (!name || !email || !password) {
-        alert('Please fill in all fields.');
-        return;  // Exit the function if any of the fields are empty
-    } 
-    // Add the role field, setting the default value to "user"
-    const role = "user";  // Default role value
-    // Get the current date in DD/MM/YYYY format using Singapore locale
-    const createdate = new Date().toLocaleDateString('en-SG'); // Format as DD/MM/YYYY for Singapore
+            // check if reCAPTCHA is solved
+            if (!recaptchaResponse) {
+                alert('Please complete the reCAPTCHA');
+                return;
+            }
 
-    // REST API call for sign-up
-    fetch('https://assignment2db-2aad.restdb.io/rest/user-collection', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'x-apikey': '678c8feb6f2ec083b7ee6d9c'
-        },
-        body: JSON.stringify({
-            name: name,
-            email: email,
-            password: password,
-            role: role,
-            createdate: createdate
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        alert('Sign-Up successful! Please log in.');
-        showLogin(); // Redirect to login page after sign-up
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Error during sign-up. Please try again.');
-    });
-}
-</script>
+            // add the role field, setting the default value to "user"
+            const role = "user";  // default role value
+
+            // get the current date in DD/MM/YYYY format using Singapore locale
+            const createdate = new Date().toLocaleDateString('en-SG'); // format as DD/MM/YYYY
+
+            // REST API call for sign-up
+            fetch('https://assignment2db-2aad.restdb.io/rest/user-collection', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-apikey': '678c8feb6f2ec083b7ee6d9c'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    password: password,
+                    role: role,
+                    createdate: createdate
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Sign-Up successful! Please log in.');
+                showLogin(); // redirect to login page after sign-up
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error during sign-up. Please try again.');
+            });
+        }
+    </script>
+
 </body>
 </html>
