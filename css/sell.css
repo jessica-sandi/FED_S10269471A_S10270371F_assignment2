@@ -1,0 +1,170 @@
+.sell-container {
+    display: flex;
+    justify-content: space-between;
+    background: #FCE8E6; 
+    padding: 40px;
+    border-radius: 12px;
+    max-width: 1000px;
+    margin: 100px auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+}
+
+.image-upload {
+    background: #E6E6FA; /* Soft light blue background for image upload */
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 2px dashed #003366; /* Dark blue dashed border */
+    margin-right: 20px;
+    height: 300px;
+    transition: border-color 0.3s ease-in-out;
+    color: #003366;
+}
+
+.image-upload:hover {
+    border-color: #F8D7D2; /* Light peach hover effect */
+}
+
+#image-preview-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    min-height: 100px;
+}
+
+.image-preview {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #E6E6FA; /* Light blue background for preview */
+}
+
+.image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-preview .delete-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: #FF6F61; /* Soft red for delete button */
+    color: white;
+    border: none;
+    border-radius: 50%; /* Ensures circular shape */
+    width: 20px;  /* Fixed width */
+    height: 20px; /* Fixed height to match width */
+    font-size: 14px;  /* Adjusted for better fit */
+    display: flex;  /* Ensures text/icon is centered */
+    justify-content: center;  /* Centers content horizontally */
+    align-items: center;  /* Centers content vertically */
+    cursor: pointer;
+    padding: 0; /* Ensure padding is removed to maintain circular shape */
+}
+
+.form-section {
+    flex: 1;
+}
+
+select, input, textarea, .sell-btn {
+    width: 100%;
+    margin: 12px 0;
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #003366; /* Dark blue border for inputs */
+    background-color: #FFFFFF; /* White background for input fields */
+    color: #003366; /* Dark text for readability */
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+select, input, textarea {
+    transition: background-color 0.3s ease-in-out;
+}
+
+select:focus, input:focus, textarea:focus {
+    background-color: #F8D7D2; /* Light peach background on focus */
+    outline: none;
+    border-color: #003366; /* Dark blue border on focus */
+}
+
+.deal-methods-option {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.deal-methods-option label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #003366;
+}
+
+.deal-methods-option input[type="radio"] {
+    width: auto;
+    height: 12px;
+}
+
+.deal-method {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+#map {
+    border: 2px solid #003366; /* Dark blue border */
+    border-radius: 8px;
+}
+
+#delivery-options {
+    padding: 18px;
+    border-radius: 10px;
+    background-color: #FFFFFF; /* White background for delivery options */
+    font-family: 'Montserrat', sans-serif;
+    max-width: 400px;
+    color: #003366; /* Dark text for contrast */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Light shadow */
+}
+
+#delivery-options h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+    color: #003366; /* Dark blue color for headings */
+}
+
+#delivery-options p {
+    font-size: 15px;
+    margin: 6px 0;
+}
+
+#delivery-options p strong {
+    color: #FFABAB; /* Slight peach for emphasized text */
+}
+
+#delivery-options p em {
+    color: #FF6F61; /* Highlighted red for notes */
+    font-weight: bold;
+}
+
+.sell-btn {
+    background-color: #003366; /* Dark blue background for the button */
+    color: #FCE8E6; /* Light peach color for text */
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.sell-btn:hover {
+    background-color: #2A2A3D; /* Darker bluish-gray hover effect */
+    color: #FCE8E6;
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sell your item</title>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
+        
+        <link href="css/Style.css" rel="stylesheet"> 
+        <link href="css/sell.css" rel="stylesheet"> 
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="index.html"><img src="images/icon/icon1.png" width="125" alt="Logoicon"></a>
+                </div>
+                <nav>
+                    <ul id="MenuItems">
+                        <li><a href="fashion.html">Fashion</a></li>
+                        <li><a href="homeliving.html">Home Living</a></li>
+                        <li><a href="electronics.html">Electronics</a></li>
+                        <li><a href="allcategories.html">All Categories</a></li>
+                    </ul>
+                </nav>
+                <div class="right-section">
+                    <div class="profile-container" id="profile-container">
+                        <a href="loginsignup.html">
+                          <span class="material-symbols-rounded">account_circle</span>
+                          <span id="profile-text" class="clickable-text">Sign up/Login</span>
+                        </a>
+                    </div>
+                    <a href="favorite.html" class="material-symbols-rounded" id="favorite">favorite</a>
+                    <div class="cart-container" id="cart-container">
+                        <span class="material-symbols-rounded">shopping_cart</span>
+                    </div>
+                    <div class="notification-container">
+                        <div class="notification-icon" onclick="togglePopup()">
+                            <span class="material-symbols-rounded">notifications</span>
+                        </div>
+                    </div>
+                    <div class="chatbox-container" id="chatbox-container">
+                        <span class="material-symbols-rounded">chat</span>
+                    </div>
+                    <button type="button" onclick="handleSellClick()">Sell</button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="sell-container">
+            <div class="image-container">
+            <div class="image-upload" onclick="document.getElementById('photos').click()">
+                <p>Select photos or drag photos here (Up to 4 photos)</p>
+                <input type="file" id="photos" multiple hidden>
+                <!-- Image Preview Section -->
+            </div>
+            <div id="image-preview-container"></div>
+            </div>
+            
+            <div class="form-section">
+                <select id="subcategory">
+                    <option value="">Category</option>
+                    <option value="Mens_Fashion">Men's Fashion</option>
+                    <option value="Womens_Fashion">Women's Fashion</option>
+                    <option value="Unisex_Fashion">Unisex Fashion</option>
+                    <option value="Kids_Fashion">Kid's Fashion</option>
+                </select>
+                
+                <select id="condition">
+                    <option value="">Condition</option>
+                    <option value="New">New</option>
+                    <option value="Used">Used</option>
+                </select>
+                
+                <div class="item-details">
+                    <input type="text" id="name" placeholder="Listing Title">
+                    <textarea id="description" placeholder="Description"></textarea>
+                </div>
+                
+                <div class="price-section">
+                    <input type="number" id="price" placeholder="Price">
+                </div>
+                <div class="stock-section">
+                    <input type="number" id="stock" placeholder="Stock">
+                </div>
+                
+                <div class="deal-methods-option">
+                    <label>
+                        <input type="radio" name="deal-method" id="delivery" onclick="toggleDealMethod()"> Delivery
+                    </label>
+                    <!-- Delivery options (for Delivery) -->
+                    <div id="delivery-options" class="deal-option" style="display: none;">
+                        <h3>Delivery</h3>
+                        <p><strong>MokeSell Official Delivery</strong></p>
+                        <p>Enabled: Standard (3-5 working days)</p>
+                        <p>Delivered by SingPost, Ninja Van, and J&T</p>
+                        <p><em>Note: Buyer pays for delivery.</em></p>
+                    </div>
+                    <label>
+                        <input type="radio" name="deal-method" id="meetup" onclick="toggleDealMethod()" checked> Meet Up
+                    </label>
+                    <!-- Location search and map (for Meet Up) -->
+                    <div id="meetup-options" class="deal-option">
+                        <input type="text" id="search-location" placeholder="Search location...">
+                        <button onclick="getLocation()" class="sell-btn">Use My Location</button>
+                        <input type="text" id="location" placeholder="Fetching location..." readonly>
+                        <div id="map" style="height: 400px; width: 100%;"></div>
+                    </div>
+                    
+                </div>
+                                
+                <button class="sell-btn" id="sellItem">Sell Item</button>
+            </div>
+        </div>
+    </main>
+    <script src="js/script.js"></script> 
+    <script src="js/sell.js"></script> 
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjoIy4zkM_t7fhztN8BUmxZTaHLNm3G8E&libraries=places&callback=initMap" async defer></script>
+</body>
