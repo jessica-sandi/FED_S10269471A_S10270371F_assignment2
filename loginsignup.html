@@ -206,6 +206,7 @@
                     alert('Login successful!');
                     sessionStorage.setItem('isAuthenticated', 'true');
                     sessionStorage.setItem('userName', user.name);
+                    sessionStorage.setItem('userID', user.userID);
                     window.location.href = 'index.html';
                 } else {
                     alert('Invalid email or password.');
@@ -244,8 +245,8 @@
                 return;
             }
 
-            // add the role field, setting the default value to "user"
-            const role = "";  // default role value
+            // add the role field
+            const role = "buyer";  // default role value
 
             // get the current date in DD/MM/YYYY format using Singapore locale
             const createdate = new Date().toLocaleDateString('en-SG'); // format as DD/MM/YYYY

@@ -153,3 +153,121 @@ button:hover {
     background-color:#C0C0FF;
     color: #4B6A8C;
 }
+
+
+/* Chat Icon */
+.chatbox-container {
+    position: fixed;
+    bottom: 20px;  /* Adjust bottom space */
+    right: 20px;  /* Adjust right space */
+    background-color: #003366;  
+    color: white;
+    border-radius: 50%;
+    padding: 15px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.chatbox-container:hover {
+    background-color: #005093;  /* Slightly lighter blue on hover */
+}
+
+/* Chatbot Popup Style */
+.chatbot-popup {
+    display: none;
+    position: fixed;
+    bottom: 80px;  /* Position it above the chat icon */
+    right: 20px;
+    width: 400px;
+    height: 300px;
+    background-color: #F0F4F8;  /* Very light grey/blue background */
+    border: 2px solid #003366;  
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.chatbox-header {
+    background-color: #003366;  /* Dark blue header */
+    color: #F0F4F8;  /* Very light grey text color */
+    padding: 10px;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-chat {
+    background-color: #5F9EA0;  /* Soft teal for the close button */
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.close-chat:hover {
+    background-color: #4682B4;  /* A slightly darker blue-teal on hover */
+}
+
+.chatbox-body {
+    padding: 10px;
+    height: 300px;
+    overflow-y: scroll;
+    flex: 1;
+    border-bottom: 2px solid #ddd;
+    font-family: 'Montserrat', sans-serif;
+    color: #003366;  /* Dark blue text */
+}
+
+.bot-message, .user-message {
+    margin: 10px 0;
+}
+
+.bot-message p {
+    background-color: #E8F0F9;  /* Soft, light blue for bot messages */
+    padding: 8px;
+    border-radius: 5px;
+    color: #003366;  /* Dark blue text */
+}
+
+.user-message p {
+    background-color: #D1E8E2;  /* Light teal-blue for user messages */
+    color: #003366;
+    padding: 8px;
+    border-radius: 5px;
+    text-align: right;
+}
+
+.chatbox-footer {
+    display: flex;
+    padding: 10px;
+    background-color: #F9F9F9;
+    border-radius: 0 0 10px 10px;
+}
+
+#user-input {
+    width: 80%;
+    padding: 8px;
+    border: 1px solid #003366;  /* Dark blue border */
+    border-radius: 5px;
+    font-size: 14px;
+    color: #003366;  /* Dark blue text */
+}
+
+#send-btn {
+    width: 30%;
+    background-color: #003366;  /* Dark blue button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#send-btn:hover {
+    background-color: #4C8DA6;  /* Lighter blue on hover */
+}
