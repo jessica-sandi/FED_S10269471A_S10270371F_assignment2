@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head> 
+        <meta charset="UTF-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>Welcome!MokeSell</title>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"> 
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" /> 
+        <link href="css/Style.css" rel="stylesheet"> 
+        <link href="Fashion.css" rel="stylesheet">
+         
+    </head>
+<body>
+    
+    <header> 
+        <div class="container"> 
+            <div class="navbar"> 
+                <div class="logo"> 
+                    <a href="index.html"><img src="images/icon/icon1.png" width="125" alt="Logoicon"></a> 
+                </div> 
+                <nav> 
+                    <ul id="MenuItems"> 
+                        <li><a href="women.html">WOMEN</a></li> 
+                        <li><a href="men.html">MEN</a></li> 
+                        <li><a href="kids.html">KIDS</a></li> 
+                    </ul> 
+                </nav> 
+                <div class="right-section">
+                    <div class="profile-container" id="profile-container">
+                        <a href="loginsignup.html">
+                          <span class="material-symbols-rounded">account_circle</span>
+                          <span id="profile-text" class="clickable-text">Sign up/Login</span>
+                        </a>
+                    </div>
+                    <a href="favorite.html" class="material-symbols-rounded" id="favorite">favorite</a> 
+                    <div class="cart-container" id="cart-container"> 
+                        <span class="material-symbols-rounded">shopping_cart</span> 
+                    </div> 
+                    <div class="notification-container"> 
+                        <div class="notification-icon" onclick="togglePopup()"> 
+                            <span class="material-symbols-rounded">notifications</span> 
+                        </div> 
+                    </div> 
+                    <div class="chatbox-container" id="chatbox-container"> 
+                        <span class="material-symbols-rounded">chat</span> 
+                    </div> 
+                    <button type="button">Sell</button> 
+                </div> 
+            </div> 
+        </div> 
+    </header>
+    <main class="main">
+       <div class="hero-image">
+    <img src="images/grey.png" alt="Hero Image" class="hero-image-bg">
+    <div class="search-bar">
+        <input type="text" placeholder="Search for anything" class="search-input">
+        <button class="search-button">Search</button>
+    </div>
+</div>
+<section class="category">
+    <h1>Women</h1>
+    <div class="products-grid" id="products-grid">
+        <!-- Products will be dynamically added here -->
+    </div>>
+</section>
+    </main>
+
+    <footer class="footer">
+        <p>Footer</p>
+    </footer>
+    <script src="js/script.js"></script>
+    <script src="fashion.js"></script>
+</body>
+</html>
