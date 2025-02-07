@@ -12,8 +12,8 @@
         "active": true,
         "location": "Singapore, Orchard",
         "stock": 1,
-        "listing-createdAt": "06/02/25 06:30:00",
-        "listing-expiredAt": "07/03/25 06:30:00"
+        "listingcreatedAt": "06/02/25 06:30:00",
+        "listingexpiredAt": "07/03/25 06:30:00"
     },
 
     {
@@ -29,8 +29,8 @@
         "active": true,
         "location": "Singapore, Tiong Bahru",
         "stock": 1,
-       "listing-createdAt": "06/02/25 06:30:00",
-        "listing-expiredAt": "07/03/25 06:30:00"
+       "listingcreatedAt": "06/02/25 06:30:00",
+        "listingexpiredAt": "07/03/25 06:30:00"
     },
     {
         "productID": "P003",
@@ -45,8 +45,8 @@
         "active": true,
         "location": "Singapore, Clementi",
         "stock": 1,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P004",
@@ -61,8 +61,8 @@
         "active": true,
         "location": "Singapore, Redhill",
         "stock": 1,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P005",
@@ -77,8 +77,8 @@
         "active": true,
         "location": "Singapore, Orchard",
         "stock": 1,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P006",
@@ -93,8 +93,8 @@
         "active": true,
         "location": "Singapore, Newton",
         "stock": 1,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P007",
@@ -109,8 +109,8 @@
         "active": true,
         "location": "Singapore, Bugis",
         "stock": 10,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
        "productID": "P008",
@@ -125,8 +125,8 @@
         "active": true,
         "location": "Singapore, Bugis",
         "stock": 20,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P009",
@@ -141,8 +141,8 @@
         "active": true,
         "location": "Singapore, Woodland",
         "stock": 15,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P010",
@@ -157,8 +157,8 @@
         "active": true,
         "location": "Singapore, Bugis",
         "stock": 19,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P011",
@@ -173,8 +173,8 @@
         "active": true,
         "location": "Singapore, Pasir Ris",
         "stock": 1,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P012",
@@ -189,8 +189,8 @@
         "active": true,
         "location": "Singapore, Orchard",
         "stock": 5,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P013",
@@ -205,8 +205,8 @@
         "active": true,
         "location": "Singapore, Bugis",
         "stock": 15,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P014",
@@ -221,8 +221,8 @@
         "active": true,
         "location": "Singapore, Bugis",
         "stock": 45,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P015",
@@ -237,8 +237,8 @@
         "active": true,
         "location": "Singapore, Bugis",
         "stock": 12,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P016",
@@ -253,8 +253,8 @@
         "active": true,
         "location": "Singapore, Bugis",
         "stock": 20,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P017",
@@ -269,8 +269,8 @@
         "active": true,
         "location": "Singapore, Bugis",
         "stock": 15,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P018",
@@ -285,8 +285,8 @@
         "active": true,
         "location": "Singapore, Tampines",
         "stock": 1,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P019",
@@ -301,8 +301,8 @@
         "active": true,
         "location": "Singapore, Holland",
         "stock": 1,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P020",
@@ -317,8 +317,8 @@
         "active": true,
         "location": "Singapore, Yishun",
         "stock": 1,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P021",
@@ -333,8 +333,8 @@
         "active": true,
         "location": "Singapore, Orchard",
         "stock": 10,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P022",
@@ -349,8 +349,8 @@
         "active": true,
         "location": "Singapore, Jurong West",
         "stock": 1,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P023",
@@ -365,8 +365,8 @@
         "active": true,
         "location": "Singapore, Orchard",
         "stock": 5,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P024",
@@ -381,8 +381,8 @@
         "active": true,
         "location": "Singapore, Orchard",
         "stock": 3,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P025",
@@ -397,8 +397,8 @@
         "active": true,
         "location": "Singapore, Tiong Bahru",
         "stock": 1,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P026",
@@ -413,8 +413,8 @@
         "active": true,
         "location": "Singapore, Bugis",
         "stock": 10,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P027",
@@ -429,8 +429,8 @@
         "active": true,
         "location": "Singapore, Chinese Garden",
         "stock": 50,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P028",
@@ -445,8 +445,8 @@
         "active": true,
         "location": "Singapore, Outrum Park",
         "stock": 1,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P029",
@@ -461,8 +461,8 @@
         "active": true,
         "location": "Singapore, Orchard",
         "stock": 10,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P030",
@@ -477,8 +477,8 @@
         "active": true,
         "location": "Singapore, Bukit Batok",
         "stock": 1,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P031",
@@ -493,8 +493,8 @@
         "active": true,
         "location": "Singapore, Bedok",
         "stock": 1,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P032",
@@ -509,8 +509,8 @@
         "active": true,
         "location": "Singapore, Bugis",
         "stock": 10,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P033",
@@ -525,8 +525,8 @@
         "active": true,
         "location": "Singapore, Orchard",
         "stock": 3,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P034",
@@ -541,8 +541,8 @@
         "active": true,
         "location": "Singapore, Bugis",
         "stock": 30,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P035",
@@ -557,8 +557,8 @@
         "active": true,
         "location": "Singapore, Bugis",
         "stock": 50,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P036",
@@ -573,8 +573,8 @@
         "active": true,
         "location": "Singapore, Ang Mo Kio",
         "stock": 1,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P037",
@@ -589,8 +589,8 @@
         "active": true,
         "location": "Singapore, Bishan",
         "stock": 1,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P038",
@@ -605,8 +605,8 @@
         "active": true,
         "location": "Singapore, Orchard",
         "stock": 90,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P039",
@@ -621,8 +621,8 @@
         "active": true,
         "location": "Singapore, Kallang",
         "stock": 1,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P040",
@@ -637,8 +637,8 @@
         "active": true,
         "location": "Singapore, Orchard",
         "stock": 38,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P041",
@@ -653,8 +653,8 @@
         "active": true,
         "location": "Singapore, Clementi",
         "stock": 3,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P042",
@@ -669,8 +669,8 @@
         "active": true,
         "location": "Singapore, Bugis",
         "stock": 56,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P043",
@@ -685,8 +685,8 @@
         "active": true,
         "location": "Singapore, Seragoon",
         "stock": 60,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P044",
@@ -701,8 +701,8 @@
         "active": true,
         "location": "Singapore, Orchard",
         "stock": 30,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     },
     {
         "productID": "P045",
@@ -717,8 +717,8 @@
         "active": true,
         "location": "Singapore, Novena",
         "stock": 1,
-        "listing-createdAt": "2025-02-04T13:20:00Z",
-        "listing-expiredAt": "2025-02-06T13:20:00Z"
+        "listingcreatedAt": "2025-02-04T13:20:00Z",
+        "listingexpiredAt": "2025-02-06T13:20:00Z"
     }
 
 ]

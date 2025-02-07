@@ -124,7 +124,9 @@ document.getElementById('photos').addEventListener('change', function(event) {
 
     for (let i = 0; i < files.length; i++) {
         if (existingImages.length + i < 4) {
-            uploadToImgBB(files[i]).then(imageURL => {
+            const file = files[i];
+            uploadToImgBB(file).then(imageURL => {
+                console.log("Image URL:", imageURL);
                 // Add image preview with ImgBB URL
                 addImagePreview(imageURL);
             }).catch(error => {
@@ -157,45 +159,106 @@ function removeImage(button) {
     previewDiv.remove();
 }
 
-// Store data in RESTDB when form is submitted
-document.getElementById('sellItem').addEventListener('click', () => {
-    const itemData = {
-        sellerID: "12345",
-        name: document.getElementById('name').value,
-        description: document.getElementById('description').value,
-        photosurl: [], // Array to store image URLs
-        price: document.getElementById('price').value,
-        subcategory: document.getElementById('subcategory').value,
-        condition: document.getElementById('condition').value,
-        active: true,
-        location: document.getElementById('location').value,
-        stock: document.getElementById('stock').value,
-        listing_createdAt: new Date().toISOString(),
-        listing_expiredAt: new Date(new Date().setDate(new Date().getDate() + 30)).toISOString()
-    };
-    console.log("Item Data being sent:", itemData);
-
-    // Collect image URLs
-    const images = document.querySelectorAll('.image-preview img');
-    images.forEach(img => {
-        itemData.photosurl.push(img.src);
-    });
-
-    // Submit item data to RESTDB
-    fetch('https://assignment2db-2aad.restdb.io/rest/fashion', {
-        method: 'POST',
+// Get the latest product_id from the collection (or P100 if no products exist)
+function getLatestProductId() {
+    return fetch('https://assignment2db-2aad.restdb.io/rest/fashion', {
+        method: 'GET',
         headers: {
-            'Content-Type': 'application/json',
             'x-apikey': '678c8feb6f2ec083b7ee6d9c'
-        },
-        body: JSON.stringify(itemData)
+        }
     })
     .then(response => response.json())
-    .then(() => {
-        alert('Item listed successfully!');
-        console.log('Item successfully added:', itemData);
+    .then(data => {
+        if (data && data.length > 0) {
+            // Extract the numeric part of the productID and increment it
+            const lastProductId = data[0].productID;
+            const numericPart = parseInt(lastProductId.replace('P', ''));
+            return 'P' + (numericPart + 1);  // Increment and return the new productID
+        } else {
+            // If no products exist, return P100
+            return 'P100';
+        }
     })
     .catch(error => {
-        alert('Error listing item: ' + error.message);
+        console.error("Error fetching the latest productID:", error);
+        return 'P100';  // If an error occurs, start with P100
+    });
+}
+// Validate fields before submission
+function validateFields(itemData) {
+    const requiredFields = ['name', 'description', 'price', 'category', 'groups', 'condition', 'location', 'stock'];
+    for (let field of requiredFields) {
+        if (!itemData[field] || itemData[field].trim() === '') {
+            alert(`Please fill in the ${field} field.`);
+            return false;
+        }
+    }
+    return true;
+}
+
+
+// Store data in RESTDB when form is submitted
+document.getElementById('sellItem').addEventListener('click', () => {
+    // Retrieve userID from session storage
+    const userID = sessionStorage.getItem('userID');
+    
+    // Get the latest product ID (e.g., P100, P101, etc.)
+    getLatestProductId().then(latestProductId => {
+        const itemData = {
+            productID: latestProductId, // Assign the generated product ID
+            sellerID: userID,
+            name: document.getElementById('name').value,
+            description: document.getElementById('description').value,
+            photosurl: [], // Array to store image URLs
+            price: document.getElementById('price').value,
+            category: document.getElementById('category').value,
+            groups: document.getElementById('groups').value,
+            condition: document.getElementById('condition').value,
+            active: true,
+            location: document.getElementById('location').value,
+            stock: document.getElementById('stock').value,
+            listingcreatedAt: new Date().toISOString(),
+            listingexpiredAt: new Date(new Date().setDate(new Date().getDate() + 30)).toISOString()
+        };
+
+
+        console.log("Item Data being sent:", itemData);
+
+        // Collect image URLs
+        const images = document.querySelectorAll('.image-preview img');
+        images.forEach(img => {
+            itemData.photosurl.push(img.src);
+        });
+
+        // Submit item data to RESTDB
+        fetch('https://assignment2db-2aad.restdb.io/rest/fashion', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-apikey': '678c8feb6f2ec083b7ee6d9c'
+            },
+            body: JSON.stringify(itemData)
+        })
+        .then(response => response.json())
+        .then(() => {
+            console.log('Item successfully added:', itemData);
+            // Prompt user to add more items or return to index
+            const action = confirm('Item listed successfully! Would you like to add another item? Click "Cancel" to return to the homepage.');
+            if (action) {
+                // If user chooses to add another item, reset the form
+                document.getElementById('sellItemForm').reset();  // Assuming the form ID is 'sellItemForm'
+                // Optionally clear images preview
+                document.getElementById('image-preview-container').innerHTML = '';
+            } else {
+                // If user clicks "Cancel", redirect to index.html
+                window.location.href = 'index.html';
+            }
+        })
+        .catch(error => {
+            alert('Error listing item: ' + error.message);
+        });
+    }).catch(error => {
+        console.error('Error fetching the latest product ID:', error);
+        alert('Failed to generate product ID. Please try again.');
     });
 });

@@ -8,7 +8,6 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
-        
         <link href="css/Style.css" rel="stylesheet"> 
         <link href="css/sell.css" rel="stylesheet"> 
 </head>
@@ -43,9 +42,6 @@
                             <span class="material-symbols-rounded">notifications</span>
                         </div>
                     </div>
-                    <div class="chatbox-container" id="chatbox-container">
-                        <span class="material-symbols-rounded">chat</span>
-                    </div>
                     <button type="button" onclick="handleSellClick()">Sell</button>
                 </div>
             </div>
@@ -63,28 +59,44 @@
             </div>
             
             <div class="form-section">
-                <select id="subcategory">
+                <h3>Category</h3>
+                <select id="category">
                     <option value="">Category</option>
-                    <option value="Mens_Fashion">Men's Fashion</option>
-                    <option value="Womens_Fashion">Women's Fashion</option>
-                    <option value="Unisex_Fashion">Unisex Fashion</option>
-                    <option value="Kids_Fashion">Kid's Fashion</option>
+                    <option value="mens">mens</option>
+                    <option value="women">womens</option>
+                    <option value="kids">kids</option>
                 </select>
-                
+                <h3>Subcategory</h3>
+                <select id="groups">
+                    <option value="">Subcategory</option>
+                    <option value="top">top</option>
+                    <option value="bottom">bottom</option>
+                    <option value="dress">dress</option>
+                    <option value="jackets">jackets</option>
+                    <option value="outerwear">outerwear</option>
+                    <option value="set">set</option>
+                    <option value="bag">bag</option>
+                    <option value="wallet">wallet</option>
+                    <option value="accessory">accessory</option>
+                    <option value="footwear">footwear</option>
+                </select>
+                <h3>Condition</h3>              
                 <select id="condition">
                     <option value="">Condition</option>
-                    <option value="New">New</option>
-                    <option value="Used">Used</option>
+                    <option value="new">new</option>
+                    <option value="used">used</option>
                 </select>
                 
+                <h3>Description</h3>
                 <div class="item-details">
                     <input type="text" id="name" placeholder="Listing Title">
                     <textarea id="description" placeholder="Description"></textarea>
                 </div>
-                
+                <h3>Price</h3>
                 <div class="price-section">
                     <input type="number" id="price" placeholder="Price">
                 </div>
+                <h3>Stock</h3>
                 <div class="stock-section">
                     <input type="number" id="stock" placeholder="Stock">
                 </div>
@@ -118,6 +130,25 @@
             </div>
         </div>
     </main>
+    <div class="chatbox-container" id="chatbox-container">
+        <span class="material-symbols-rounded">chat</span>
+    </div>
+    <!-- Chatbot Popup -->
+    <div id="chatbot-popup" class="chatbot-popup">
+        <div class="chatbox-header">
+            <h3>Fashion Store FAQ Chatbot</h3>
+            <button id="close-chat" class="close-chat">X</button>
+        </div>
+        <div class="chatbox-body" id="chatbox-body">
+            <div class="bot-message">
+                <p>Hello! How can I assist you today? Ask me about our products, returns, or anything else!type help for more details</p>
+            </div>
+        </div>
+        <div class="chatbox-footer">
+            <input type="text" id="user-input" placeholder="Type a question..." />
+            <button id="send-btn">Send</button>
+        </div>
+    </div>
     <script src="js/script.js"></script> 
     <script src="js/sell.js"></script> 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjoIy4zkM_t7fhztN8BUmxZTaHLNm3G8E&libraries=places&callback=initMap" async defer></script>
