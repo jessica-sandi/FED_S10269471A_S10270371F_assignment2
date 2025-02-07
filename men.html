@@ -64,14 +64,28 @@
     </div>>
 </section>
     </main>
-
+     <!-- Chatbot Popup -->
+     <div class="chatbox-container" id="chatbox-container">
+        <span class="material-symbols-rounded">chat</span>
+    </div>
+    <div id="chatbot-popup" class="chatbot-popup">
+        <div class="chatbox-header">
+            <h3>Fashion Store FAQ Chatbot</h3>
+            <button id="close-chat" class="close-chat">X</button>
+        </div>
+        <div class="chatbox-body" id="chatbox-body">
+            <div class="bot-message">
+                <p>Hello! How can I assist you today? Ask me about our products, returns, or anything else!type help for more details</p>
+            </div>
+        </div>
+        <div class="chatbox-footer">
+            <input type="text" id="user-input" placeholder="Type a question..." />
+            <button id="send-btn">Send</button>
+        </div>
+    </div>
     <footer class="footer">
         <p>Footer</p>
     </footer>
-    <div class="chatbox-footer">
-        <input type="text" id="user-input" placeholder="Type a question..." />
-        <button id="send-btn">Send</button>
-    </div>
     <script src="js/script.js"></script>
     <script src="js/men.js"></script>
 </body>
