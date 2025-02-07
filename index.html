@@ -57,6 +57,7 @@
                         <div class="notification-container">
                             <div class="notification-icon" onclick="togglePopup()">
                                 <span class="material-symbols-rounded">notifications</span>
+                                <span id="notification-count" class="notification-count">0</span> <!-- Notification count -->
                             </div>
                         </div>
                         <button type="button" onclick="handleSellClick()">Sell</button>
@@ -80,13 +81,13 @@
                     <a href="men.html">
                         <img src="images/banner/MenBanner.png" alt="Men Banner">
                     </a>
-                    <a href="kid.html">
+                    <a href="kids.html">
                         <img src="images/banner/KidBanner.png" alt="Kid Banner">
                     </a>
                 </div>
                 <div class="carousel-buttons">
-                    <button onclick="prevSlide()">&#10094;</button>
-                    <button onclick="nextSlide()">&#10095;</button>
+                    <button class="prevSlide">&#10094;</button> <!-- Previous button -->
+                    <button class="nextSlide">&#10095;</button> <!-- Next button -->
                 </div>
             </div>
             <!--categories boxes-->

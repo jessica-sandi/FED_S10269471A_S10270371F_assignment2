@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "title": "Mid-Month Sale!",
+        "message": "Get up to 20% off on selected items this mid-month.",
+        "discountCode": "MIDMONTH20"
+    },
+    {
+        "id": 2,
+        "title": "Buy More, Save More!",
+        "message": "Purchase 3 or more items and get 15% off your total order.",
+        "discountCode": "BUY3SAVE15"
+    },
+    {
+        "id": 3,
+        "title": "Seasonal Discount",
+        "message": "Enjoy 10% off storewide on all items this season.",
+        "discountCode": "SEASON10"
+    }
+]

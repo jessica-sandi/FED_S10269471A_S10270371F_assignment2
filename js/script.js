@@ -231,3 +231,120 @@ userInput.addEventListener("keypress", function(event) {
         sendBtn.click();
     }
 });
+
+
+/*notification*/
+// Variable to store the fetched notifications
+let notifications = []; 
+
+// Fetch notifications data from external JSON file
+function fetchNotifications() {
+    fetch('json/notifications.json')  // Path to your notifications JSON file
+        .then(response => response.json())
+        .then(data => {
+            notifications = data;  // Assign JSON data to notifications variable
+            addSpinVoucherNotification();  // Add spin voucher notification
+            updateNotificationCount();  // Update notification count
+        })
+        .catch(error => console.error('Error loading notifications:', error));
+}
+
+// Add the Spin Voucher notification to the notifications list
+function addSpinVoucherNotification() {
+    // Retrieve the spinVoucher from sessionStorage
+    const spinVoucher = sessionStorage.getItem('spinVoucher'); 
+
+    if (spinVoucher) {
+        // Create a new notification for the spin voucher
+        const spinVoucherNotification = {
+            id: notifications.length + 1,
+            title: 'Spin the Wheel Voucher!',
+            message: 'You\'ve received a discount code from spinning the wheel.',
+            discountCode: spinVoucher // This is the spinVoucher stored in sessionStorage
+        };
+        
+        // Add the spin voucher notification to the notifications array
+        notifications.unshift(spinVoucherNotification);
+    }
+}
+
+// Update the notification count
+function updateNotificationCount() {
+    const countElement = document.getElementById('notification-count');
+    
+    // Check if there are any notifications
+    const unreadNotifications = notifications.length;
+
+    if (unreadNotifications > 0) {
+        // If there are unread notifications, show the count
+        countElement.style.display = 'flex';
+        countElement.textContent = unreadNotifications;
+    } else {
+        // Hide the count if no notifications
+        countElement.style.display = 'none';
+    }
+}
+
+// Toggle popup visibility
+function togglePopup() {
+    const popup = document.getElementById('discountPopup');
+    
+    // If the popup exists, toggle visibility
+    if (popup) {
+        popup.style.display = (popup.style.display === 'block') ? 'none' : 'block';
+    } else {
+        // If the popup doesn't exist, create and display it
+        createNotificationPopup();
+    }
+}
+
+// Create the notification popup with data from JSON
+function createNotificationPopup() {
+    if (notifications.length === 0) {
+        console.log("No notifications available.");
+        return;  // Do not create a popup if there are no notifications
+    }
+
+    // Create the popup container (only if it doesn't already exist)
+    const existingPopup = document.getElementById('discountPopup');
+    if (existingPopup) {
+        // If the popup already exists, just toggle its visibility
+        existingPopup.style.display = 'block';
+        return;
+    }
+
+    const popupContainer = document.createElement('div');
+    popupContainer.id = 'discountPopup';
+    popupContainer.className = 'discount-popup';
+    
+    // Loop through notifications and add each one to the popup
+    notifications.forEach(notification => {
+        const notificationDiv = document.createElement('div');
+        notificationDiv.className = 'notification-item';
+
+        notificationDiv.innerHTML = `
+            <h4>${notification.title}</h4>
+            <p>${notification.message}</p>
+            <p><strong>Discount Code:</strong> ${notification.discountCode}</p>
+        `;
+        
+        popupContainer.appendChild(notificationDiv);
+    });
+
+    // Append to the body (or a specific container)
+    document.body.appendChild(popupContainer);
+
+    // Add event listener to close the popup if clicking outside
+    document.addEventListener('click', function(event) {
+        const popup = document.getElementById('discountPopup');
+        const notificationContainer = document.querySelector('.notification-container');
+
+        // Close popup if clicked outside of both the popup and the notification icon
+        if (popup && !popup.contains(event.target) && !notificationContainer.contains(event.target)) {
+            popup.style.display = 'none';
+        }
+    });
+}
+
+// Call this function when the page loads
+fetchNotifications();

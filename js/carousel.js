@@ -1,7 +1,7 @@
 const carouselImages = document.querySelector(".carousel-images");
 const images = document.querySelectorAll(".carousel-images a"); // Select anchor tags wrapping images
-const prevButton = document.querySelector(".carousel-buttons button:nth-child(1)"); // Previous button
-const nextButton = document.querySelector(".carousel-buttons button:nth-child(2)"); // Next button
+const prevButton = document.querySelector(".prevSlide"); // Previous button
+const nextButton = document.querySelector(".nextSlide"); // Next button
 
 let currentIndex = 0;
 
