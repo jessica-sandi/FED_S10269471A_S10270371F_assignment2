@@ -1,3 +1,82 @@
+    //custom alert
+    function showAlert(message) {
+    // Create the custom alert modal structure
+    const alertModal = document.createElement('div');
+    alertModal.id = 'custom-alert';
+    alertModal.classList.add('custom-alert');
+    
+    const alertContent = document.createElement('div');
+    alertContent.classList.add('alert-content');
+    
+    const alertMessage = document.createElement('p');
+    alertMessage.id = 'alert-message';
+    alertMessage.textContent = message; // Set the message dynamically
+    
+    const closeButton = document.createElement('button');
+    closeButton.id = 'close-alert';
+    closeButton.classList.add('close-alert');
+    closeButton.textContent = 'OK';
+    
+    // Append the content to the modal
+    alertContent.appendChild(alertMessage);
+    alertContent.appendChild(closeButton);
+    alertModal.appendChild(alertContent);
+    
+    // Append the modal to the body
+    document.body.appendChild(alertModal);
+    
+    // Add the event listener to close the alert when the button is clicked
+    closeButton.addEventListener('click', function () {
+        alertModal.remove(); // Remove the modal from the DOM when closed
+    });
+    
+    const style = document.createElement('style');
+        style.innerHTML = `
+            .custom-alert {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+                z-index: 9999; /* Ensure it appears above everything else */
+            }
+            
+            .alert-content {
+                background: #E6E6FA;
+                padding: 20px;
+                border-radius: 25px;
+                max-width: 400px;
+                width: 80%;
+                text-align: center;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            }
+            
+            #alert-message {
+                font-size: 16px;
+                color: #003366;
+                margin-bottom: 20px;
+            }
+            
+            .close-alert {
+                background-color: #003366;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 30px;
+                cursor: pointer;
+                font-size: 14px;
+            }
+            
+            .close-alert:hover {
+                background-color: #005093;
+            }
+        `;
+        document.head.appendChild(style);
+    }
 // Toggle visibility based on deal method selection (Meet Up or Delivery)
 function toggleDealMethod() {
     const isMeetUp = document.getElementById('meetup').checked;
@@ -71,11 +150,11 @@ function getLocation() {
                 document.getElementById('search-location').value = '';
             },
             function(error) {
-                alert('Error fetching location: ' + error.message);
+                showAlert('Error fetching location: ' + error.message);
             }
         );
     } else {
-        alert("Geolocation is not supported by this browser.");
+        showAlert("Geolocation is not supported by this browser.");
     }
 }
 
@@ -118,7 +197,7 @@ document.getElementById('photos').addEventListener('change', function(event) {
 
     // Limit to 4 images
     if (existingImages.length >= 4) {
-        alert('You can only upload up to 4 images. Please delete one to upload more.');
+        showAlert('You can only upload up to 4 images. Please delete one to upload more.');
         return;
     }
 
@@ -130,10 +209,10 @@ document.getElementById('photos').addEventListener('change', function(event) {
                 // Add image preview with ImgBB URL
                 addImagePreview(imageURL);
             }).catch(error => {
-                alert('Error uploading image: ' + error);
+                showAlert('Error uploading image: ' + error);
             });
         } else {
-            alert('You can only upload a total of 4 images.');
+            showAlert('You can only upload a total of 4 images.');
             break;
         }
     }
@@ -189,7 +268,7 @@ function validateFields(itemData) {
     const requiredFields = ['name', 'description', 'price', 'category', 'groups', 'condition', 'location', 'stock'];
     for (let field of requiredFields) {
         if (!itemData[field] || itemData[field].trim() === '') {
-            alert(`Please fill in the ${field} field.`);
+            showAlert(`Please fill in the ${field} field.`);
             return false;
         }
     }
@@ -220,7 +299,10 @@ document.getElementById('sellItem').addEventListener('click', () => {
             listingcreatedAt: new Date().toISOString(),
             listingexpiredAt: new Date(new Date().setDate(new Date().getDate() + 30)).toISOString()
         };
-
+        // Validate the form fields before proceeding
+        if (!validateFields(itemData)) {
+            return;  // Stop further execution if validation fails
+        }   
 
         console.log("Item Data being sent:", itemData);
 
@@ -255,10 +337,10 @@ document.getElementById('sellItem').addEventListener('click', () => {
             }
         })
         .catch(error => {
-            alert('Error listing item: ' + error.message);
+            showAlert('Error listing item: ' + error.message);
         });
     }).catch(error => {
         console.error('Error fetching the latest product ID:', error);
-        alert('Failed to generate product ID. Please try again.');
+        showAlertalert('Failed to generate product ID. Please try again.');
     });
 });
