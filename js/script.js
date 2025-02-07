@@ -6,6 +6,7 @@ document.addEventListener('click', function(event) {
         showLottieAlert();
     }
 });
+
 // show Lottie animation as alert
 function showLottieAlert() {
     // show overlay with Lottie animation

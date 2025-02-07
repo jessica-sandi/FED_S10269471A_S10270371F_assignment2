@@ -113,7 +113,7 @@ a {
     color: inherit; /* Inherit color from the parent (the clickable-text span) */
 }
 button {
-    background-color:  #E6E6FA;
+    background-color: #E6E6FA;
     color: #003366;
     border: none;
     padding: 8px 25px;

@@ -123,161 +123,241 @@
     <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
 
     <script>
+        //custom alert
+        function showAlert(message) {
+            // Create the custom alert modal structure
+            const alertModal = document.createElement('div');
+            alertModal.id = 'custom-alert';
+            alertModal.classList.add('custom-alert');
+            
+            const alertContent = document.createElement('div');
+            alertContent.classList.add('alert-content');
+            
+            const alertMessage = document.createElement('p');
+            alertMessage.id = 'alert-message';
+            alertMessage.textContent = message; // Set the message dynamically
+            
+            const closeButton = document.createElement('button');
+            closeButton.id = 'close-alert';
+            closeButton.classList.add('close-alert');
+            closeButton.textContent = 'OK';
+            
+            // Append the content to the modal
+            alertContent.appendChild(alertMessage);
+            alertContent.appendChild(closeButton);
+            alertModal.appendChild(alertContent);
+            
+            // Append the modal to the body
+            document.body.appendChild(alertModal);
+            
+            // Add the event listener to close the alert when the button is clicked
+            closeButton.addEventListener('click', function () {
+                alertModal.remove(); // Remove the modal from the DOM when closed
+            });
+            
+            const style = document.createElement('style');
+                style.innerHTML = `
+                    .custom-alert {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+                        z-index: 9999; /* Ensure it appears above everything else */
+                    }
+                    
+                    .alert-content {
+                        background: #E6E6FA;
+                        padding: 20px;
+                        border-radius: 25px;
+                        max-width: 400px;
+                        width: 80%;
+                        text-align: center;
+                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                    }
+                    
+                    #alert-message {
+                        font-size: 16px;
+                        color: #003366;
+                        margin-bottom: 20px;
+                    }
+                    
+                    .close-alert {
+                        background-color: #003366;
+                        color: white;
+                        border: none;
+                        padding: 10px 20px;
+                        border-radius: 30px;
+                        cursor: pointer;
+                        font-size: 14px;
+                    }
+                    
+                    .close-alert:hover {
+                        background-color: #005093;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+
         // show the Sign-Up page and hide the Login page
-        function showSignUp() {
-            document.getElementById('login-page').classList.add('hidden');
-            document.getElementById('signup-page').classList.remove('hidden');
+    function showSignUp() {
+        document.getElementById('login-page').classList.add('hidden');
+        document.getElementById('signup-page').classList.remove('hidden');
+    }
+
+    // show the Login page and hide the Sign-Up page
+    function showLogin() {
+        document.getElementById('signup-page').classList.add('hidden');
+        document.getElementById('login-page').classList.remove('hidden');
+    }
+
+    // handle the back icon (reloads the page or redirects)
+    function goBack() {
+        window.history.back(); // go back to the previous page
+    }
+    
+    // Store widget IDs globally
+    let loginWidgetId;
+    let signupWidgetId;
+
+    // callback for rendering reCAPTCHA widgets
+    function onloadCallback() {
+        // render reCAPTCHA for Login
+        loginWidgetId = grecaptcha.render('login-recaptcha', {
+            'sitekey': '6LcQrcMqAAAAAJlQzXgFpSGS1HY3UAHtW7pVowbC' // replace with your actual site key
+        });
+
+        // Render reCAPTCHA for Sign-Up
+        signupWidgetId = grecaptcha.render('signup-recaptcha', {
+            'sitekey': '6LcQrcMqAAAAAJlQzXgFpSGS1HY3UAHtW7pVowbC' // replace with your actual site key
+        });
+    }
+    // email validation function
+    function validateEmail(email) {
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        return emailPattern.test(email);
+    }
+
+    // password validation function (minimum 8 characters, includes at least one letter and one number)
+    function validatePassword(password) {
+        const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,}$/;
+        return passwordPattern.test(password);
+    }
+
+    // login user function
+    function loginUser() {
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+
+        // validate email and password
+        if (!validateEmail(email)) {
+            showAlert('Please enter a valid email address.');
+            return;
+        }
+        if (!validatePassword(password)) {
+            showAlert('Password must be at least 8 characters long and contain both letters and numbers.');
+            return;
         }
 
-        // show the Login page and hide the Sign-Up page
-        function showLogin() {
-            document.getElementById('signup-page').classList.add('hidden');
-            document.getElementById('login-page').classList.remove('hidden');
+        // get reCAPTCHA response
+        const recaptchaResponse = grecaptcha.getResponse(loginWidgetId); 
+
+        // check if reCAPTCHA is solved
+        if (!recaptchaResponse) {
+            showAlert('Please complete the reCAPTCHA');
+            return;
         }
 
-        // handle the back icon (reloads the page or redirects)
-        function goBack() {
-            window.history.back(); // go back to the previous page
-        }
-        
-        // Store widget IDs globally
-        let loginWidgetId;
-        let signupWidgetId;
-
-        // callback for rendering reCAPTCHA widgets
-        function onloadCallback() {
-            // render reCAPTCHA for Login
-            loginWidgetId = grecaptcha.render('login-recaptcha', {
-                'sitekey': '6LcQrcMqAAAAAJlQzXgFpSGS1HY3UAHtW7pVowbC' // replace with your actual site key
-            });
-
-            // Render reCAPTCHA for Sign-Up
-            signupWidgetId = grecaptcha.render('signup-recaptcha', {
-                'sitekey': '6LcQrcMqAAAAAJlQzXgFpSGS1HY3UAHtW7pVowbC' // replace with your actual site key
-            });
-        }
-        // email validation function
-        function validateEmail(email) {
-            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-            return emailPattern.test(email);
-        }
-
-        // password validation function (minimum 8 characters, includes at least one letter and one number)
-        function validatePassword(password) {
-            const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,}$/;
-            return passwordPattern.test(password);
-        }
-
-        // login user function
-        function loginUser() {
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
-
-            // validate email and password
-            if (!validateEmail(email)) {
-                alert('Please enter a valid email address.');
-                return;
+        // REST API call for login
+        fetch('https://assignment2db-2aad.restdb.io/rest/user-collection', {
+            method: 'GET',
+            headers: {
+                'x-apikey': '678c8feb6f2ec083b7ee6d9c'
             }
-            if (!validatePassword(password)) {
-                alert('Password must be at least 8 characters long and contain both letters and numbers.');
-                return;
+        })
+        .then(response => response.json())
+        .then(data => {
+            const user = data.find(user => user.email === email && user.password === password);
+            if (user) {
+                showAlert('Login successful!');
+                sessionStorage.setItem('isAuthenticated', 'true');
+                sessionStorage.setItem('userName', user.name);
+                sessionStorage.setItem('userID', user.userID);
+                sessionStorage.setItem('showWheel', 'true'); // Flag to show the wheel
+                window.location.href = 'index.html';
+            } else {
+                showAlert('Invalid email or password.');
             }
+        })
+        .catch(error => console.error('Error:', error));
+    }
 
-            // get reCAPTCHA response
-            const recaptchaResponse = grecaptcha.getResponse(loginWidgetId); 
+    function signUpUser() {
+        const name = document.getElementById('signup-name').value;
+        const email = document.getElementById('signup-email').value;
+        const password = document.getElementById('signup-password').value;
 
-            // check if reCAPTCHA is solved
-            if (!recaptchaResponse) {
-                alert('Please complete the reCAPTCHA');
-                return;
-            }
+        if (!validateEmail(email)) {
+            showAlert('Please enter a valid email address.');
+            return;
+        }
 
-            // REST API call for login
-            fetch('https://assignment2db-2aad.restdb.io/rest/user-collection', {
-                method: 'GET',
-                headers: {
-                    'x-apikey': '678c8feb6f2ec083b7ee6d9c'
-                }
+        if (!validatePassword(password)) {
+            showAlert('Password must be at least 8 characters long and contain both letters and numbers.');
+            return;
+        }
+
+        // input validation
+        if (!name || !email || !password) {
+            showAlert('Please fill in all fields.');
+            return;  // exit the function if any of the fields are empty
+        }
+
+        // get reCAPTCHA response
+        const recaptchaResponse = grecaptcha.getResponse(signupWidgetId); 
+
+        // check if reCAPTCHA is solved
+        if (!recaptchaResponse) {
+            showAlert('Please complete the reCAPTCHA');
+            return;
+        }
+
+        // add the role field
+        const role = "buyer";  // default role value
+
+        // get the current date in DD/MM/YYYY format using Singapore locale
+        const createdate = new Date().toLocaleDateString('en-SG'); // format as DD/MM/YYYY
+
+        // REST API call for sign-up
+        fetch('https://assignment2db-2aad.restdb.io/rest/user-collection', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-apikey': '678c8feb6f2ec083b7ee6d9c'
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                password: password,
+                role: role,
+                createdate: createdate
             })
-            .then(response => response.json())
-            .then(data => {
-                const user = data.find(user => user.email === email && user.password === password);
-                if (user) {
-                    alert('Login successful!');
-                    sessionStorage.setItem('isAuthenticated', 'true');
-                    sessionStorage.setItem('userName', user.name);
-                    sessionStorage.setItem('userID', user.userID);
-                    sessionStorage.setItem('showWheel', 'true'); // Flag to show the wheel
-                    window.location.href = 'index.html';
-                } else {
-                    alert('Invalid email or password.');
-                }
-            })
-            .catch(error => console.error('Error:', error));
-        }
-
-        function signUpUser() {
-            const name = document.getElementById('signup-name').value;
-            const email = document.getElementById('signup-email').value;
-            const password = document.getElementById('signup-password').value;
-
-            if (!validateEmail(email)) {
-                alert('Please enter a valid email address.');
-                return;
-            }
-
-            if (!validatePassword(password)) {
-                alert('Password must be at least 8 characters long and contain both letters and numbers.');
-                return;
-            }
-
-            // input validation
-            if (!name || !email || !password) {
-                alert('Please fill in all fields.');
-                return;  // exit the function if any of the fields are empty
-            }
-
-            // get reCAPTCHA response
-            const recaptchaResponse = grecaptcha.getResponse(signupWidgetId); 
-
-            // check if reCAPTCHA is solved
-            if (!recaptchaResponse) {
-                alert('Please complete the reCAPTCHA');
-                return;
-            }
-
-            // add the role field
-            const role = "buyer";  // default role value
-
-            // get the current date in DD/MM/YYYY format using Singapore locale
-            const createdate = new Date().toLocaleDateString('en-SG'); // format as DD/MM/YYYY
-
-            // REST API call for sign-up
-            fetch('https://assignment2db-2aad.restdb.io/rest/user-collection', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'x-apikey': '678c8feb6f2ec083b7ee6d9c'
-                },
-                body: JSON.stringify({
-                    name: name,
-                    email: email,
-                    password: password,
-                    role: role,
-                    createdate: createdate
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert('Sign-Up successful! Please log in.');
-                showLogin(); // redirect to login page after sign-up
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Error during sign-up. Please try again.');
-            });
-        }
-    </script>
+        })
+        .then(response => response.json())
+        .then(data => {
+            showAlert('Sign-Up successful! Please log in.');
+            showLogin(); // redirect to login page after sign-up
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showAlert('Error during sign-up. Please try again.');
+        });
+    }
+</script>
 
 </body>
 </html>
