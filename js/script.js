@@ -71,9 +71,10 @@ document.addEventListener('DOMContentLoaded', function() {
 function handleSellClick() {
     // Retrieve the user's username from sessionStorage
     const userName = sessionStorage.getItem('userName');
-
+    const userID = sessionStorage.getItem('userID');
     if (!userName) {
         alert("User not logged in.");
+        window.location.href = 'loginsignup.html';
         return;
     }
 
@@ -104,7 +105,7 @@ function handleSellClick() {
 
             if (userWantsToSell) {
                 // Add 'seller' role if the user wants to become a seller
-                updateUserRole(user._id, 'buyer,seller') // Adding 'seller' role while keeping 'buyer'
+                updateUserRole(user._id, 'buyer,seller', userID) // Adding 'seller' role while keeping 'buyer'
                     .then(() => {
                         // Redirect the user to sell.html after updating their role
                         window.location.href = 'sell.html';
@@ -129,7 +130,7 @@ function handleSellClick() {
     });
 }
 
-function updateUserRole(userId, newRoles) {
+function updateUserRole(userId, newRoles,userID) {
     // Log the userId and roles to make sure they are correct
     console.log(`Updating user role for userId: ${userId} to roles: ${newRoles}`);
 
@@ -140,7 +141,9 @@ function updateUserRole(userId, newRoles) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ 
-            role: newRoles })
+            role: newRoles,
+            sellerID: userID
+        })
     })
     .then(response => {
         console.log("Response status:", response.status);
@@ -161,3 +164,71 @@ function updateUserRole(userId, newRoles) {
     });
     
 }
+
+const chatIcon = document.getElementById("chatbox-container");
+const chatbotPopup = document.getElementById("chatbot-popup");
+const closeChatBtn = document.getElementById("close-chat");
+const sendBtn = document.getElementById("send-btn");
+const userInput = document.getElementById("user-input");
+const chatboxBody = document.getElementById("chatbox-body");
+
+const botResponses = {
+    "delivery": "We offer a delivery service but buyer have to pay for it or meet up with the seller",
+    "returns": "You can return items within 30 days. For pre-owned items, they must be in original condition. If seller don't allow return, they must put in product description.",
+    "payment": "We accept all major credit cards and PayNow. Your payment is secured through encryption. For meet-up Cash-On-Delivery should be accepted unless otherwise stated",
+    "brand new": "We have a wide selection of brand new fashion items. Check them out on our homepage!",
+    "pre-owned": "We sell authenticated pre-owned fashion items. Each product has its condition clearly listed in the description.",
+    "size": "Seller would state it on product description",
+    "account": "Edit account info by pressing on you username",
+    "sell": "Want to start selling? Press the Sell button and start uploading item to sell!",
+    "help": "I can help you with orders, shipping, returns, product info, account, start selling? and more. Just ask me anything!",
+};
+
+function addMessageToChat(message, sender) {
+    const messageDiv = document.createElement("div");
+    messageDiv.classList.add(sender === "bot" ? "bot-message" : "user-message");
+    messageDiv.innerHTML = `<p>${message}</p>`;
+    chatboxBody.appendChild(messageDiv);
+    chatboxBody.scrollTop = chatboxBody.scrollHeight;
+}
+
+function handleUserInput(input) {
+    let response = "Sorry, I didn't understand that. Please try asking something else.";
+    
+    for (const key in botResponses) {
+        if (input.toLowerCase().includes(key)) {
+            response = botResponses[key];
+            break;
+        }
+    }
+    
+    return response;
+}
+
+// Open Chatbot when clicking the chat icon
+chatIcon.addEventListener("click", function() {
+    chatbotPopup.style.display = 'flex';  // Show the popup
+});
+
+// Close the chatbot when clicking the close button
+closeChatBtn.addEventListener("click", function() {
+    chatbotPopup.style.display = 'none';  // Hide the popup
+});
+
+// Handle user input and send response
+sendBtn.addEventListener("click", function() {
+    const userQuestion = userInput.value.trim();
+    if (userQuestion) {
+        addMessageToChat(userQuestion, "user");
+        const botAnswer = handleUserInput(userQuestion);
+        setTimeout(() => addMessageToChat(botAnswer, "bot"), 1000);
+        userInput.value = "";
+    }
+});
+
+// Handle pressing Enter to send the message
+userInput.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        sendBtn.click();
+    }
+});
