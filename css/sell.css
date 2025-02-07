@@ -132,7 +132,7 @@ select:focus, input:focus, textarea:focus {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Light shadow */
 }
 
-#delivery-options h3 {
+h3 {
     font-size: 20px;
     margin-bottom: 12px;
     color: #003366; /* Dark blue color for headings */
