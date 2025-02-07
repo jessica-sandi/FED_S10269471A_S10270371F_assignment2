@@ -25,7 +25,6 @@ function updateProfileText() {
     if (isAuthenticated) {
         const userName = sessionStorage.getItem('userName');
         profileText.textContent = `Welcome, ${userName}!`;
-        profileText.parentElement.href = '#'; // Disable login link after login
     } else {
         profileText.textContent = 'Sign Up / Login';
         profileText.parentElement.href = 'loginsignup.html'; // Enable login link if not authenticated
