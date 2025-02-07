@@ -1,35 +1,36 @@
 const carouselImages = document.querySelector(".carousel-images");
-const images = document.querySelectorAll(".carousel-images img");
+const images = document.querySelectorAll(".carousel-images a"); // Select anchor tags wrapping images
 const prevButton = document.querySelector(".carousel-buttons button:nth-child(1)"); // Previous button
 const nextButton = document.querySelector(".carousel-buttons button:nth-child(2)"); // Next button
 
-if (carouselImages && images.length > 0 && prevButton && nextButton) {
-    let currentIndex = 0;
+let currentIndex = 0;
 
-    // Function to update the carousel position
-    const updateCarousel = () => {
-        const imageWidth = images[0].clientWidth; // Get the width of one image
-        carouselImages.style.transform = `translateX(${-currentIndex * imageWidth * 2}px)`; // Move by 2 images
-    };
+// Function to update the carousel position (only 1 image per view)
+const updateCarousel = () => {
+    const imageWidth = images[0].clientWidth; // Get the width of one image
+    carouselImages.style.transform = `translateX(${-currentIndex * imageWidth}px)`; // Move by 1 image
+};
 
-    // Show the previous set of images
-    prevButton.addEventListener("click", () => {
-        currentIndex = (currentIndex === 0) ? Math.floor(images.length / 2) - 1 : currentIndex - 1;
-        updateCarousel();
-    });
+// Show the previous image
+prevButton.addEventListener("click", () => {
+    currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+    updateCarousel();
+});
 
-    // Show the next set of images
-    nextButton.addEventListener("click", () => {
-        currentIndex = (currentIndex === Math.floor(images.length / 2) - 1) ? 0 : currentIndex + 1;
-        updateCarousel();
-    });
+// Show the next image
+nextButton.addEventListener("click", () => {
+    currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+    updateCarousel();
+});
 
-    // Auto-slide the carousel every 3 seconds
-    setInterval(() => {
-        currentIndex = (currentIndex === Math.floor(images.length / 2) - 1) ? 0 : currentIndex + 1;
-        updateCarousel();
-    }, 3000);
+// Auto-slide the carousel every 3 seconds
+setInterval(() => {
+    currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+    updateCarousel();
+}, 3000);
 
-    // Adjust the carousel on window resize
-    window.addEventListener("resize", updateCarousel);
-}
+// Adjust the carousel on window resize
+window.addEventListener("resize", updateCarousel);
+
+// Call updateCarousel once initially to adjust it on page load
+updateCarousel();

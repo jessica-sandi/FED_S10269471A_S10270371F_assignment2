@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
-    color: #FBE6E2;
+    color: #003366;
 }
 
 header {
@@ -69,7 +69,7 @@ nav {
     text-decoration: none;
     font-weight: bold;
     font-size: 16px;
-    color:#F8D7D2
+    color:#F8D7D2;
 }
 
 #MenuItems li a:hover {
@@ -130,7 +130,7 @@ button:hover {
 
 .search-bar {
     margin: 20px auto;
-    width: 80%;
+    width: 70%;
     display: flex;
     align-items: center;
 }

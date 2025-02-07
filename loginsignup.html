@@ -207,6 +207,7 @@
                     sessionStorage.setItem('isAuthenticated', 'true');
                     sessionStorage.setItem('userName', user.name);
                     sessionStorage.setItem('userID', user.userID);
+                    sessionStorage.setItem('showWheel', 'true'); // Flag to show the wheel
                     window.location.href = 'index.html';
                 } else {
                     alert('Invalid email or password.');

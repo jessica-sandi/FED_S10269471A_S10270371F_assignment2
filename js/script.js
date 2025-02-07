@@ -2,6 +2,7 @@
 document.addEventListener('click', function(event) {
     const isAuthenticated = sessionStorage.getItem('isAuthenticated') === 'true';
     if (!isAuthenticated) {
+        event.preventDefault(); // Prevent default behavior like following links
         showLottieAlert();
     }
 });
@@ -73,8 +74,6 @@ function handleSellClick() {
     const userName = sessionStorage.getItem('userName');
     const userID = sessionStorage.getItem('userID');
     if (!userName) {
-        alert("User not logged in.");
-        window.location.href = 'loginsignup.html';
         return;
     }
 
