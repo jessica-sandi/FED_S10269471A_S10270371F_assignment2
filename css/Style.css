@@ -338,3 +338,112 @@ button:hover {
     color: #003366;
     font-weight: bold;
 }
+
+
+/*Product detail*/
+/* Container for the entire product detail section */
+.detail-container {
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
+    height: 100vh; /* Take full viewport height */
+    padding: 40px 20px; /* More padding around the container */
+    margin: 0 auto;
+}
+.back-arrow {
+    position: absolute; /* Position it absolutely relative to the container */
+    top:20%;
+    left: 22%; /* Center the arrow horizontally */
+    transform: translateX(-50%); /* Adjust to perfectly center it */
+    font-size: 18px;
+    color: #1F2A44; /* Match the color scheme */
+    cursor: pointer;
+    text-decoration: none;
+    z-index: 10; /* Make sure the arrow is above other content */
+}
+
+/* Main card for the product details */
+.detail-card {
+    display: flex;
+    background: #FCE8E6; /* Light pink background to match color scheme */
+    padding: 30px; /* Increased padding for better spacing */
+    border-radius: 12px; /* Slightly rounded corners for a cleaner look */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1); /* Softer shadow with larger blur */
+    width: 100%;
+    max-width: 950px; /* Set a maximum width for larger screens */
+    gap: 30px; /* Added gap between image and details */
+}
+
+/* Container for the product image */
+.detail-img-container {
+    position: relative;
+    width: 50%; /* Reduced width to balance with details section */
+    height: 500px;
+}
+
+/* Product image style */
+#detail-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Added subtle shadow around the image */
+}
+
+/* Details section next to the image */
+.details {
+    margin-left: 20px;
+    max-width: 100%;
+    flex-grow: 1;
+}
+
+/* Product title */
+.title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #003366; /* Dark blue for title */
+    margin-bottom: 10px; /* Add spacing below the title */
+}
+
+/* Product price */
+.price {
+    font-size: 22px;
+    font-weight: 600; /* Slightly bolder font for price */
+    color: #1F2A44; /* Keep dark color for price */
+    margin-top: 5px;
+    margin-bottom: 20px; /* Space between price and condition */
+}
+
+/* Condition, description, and location with consistent spacing */
+.condition, .description, .location {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 12px; /* Added more space between text sections */
+}
+
+/* Quantity selector section */
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Add some space between quantity and the label */
+    margin-top: 20px;
+    border: 1px solid #003366;
+    border-radius: 15px;
+    outline: none;
+}
+
+/* Add to cart button with improved padding */
+.add-to-cart {
+    background-color: #003366; /* Dark blue button background */
+    color: white;
+    padding: 12px 24px; /* Slightly larger padding */
+    border: none;
+    border-radius: 8px; /* Rounded button edges */
+    cursor: pointer;
+    margin-top: 20px; /* Space between quantity selector and button */
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart:hover {
+    background-color: #1F2A44; /* Darker blue on hover */
+}
