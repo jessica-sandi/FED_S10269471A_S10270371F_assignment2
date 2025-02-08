@@ -1,3 +1,4 @@
+//ACCOUNT HANDLING ON SESSION STORAGE
 // redirect users if not authenticated
 document.addEventListener('click', function(event) {
     const isAuthenticated = sessionStorage.getItem('isAuthenticated') === 'true';
@@ -39,7 +40,7 @@ function logOutUser() {
     window.location.href = 'loginsignup.html';  // Redirect to login page
 }
 
-// Auto log out after a certain time (for testing purposes)
+// Auto log out after a certain time
 function setupAutoLogout() {
     const logoutTime = 2160000; // 6 hours
     setInterval(() => {
@@ -67,76 +68,94 @@ document.addEventListener('DOMContentLoaded', function() {
     updateLastLoginTime(); // Update the last login time when the page loads
     setupAutoLogout(); // Start the auto logout check
 });
-
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//SELL BUTTON HANDLING - check user role
+// SELL BUTTON HANDLING - check user role
 function handleSellClick() {
-    // Retrieve the user's username from sessionStorage
+    // Retrieve the user's username and ID from sessionStorage
     const userName = sessionStorage.getItem('userName');
     const userID = sessionStorage.getItem('userID');
+
     if (!userName) {
         return;
     }
-    
-    // Fetch the user's data from the database using the username
-    /*fetch(`https://assignment2db-2aad.restdb.io/rest/user-collection?q={"name":"${userName}"}`, {
-        method: 'GET',
-        headers: {
-            'x-apikey': '678c8feb6f2ec083b7ee6d9c'
-        }
-    
-    })*/
-    fetch(`https://assignment2-a8de.restdb.io/rest/user-collection?q={"name":"${userName}"}`, {
-        method: 'GET',
-        headers: {
-            'x-apikey': '67a7456d4d87445754828017'
-        }
-    
-    })
-    .then(response => response.json())
-    .then(users => {
-        //Find the user by their username
-        const user = users.find(u => u.name === userName);
 
-        if (!user) {
-            alert('User not found.');
-            return;
-        }
-
-        // Log the user data to inspect the response
-        console.log("Fetched user data:", user);
-
-        // Check if the user has 'buyer' role
-        if (user.role && user.role.includes('buyer') && !user.role.includes('seller')) {
-            // If the user is a buyer, prompt them to become a seller
-            const userWantsToSell = confirm("You are currently a buyer. Do you want to become a seller?");
-
-            if (userWantsToSell) {
-                // Add 'seller' role if the user wants to become a seller
-                updateUserRole(user._id, 'buyer,seller', userID) // Adding 'seller' role while keeping 'buyer'
-                    .then(() => {
-                        // Redirect the user to sell.html after updating their role
-                        window.location.href = 'sell.html';
-                    })
-                    .catch(error => {
-                        alert('Error updating role: ' + error.message);
-                    });
-            } else {
-                // If user doesn't want to change their role, return to index.html
-                window.location.href = 'index.html';
+    // Check if the user data is already available in sessionStorage
+    const storedUserData = sessionStorage.getItem(`user_${userName}`);
+    if (storedUserData) {
+        const user = JSON.parse(storedUserData);
+        processUserRole(user, userID);
+    } else {
+        // Fetch the user's data from RESTdb if not found in sessionStorage
+        /*fetch(`https://assignment2db-2aad.restdb.io/rest/user-collection?q={"name":"${userName}"}`, {
+            method: 'GET',
+            headers: {
+                'x-apikey': '678c8feb6f2ec083b7ee6d9c'  // Keep your old API key here
             }
-        } else if (user.role && user.role.includes('buyer,seller')) {
-            // If the user is already a seller, proceed to sell.html
-            window.location.href = 'sell.html';
-        } else {
-            alert('Unknown role.');
-        }
-    })
-    .catch(error => {
-        console.error('Error fetching user data: ', error);
-        alert('An error occurred. Please try again.');
-    });
+        })
+         
+        fetch(`https://assignment2-a8de.restdb.io/rest/user-collection?q={"name":"${userName}"}`, {
+            method: 'GET',
+            headers: {
+                'x-apikey': '67a7456d4d87445754828017'  // Keep your old API key here
+            }
+        })
+        */
+        fetch(`https://mokesell-a998.restdb.io/rest/user-collection?q={"name":"${userName}"}`, {
+            method: 'GET',
+            headers: {
+                'x-apikey': '67a77d8c4d87445a4b828040'  // Keep your old API key here
+            }
+        })
+        .then(response => response.json())
+        .then(users => {
+            // Find the user by their username
+            const user = users.find(u => u.name === userName);
+            if (!user) {
+                alert('User not found.');
+                return;
+            }
+
+            // Store the fetched user data in sessionStorage for future use
+            sessionStorage.setItem(`user_${userName}`, JSON.stringify(user));
+
+            // Process the user role
+            processUserRole(user, userID);
+        })
+        .catch(error => {
+            console.error('Error fetching user data:', error);
+            alert('An error occurred. Please try again.');
+        });
+    }
 }
 
+// Function to process the user role
+function processUserRole(user, userID) {
+    if (user.role && user.role.includes('buyer') && !user.role.includes('seller')) {
+        // If the user is a buyer, prompt them to become a seller
+        const userWantsToSell = confirm("You are currently a buyer. Do you want to become a seller?");
+        if (userWantsToSell) {
+            // Add 'seller' role if the user wants to become a seller
+            updateUserRole(user._id, 'buyer,seller', userID) // Adding 'seller' role while keeping 'buyer'
+                .then(() => {
+                    // Redirect the user to sell.html after updating their role
+                    window.location.href = 'sell.html';
+                })
+                .catch(error => {
+                    alert('Error updating role: ' + error.message);
+                });
+        } else {
+            // If user doesn't want to change their role, return to index.html
+            window.location.href = 'index.html';
+        }
+    } else if (user.role && user.role.includes('buyer,seller')) {
+        // If the user is already a seller, proceed to sell.html
+        window.location.href = 'sell.html';
+    } else {
+        alert('Unknown role.');
+    }
+}
+//UPDATE USER ROLE FROM BUYER TO BUYER,SELLER
 function updateUserRole(userId, newRoles,userID) {
     // Log the userId and roles to make sure they are correct
     console.log(`Updating user role for userId: ${userId} to roles: ${newRoles}`);
@@ -146,11 +165,20 @@ function updateUserRole(userId, newRoles,userID) {
         headers: {
             'x-apikey': '678c8feb6f2ec083b7ee6d9c',
             'Content-Type': 'application/json'
-        },*/
+        },
+       
     return fetch(`https://assignment2-a8de.restdb.io/rest/user-collection/${userId}`, {
         method: 'PUT',
         headers: {
             'x-apikey': '67a7456d4d87445754828017',
+            'Content-Type': 'application/json'
+        },
+        
+        */
+    return fetch(`https://mokesell-a998.restdb.io/rest/user-collection/${userId}`, {
+        method: 'PUT',
+        headers: {
+            'x-apikey': '667a77d8c4d87445a4b828040',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ 
@@ -177,7 +205,9 @@ function updateUserRole(userId, newRoles,userID) {
     });
     
 }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//CHATBOT MESSAGE
 const chatIcon = document.getElementById("chatbox-container");
 const chatbotPopup = document.getElementById("chatbot-popup");
 const closeChatBtn = document.getElementById("close-chat");
@@ -246,14 +276,14 @@ userInput.addEventListener("keypress", function(event) {
     }
 });
 
-
-/*notification*/
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//NOTIFICATION HANDLING
 // Variable to store the fetched notifications
 let notifications = []; 
 
 // Fetch notifications data from external JSON file
 function fetchNotifications() {
-    fetch('json/notifications.json')  // Path to your notifications JSON file
+    fetch('json/notifications.json')
         .then(response => response.json())
         .then(data => {
             notifications = data;  // Assign JSON data to notifications variable

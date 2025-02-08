@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>Product Detail</title>
     <link href="css/Style.css" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 </head>
 <body>
     <main>
@@ -23,7 +24,7 @@
                     
                     <label for="quantity">Quantity:</label>
                     <select id="quantity" class="quantity-selector"></select>
-                    <button class="add-to-cart">Add to Cart</button>
+                    <button class="add-to-cart" id="add-to-cart-btn">Add to Cart</button>
                 </div>
             </div>
             <!-- Review Section -->
@@ -40,26 +41,69 @@
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const productID = urlParams.get('id');
-        //const restDBUrl = "https://assignment2db-2aad.restdb.io/rest/fashion";  // RESTdb API for products
-        const restDBUrl = "https://assignment2-a8de.restdb.io/rest/fashion";
-        //const apiKey = "678c8feb6f2ec083b7ee6d9c"; // Your API key for RESTdb
-        const apiKey = "67a7456d4d87445754828017";
+        console.log('Product ID:', productID);  // Debugging product ID
+
+        const restDBUrl = "https://mokesell-a998.restdb.io/rest/product";
+        const apiKey = "67a77d8c4d87445a4b828040";
         
-        // Fetch both local JSON data and RESTdb API data concurrently
-        Promise.all([
-            // Fetch data from local JSON file
-            fetch('products.json').then(response => response.json()), 
-            
-            // Fetch data from RESTdb API
-            fetch(restDBUrl, {
-                headers: {
-                    'x-apikey': apiKey  // Include the API key for RESTdb
-                }
-            }).then(response => response.json())
-        ])
-        .then(([localData, restdbData]) => {
-            // Combine data or choose which one to use
-            const product = restdbData.find(p => p.productID === productID) || localData.find(p => p.productID === productID);
+        // const restDBUrl = "https://assignment2-a8de.restdb.io/rest/fashion";
+        // const apiKey = "67a7456d4d87445754828017";
+        // const restDBUrl = "https://assignment2db-2aad.restdb.io/rest/fashion"; 
+        // const apiKey = "678c8feb6f2ec083b7ee6d9c"; 
+
+        // Check if data exists in localStorage
+        if (localStorage.getItem('localProducts') && localStorage.getItem('restdbProducts') && localStorage.getItem('reviewsData')) {
+            // If data exists, use it from localStorage
+            const localProducts = JSON.parse(localStorage.getItem('localProducts'));
+            const restdbProducts = JSON.parse(localStorage.getItem('restdbProducts'));
+            const reviewsData = JSON.parse(localStorage.getItem('reviewsData'));
+            loadProductData(localProducts, restdbProducts);
+            loadReviewsData(reviewsData);
+        } else {
+            // Fetch product and review data from RESTdb and store it in localStorage
+            fetchDataAndStore();
+        }
+
+        // Function to fetch data from RESTdb and store in localStorage
+        function fetchDataAndStore() {
+            Promise.all([
+                fetch(restDBUrl, {
+                    headers: { 'x-apikey': apiKey }
+                }).then(response => response.json()),
+                fetch(`https://mokesell-a998.restdb.io/rest/rating?productID=${productID}`, {
+                    headers: { 'x-apikey': apiKey }
+                }).then(response => response.json())
+            ])
+            .then(([restdbProducts, reviewsData]) => {
+                console.log('Product Data from RESTdb:', restdbProducts);  // Debugging product data
+                console.log('Reviews Data:', reviewsData);  // Debugging reviews data
+
+                // Store fetched data in localStorage
+                localStorage.setItem('restdbProducts', JSON.stringify(restdbProducts));
+                localStorage.setItem('reviewsData', JSON.stringify(reviewsData));
+
+                // Load the data to the page
+                loadProductData(null, restdbProducts);
+                loadReviewsData(reviewsData);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+                alert("Failed to load product details. Please try again later.");
+            });
+        }
+
+        // Function to load product data to the page
+        function loadProductData(localProducts, restdbProducts) {
+            // Prefer data from localProducts if available
+            let product;
+            if (localProducts) {
+                product = localProducts.find(p => p.productID === productID);
+            }
+
+            // Fallback to restdbProducts if not found in localProducts
+            if (!product && restdbProducts) {
+                product = restdbProducts.find(p => p.productID === productID);
+            }
 
             if (product) {
                 document.getElementById('detail-image').src = product.photosurl || '';
@@ -81,37 +125,26 @@
                 }
 
                 if (availableStock === 0) {
-                    quantitySelect.disabled = true;  // Disable quantity selector if no stock
-                    document.querySelector('.add-to-cart').disabled = true; // Disable 'Add to Cart' button
+                    quantitySelect.disabled = true;
+                    document.querySelector('.add-to-cart').disabled = true;
                 }
-
-                // Fetch reviews from RESTDB
-                /*fetch(`https://assignment2db-2aad.restdb.io/rest/review-rating-collection?productID=${productID}`, {
-                    headers: { "x-apikey": apiKey }
-                })*/
-                fetch(`https://assignment2-a8de.restdb.io/rest/review-rating-collection?productID=${productID}`, {
-                    headers: { "x-apikey": apiKey }
-                })
-                .then(response => response.json())
-                .then(reviewsData => {
-                    // Ensure reviewsData is an array and contains reviews for the specific product
-                    const reviews = reviewsData.filter(review => review.productID === productID);
-                    updateAverageRating(reviews);
-                    displayReviews(reviews);
-                })
-                .catch(error => console.error('Error fetching reviews:', error));
             } else {
-                document.getElementById('product-detail').innerHTML = '<p>Product not found.</p>';
+                console.error('Product not found for the given productID:', productID);
             }
-        })
-        .catch(error => {
-            console.error('Error loading product data:', error);
-        });
+        }
+
+        // Function to load reviews data to the page
+        function loadReviewsData(reviewsData) {
+            const reviews = reviewsData.filter(review => review.productID === productID);
+            console.log('Filtered Reviews:', reviews);  // Debugging filtered reviews
+            updateAverageRating(reviews);
+            displayReviews(reviews);
+        }
 
         // Function to update the average rating
         function updateAverageRating(reviews) {
             if (reviews.length > 0) {
-                const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);  // Use review.rating
+                const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
                 const average = totalRating / reviews.length;
                 document.getElementById('average-rating').textContent = `Average Rating: ${average.toFixed(1)} (${reviews.length} reviews)`;
             } else {
@@ -119,16 +152,30 @@
             }
         }
 
-        // Function to display reviews
+        // Function to display reviews with Material Icons for star ratings
         function displayReviews(reviews) {
             const reviewsContainer = document.getElementById('reviews-container');
-            reviewsContainer.innerHTML = ''; // Clear previous reviews
+            reviewsContainer.innerHTML = '';
 
             if (reviews.length > 0) {
                 reviews.forEach(review => {
                     const reviewDiv = document.createElement('div');
                     reviewDiv.classList.add('review');
-                    
+
+                    const starRating = document.createElement('div');
+                    starRating.classList.add('star-rating');
+                    const rating = review.rating;
+                    let stars = '';
+                    for (let i = 0; i < 5; i++) {
+                        if (i < rating) {
+                            stars += `<span class="material-icons-round">star</span>`;
+                        } else {
+                            stars += `<span class="material-icons-round">star_outline</span>`;
+                        }
+                    }
+                    starRating.innerHTML = stars;
+                    reviewDiv.appendChild(starRating);
+
                     const reviewText = document.createElement('p');
                     reviewText.textContent = `"${review.reviewText}"`;
                     reviewDiv.appendChild(reviewText);
@@ -141,7 +188,6 @@
                     reviewsContainer.appendChild(reviewDiv);
                 });
             } else {
-                // If no reviews, show "No reviews yet."
                 reviewsContainer.innerHTML = '<p>No reviews yet.</p>';
             }
         }

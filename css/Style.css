@@ -384,6 +384,8 @@ button:hover {
     width: 40%; /* Reduced width to balance with details section */
     overflow: hidden; /* Hide overflow to maintain image aspect ratio */
     border-radius: 13px;
+    border: 1px solid #003366;
+
 }
 
 /* Product image style */
@@ -432,8 +434,9 @@ button:hover {
     align-items: center;
     gap: 12px; /* Add some space between quantity and the label */
     margin-top: 20px;
-    border: 1px solid #003366;
-    border-radius: 15px;
+    background-color: #003366;
+    border-radius: 13px;
+    color:#FCE8E6; 
     outline: none;
 }
 
@@ -472,11 +475,12 @@ button:hover {
 }
 
 .review {
-    background-color: #fff;
+    background-color:#E8F0F9;
     padding: 15px;
     margin-bottom: 15px;
     border-radius: 8px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #003366;
 }
 
 .review-meta {

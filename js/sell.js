@@ -1,3 +1,4 @@
+    //SELL PAGE HANDLING 
     //custom alert
     function showAlert(message) {
     // Create the custom alert modal structure
@@ -93,7 +94,7 @@ function toggleDealMethod() {
         deliveryOptions.style.display = 'block';
     }
 }
-
+//LOCATION HANDLING
 let map;
 let marker;
 let geocoder;
@@ -163,12 +164,13 @@ function updateLocationField(lat, lng) {
     document.getElementById('location').value = `${lat}, ${lng}`;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//IMAGE HANDLING
 // Upload image to ImgBB and return URL
 function uploadToImgBB(file) {
     const formData = new FormData();
     formData.append('image', file);
 
-    // Replace with your ImgBB API Key
     const imgBB_API_KEY = 'ff8c998f52b599180a08523f236288b0';
 
     return fetch(`https://api.imgbb.com/1/upload?key=${imgBB_API_KEY}`, {
@@ -238,18 +240,26 @@ function removeImage(button) {
     previewDiv.remove();
 }
 
-// Get the latest product_id from the collection (or P100 if no products exist)
+// Get the latest productID from the collection (or P100 if no products exist)
 /*function getLatestProductId() {
     return fetch('https://assignment2db-2aad.restdb.io/rest/fashion', {
         method: 'GET',
         headers: {
             'x-apikey': '678c8feb6f2ec083b7ee6d9c'
-        }*/
+        }
+
 function getLatestProductId() {
     return fetch('https://assignment2-a8de.restdb.io/rest/fashion', {
         method: 'GET',
         headers: {
             'x-apikey': '67a7456d4d87445754828017'
+        }     
+        */
+function getLatestProductId() {
+    return fetch('https://mokesell-a998.restdb.io/rest/product', {
+        method: 'GET',
+        headers: {
+            'x-apikey': '67a77d8c4d87445a4b828040'
         }
     })
     .then(response => response.json())
@@ -324,12 +334,20 @@ document.getElementById('sellItem').addEventListener('click', () => {
             headers: {
                 'Content-Type': 'application/json',
                 'x-apikey': '678c8feb6f2ec083b7ee6d9c'
-            },*/
-        fetch('https://assignment2-a8de.restdb.io/rest/fashion', {
+            },
+
+         fetch('https://assignment2-a8de.restdb.io/rest/fashion', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'x-apikey': '67a7456d4d87445754828017'
+            },
+            */
+        fetch('https://mokesell-a998.restdb.io/rest/product', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-apikey': '667a77d8c4d87445a4b828040'
             },
             body: JSON.stringify(itemData)
         })
