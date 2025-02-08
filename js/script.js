@@ -90,21 +90,27 @@ function handleSellClick() {
         /*fetch(`https://assignment2db-2aad.restdb.io/rest/user-collection?q={"name":"${userName}"}`, {
             method: 'GET',
             headers: {
-                'x-apikey': '678c8feb6f2ec083b7ee6d9c'  // Keep your old API key here
+                'x-apikey': '678c8feb6f2ec083b7ee6d9c'  
             }
         })
          
         fetch(`https://assignment2-a8de.restdb.io/rest/user-collection?q={"name":"${userName}"}`, {
             method: 'GET',
             headers: {
-                'x-apikey': '67a7456d4d87445754828017'  // Keep your old API key here
+                'x-apikey': '67a7456d4d87445754828017'  
             }
         })
-        */
         fetch(`https://mokesell-a998.restdb.io/rest/user-collection?q={"name":"${userName}"}`, {
             method: 'GET',
             headers: {
-                'x-apikey': '67a77d8c4d87445a4b828040'  // Keep your old API key here
+                'x-apikey': '67a77d8c4d87445a4b828040'  
+            }
+        })
+        */
+        fetch(`https://mokesell-af7d.restdb.io/rest/user-collection?q={"name":"${userName}"}`, {
+            method: 'GET',
+            headers: {
+                'x-apikey': '67a7a6a193d83b27dc23521b' 
             }
         })
         .then(response => response.json())
@@ -174,11 +180,17 @@ function updateUserRole(userId, newRoles,userID) {
             'Content-Type': 'application/json'
         },
         
-        */
     return fetch(`https://mokesell-a998.restdb.io/rest/user-collection/${userId}`, {
         method: 'PUT',
         headers: {
             'x-apikey': '667a77d8c4d87445a4b828040',
+            'Content-Type': 'application/json'
+        },
+        */
+    return fetch(`https://mokesell-af7d.restdb.io/rest/user-collection/${userId}`, {
+        method: 'PUT',
+        headers: {
+            'x-apikey': '667a7a6a193d83b27dc23521b',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ 

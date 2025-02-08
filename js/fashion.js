@@ -98,13 +98,16 @@ const fetchAndStoreData = () => {
         // Fetch data from RESTdb API
         /*fetch('https://assignment2db-2aad.restdb.io/rest/fashion', {
             headers: { 'x-apikey': '678c8feb6f2ec083b7ee6d9c' } 
-
+        })
         fetch('https://assignment2-a8de.restdb.io/rest/fashion', {
             headers: { 'x-apikey': '67a7456d4d87445754828017' }  
         })
-        })*/
         fetch('https://mokesell-a998.restdb.io/rest/product', {
             headers: { 'x-apikey': '67a77d8c4d87445a4b828040' }  
+        }).then(response => response.json())
+        */
+        fetch('https://mokesell-af7d.restdb.io/rest/product', {
+            headers: { 'x-apikey': '67a7a6a193d83b27dc23521b' }  
         }).then(response => response.json())
     ])
     .then(([localData, restdbData]) => {

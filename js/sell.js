@@ -253,13 +253,19 @@ function getLatestProductId() {
         method: 'GET',
         headers: {
             'x-apikey': '67a7456d4d87445754828017'
-        }     
-        */
+        }   
 function getLatestProductId() {
     return fetch('https://mokesell-a998.restdb.io/rest/product', {
         method: 'GET',
         headers: {
             'x-apikey': '67a77d8c4d87445a4b828040'
+        }        
+        */
+function getLatestProductId() {
+    return fetch('https://mokesell-af7d.restdb.io/rest/fashion', {
+        method: 'GET',
+        headers: {
+            'x-apikey': '67a7a6a193d83b27dc23521b'
         }
     })
     .then(response => response.json())
@@ -342,12 +348,18 @@ document.getElementById('sellItem').addEventListener('click', () => {
                 'Content-Type': 'application/json',
                 'x-apikey': '67a7456d4d87445754828017'
             },
-            */
-        fetch('https://mokesell-a998.restdb.io/rest/product', {
+         fetch('https://mokesell-a998.restdb.io/rest/product', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'x-apikey': '667a77d8c4d87445a4b828040'
+            },
+            */
+        fetch('https://mokesell-af7d.restdb.io/rest/fashion', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-apikey': '67a7a6a193d83b27dc23521b'
             },
             body: JSON.stringify(itemData)
         })
