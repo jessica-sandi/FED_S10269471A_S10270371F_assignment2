@@ -344,41 +344,46 @@ button:hover {
 /* Container for the entire product detail section */
 .detail-container {
     display: flex;
-    justify-content: center; /* Center the content horizontally */
-    align-items: center; /* Center the content vertically */
-    height: 100vh; /* Take full viewport height */
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center; /* Center the content horizontally */
+    height: auto; /* Let the container take as much space as needed */
     padding: 40px 20px; /* More padding around the container */
-    margin: 0 auto;
+    margin:0 auto;
 }
+
+/* Back button */
 .back-arrow {
+    margin-top: 75px;
     position: absolute; /* Position it absolutely relative to the container */
-    top:20%;
-    left: 22%; /* Center the arrow horizontally */
-    transform: translateX(-50%); /* Adjust to perfectly center it */
+    top: 20px; /* Adjust top position to align with the card */
+    left: 23%; /* Align the button to the center horizontally */
+    transform: translateX(-50%); /* Center the arrow horizontally */
     font-size: 18px;
     color: #1F2A44; /* Match the color scheme */
     cursor: pointer;
     text-decoration: none;
-    z-index: 10; /* Make sure the arrow is above other content */
+    z-index: 10; /* Ensure the arrow is above the content */
 }
 
 /* Main card for the product details */
 .detail-card {
+    margin-top: 100px;
     display: flex;
     background: #FCE8E6; /* Light pink background to match color scheme */
-    padding: 30px; /* Increased padding for better spacing */
-    border-radius: 12px; /* Slightly rounded corners for a cleaner look */
+    padding: 30px 30px; /* Adjusted padding for better spacing */
+    border-radius: 15px; /* Slightly rounded corners for a cleaner look */
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1); /* Softer shadow with larger blur */
     width: 100%;
     max-width: 950px; /* Set a maximum width for larger screens */
-    gap: 30px; /* Added gap between image and details */
+    gap: 20px; /* Added gap between image and details */
 }
 
 /* Container for the product image */
 .detail-img-container {
-    position: relative;
-    width: 50%; /* Reduced width to balance with details section */
-    height: 500px;
+    width: 40%; /* Reduced width to balance with details section */
+    overflow: hidden; /* Hide overflow to maintain image aspect ratio */
+    border-radius: 13px;
 }
 
 /* Product image style */
@@ -386,7 +391,7 @@ button:hover {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 13px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Added subtle shadow around the image */
 }
 
@@ -446,4 +451,36 @@ button:hover {
 
 .add-to-cart:hover {
     background-color: #1F2A44; /* Darker blue on hover */
+}
+
+/* Review Section */
+.review-section {
+    background: #FCE8E6; /* Same as detail card to maintain consistency */
+    padding: 20px;
+    border-radius: 12px; /* Rounded corners for the review section */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1); /* Match shadow of detail card */
+    width: 100%;
+    max-width: 950px; /* Same width as the detail card */
+    margin-top: 40px; /* Space between detail card and review section */
+}
+
+.average-rating {
+    font-size: 18px;
+    font-weight: bold;
+    color: #003366;
+    margin-bottom: 15px;
+}
+
+.review {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.review-meta {
+    font-size: 14px;
+    color: #777;
+    margin-top: 8px;
 }

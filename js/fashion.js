@@ -94,10 +94,15 @@ Promise.all([
     fetch('products.json').then(response => response.json()), 
     
     // Fetch data from RESTdb API
-    fetch('https://assignment2db-2aad.restdb.io/rest/fashion', {
+    /*fetch('https://assignment2db-2aad.restdb.io/rest/fashion', {
         headers: {
-            'x-apikey': '678c8feb6f2ec083b7ee6d9c'  // Your API key for RESTdb
+            'x-apikey': '678c8feb6f2ec083b7ee6d9c'
+        }*/
+    fetch('https://assignment2-a8de.restdb.io/rest/fashion ', {
+        headers: {
+            'x-apikey': '67a7456d4d87445754828017'
         }
+    
     }).then(response => response.json())
 ])
 .then(([localData, restdbData]) => {
@@ -108,7 +113,7 @@ Promise.all([
 
     // Loop through all products from both data sources
     allProducts.forEach(product => {
-        // Only display products in the "mens" category and are active
+        // Only display products in the "Kids" category and are active
         if (product.category === 'women' && product.active) {
             // Create a link to the product detail page with the productID in the URL
             const productLink = document.createElement('a');
@@ -119,7 +124,7 @@ Promise.all([
             productLink.innerHTML = `
                 <img src="${product.photosurl}" alt="${product.name}" class="product-image" />
                 <div class="product-name">${product.name}</div>
-                <div class="product-price">S$${product.price}</div>
+                <div class="product-price">S$${product.price.toFixed(2)}</div>
                 <div class="product-condition">${product.condition}</div>
                 <div class="favorite">
                     <span class="material-icons-outlined">favorite</span>
@@ -134,7 +139,6 @@ Promise.all([
             favoriteButton.addEventListener("click", (event) => {
                 // Prevent the link click from triggering when the heart icon is clicked
                 event.stopPropagation(); // This ensures only the heart button is affected
-                event.preventDefault();
                 favoriteButton.classList.toggle("hearted");
                 const currentLikes = parseInt(likeCount.textContent, 10);
                 if (favoriteButton.classList.contains("hearted")) {
@@ -143,14 +147,7 @@ Promise.all([
                     likeCount.textContent = currentLikes - 1;
                 }
             });
-            // Prevent the default anchor click behavior only when the heart button is not clicked
-            productLink.addEventListener("click", (event) => {
-                // If the event target is not the heart button, allow the link to be followed
-                if (!favoriteButton.contains(event.target)) {
-                    return;
-                }
-                event.preventDefault(); // Prevent navigation if heart button is clicked
-            });
+
             // Append the productLink to the productsGrid
             productsGrid.appendChild(productLink);
         }

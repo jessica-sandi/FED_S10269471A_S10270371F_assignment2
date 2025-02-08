@@ -4,11 +4,15 @@ Promise.all([
     fetch('products.json').then(response => response.json()), 
     
     // Fetch data from RESTdb API
-    fetch('https://assignment2db-2aad.restdb.io/rest/fashion', {
+     /*fetch('https://assignment2db-2aad.restdb.io/rest/fashion', {
         headers: {
-            'x-apikey': '678c8feb6f2ec083b7ee6d9c'  // Your API key for RESTdb
-        }
-    }).then(response => response.json())
+            'x-apikey': '678c8feb6f2ec083b7ee6d9c'
+        }*/
+            fetch('https://assignment2-a8de.restdb.io/rest/fashion ', {
+                headers: {
+                    'x-apikey': '67a7456d4d87445754828017'
+                }        
+    }).then(response => response.json()) 
 ])
 .then(([localData, restdbData]) => {
     // Combine both local data and RESTdb data

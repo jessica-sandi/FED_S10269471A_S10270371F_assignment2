@@ -76,17 +76,25 @@ function handleSellClick() {
     if (!userName) {
         return;
     }
-
+    
     // Fetch the user's data from the database using the username
-    fetch(`https://assignment2db-2aad.restdb.io/rest/user-collection?q={"name":"${userName}"}`, {
+    /*fetch(`https://assignment2db-2aad.restdb.io/rest/user-collection?q={"name":"${userName}"}`, {
         method: 'GET',
         headers: {
-            'x-apikey': '678c8feb6f2ec083b7ee6d9c' // Your API key for authentication
+            'x-apikey': '678c8feb6f2ec083b7ee6d9c'
         }
+    
+    })*/
+    fetch(`https://assignment2-a8de.restdb.io/rest/user-collection?q={"name":"${userName}"}`, {
+        method: 'GET',
+        headers: {
+            'x-apikey': '67a7456d4d87445754828017'
+        }
+    
     })
     .then(response => response.json())
     .then(users => {
-        // Assuming the response is an array, find the user by their username
+        //Find the user by their username
         const user = users.find(u => u.name === userName);
 
         if (!user) {
@@ -133,10 +141,16 @@ function updateUserRole(userId, newRoles,userID) {
     // Log the userId and roles to make sure they are correct
     console.log(`Updating user role for userId: ${userId} to roles: ${newRoles}`);
 
-    return fetch(`https://assignment2db-2aad.restdb.io/rest/user-collection/${userId}`, {
+    /*return fetch(`https://assignment2db-2aad.restdb.io/rest/user-collection/${userId}`, {
         method: 'PUT',
         headers: {
             'x-apikey': '678c8feb6f2ec083b7ee6d9c',
+            'Content-Type': 'application/json'
+        },*/
+    return fetch(`https://assignment2-a8de.restdb.io/rest/user-collection/${userId}`, {
+        method: 'PUT',
+        headers: {
+            'x-apikey': '67a7456d4d87445754828017',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ 

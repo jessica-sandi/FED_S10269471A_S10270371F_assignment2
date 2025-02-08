@@ -1,0 +1,12 @@
+[
+    {
+        "productID": "P100",
+        "userID": "23",
+        "rating": 5,
+        "reviewText": "Fantastic product! Exactly what I was looking for.",
+        "date": "2025-02-08T12:00:00Z",
+        "helpfulVotes": 10,
+        "name": "NAF",
+        "verifiedPurchase": true
+    }
+]

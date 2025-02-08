@@ -239,11 +239,17 @@ function removeImage(button) {
 }
 
 // Get the latest product_id from the collection (or P100 if no products exist)
-function getLatestProductId() {
+/*function getLatestProductId() {
     return fetch('https://assignment2db-2aad.restdb.io/rest/fashion', {
         method: 'GET',
         headers: {
             'x-apikey': '678c8feb6f2ec083b7ee6d9c'
+        }*/
+function getLatestProductId() {
+    return fetch('https://assignment2-a8de.restdb.io/rest/fashion', {
+        method: 'GET',
+        headers: {
+            'x-apikey': '67a7456d4d87445754828017'
         }
     })
     .then(response => response.json())
@@ -313,11 +319,17 @@ document.getElementById('sellItem').addEventListener('click', () => {
         });
 
         // Submit item data to RESTDB
-        fetch('https://assignment2db-2aad.restdb.io/rest/fashion', {
+        /*fetch('https://assignment2db-2aad.restdb.io/rest/fashion', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'x-apikey': '678c8feb6f2ec083b7ee6d9c'
+            },*/
+        fetch('https://assignment2-a8de.restdb.io/rest/fashion', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-apikey': '67a7456d4d87445754828017'
             },
             body: JSON.stringify(itemData)
         })

@@ -1,0 +1,50 @@
+[
+    {
+    "_id": "67a5c1c59168b33d000131fb",
+    "name": "T-Shirt",
+    "condition": "used",
+    "active": true,
+    "location": "1.3403898, 103.7089875",
+    "productID": "P101",
+    "sellerID": "17",
+    "category": "men",
+    "stock": 1,
+    "listingexpiredAt": "2025-03-09T08:18:14.071Z",
+    "listingcreatedAt": "2025-02-07T08:18:14.070Z",
+    "photosurl": [
+      "https://i.ibb.co/4gWYqLTW/t-shirt.png"
+    ],
+    "groups": "top",
+    "description": "fit s",
+    "price": "5",
+
+    "_changed": "2025-02-08T07:22:59.115Z",
+    "_createdby": "api",
+    "_changedby": "asyirafitri23@gmail.com",
+    "_version": 1
+  },
+  {
+    "_id": "67a5bcfe9168b33d000131c1",
+    "name": "Waisted t-shirt",
+    "description": "Fit M",
+    "condition": "used",
+    "active": true,
+    "location": "1.3328572, 103.7435522",
+    "sellerID": "17",
+    "productID": "P100",
+    "stock": 1,
+    "category": "women",
+    "photosurl": [
+      "https://i.ibb.co/VWMhgQgz/waisted-t-shirt.png"
+    ],
+    "groups": "top",
+    "price": "15",
+    "listing_createdAt": "2025-02-07T07:57:50.776Z",
+    "listing_expiredAt": "2025-03-09T07:57:50.776Z",
+    "_created": "2025-02-07T07:57:50.274Z",
+    "_changed": "2025-02-08T07:22:55.896Z",
+    "_createdby": "api",
+    "_changedby": "asyirafitri23@gmail.com",
+    "_version": 2
+  }
+]

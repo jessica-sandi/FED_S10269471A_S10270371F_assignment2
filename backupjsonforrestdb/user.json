@@ -1,0 +1,95 @@
+[
+    {
+        "_id": "679717149168b33d000074de",
+        "name": "123456789",
+        "email": "asdfghjkl@gmail.com",
+        "password": "asdfghjkl12345",
+        "createdate": "27/01/2025",
+        "role": "buyer,seller",
+        "userID": 17,
+        "_created": "2025-01-27T05:18:12.255Z",
+        "_changed": "2025-02-06T08:58:33.899Z",
+        "_createdby": "api",
+        "_changedby": "api",
+        "_version": 9,
+        "badges-achievements": [
+          ""
+        ],
+        "followers": 0,
+        "following": 0,
+        "profile-picture": [],
+        "sellerID": "17"
+      },
+      {
+        "_id": "67a47e2c9168b33d00011762",
+        "email": "fitri@gmail.com",
+        "name": "fitri",
+        "role": "buyer,seller",
+        "createdate": "06/02/2025",
+        "password": "asdfghjkl12345",
+        "userID": 24,
+        "_created": "2025-02-06T09:17:32.909Z",
+        "_changed": "2025-02-06T09:19:14.047Z",
+        "_createdby": "api",
+        "_changedby": "api",
+        "_version": 2,
+        "sellerID": "24"
+      },
+      {
+        "_id": "679639819168b33d000066d4",
+        "name": "jess",
+        "email": "jessica09052018@gmail.com",
+        "password": "abcdefg123",
+        "createdate": "26/01/2025",
+        "role": "buyer,seller",
+        "userID": 12,
+        "_created": "2025-01-26T13:32:49.035Z",
+        "_changed": "2025-02-06T08:33:43.826Z",
+        "_createdby": "api",
+        "_changedby": "api",
+        "_version": 3,
+        "badges-achievements": [
+          ""
+        ],
+        "followers": 0,
+        "following": 0,
+        "profile-picture": []
+      },
+      {
+        "_id": "67a47dd99168b33d0001175f",
+        "email": "naf123@gmail.com",
+        "name": "NAF",
+        "role": "buyer,seller",
+        "createdate": "06/02/2025",
+        "password": "asdfghjkl12345",
+        "userID": 23,
+        "_created": "2025-02-06T09:16:09.630Z",
+        "_changed": "2025-02-06T09:20:07.435Z",
+        "_createdby": "api",
+        "_changedby": "api",
+        "_version": 1,
+        "sellerID": "23"
+      },
+      {
+        "_id": "679604939168b33d00006501",
+        "name": "qwerty",
+        "email": "qwerty@gmail.com",
+        "password": "qwerty12345",
+        "createdate": "26/01/2025",
+        "role": [
+          "buyer"
+        ],
+        "userID": 11,
+        "_created": "2025-01-26T09:46:59.986Z",
+        "_changed": "2025-02-06T09:10:12.404Z",
+        "_createdby": "api",
+        "_changedby": "asyirafitri23@gmail.com",
+        "_version": 1,
+        "badges-achievements": [
+          ""
+        ],
+        "followers": 0,
+        "following": 0,
+        "profile-picture": []
+      }
+]

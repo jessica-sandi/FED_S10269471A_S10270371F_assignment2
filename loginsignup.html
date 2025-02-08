@@ -273,10 +273,16 @@
         }
 
         // REST API call for login
-        fetch('https://assignment2db-2aad.restdb.io/rest/user-collection', {
+        /*fetch('https://assignment2db-2aad.restdb.io/rest/user-collection', {
             method: 'GET',
             headers: {
                 'x-apikey': '678c8feb6f2ec083b7ee6d9c'
+            }
+        })*/
+        fetch('https://assignment2-a8de.restdb.io/rest/user-collection', {
+            method: 'GET',
+            headers: {
+                'x-apikey': '67a7456d4d87445754828017'
             }
         })
         .then(response => response.json())
@@ -333,12 +339,18 @@
         const createdate = new Date().toLocaleDateString('en-SG'); // format as DD/MM/YYYY
 
         // REST API call for sign-up
-        fetch('https://assignment2db-2aad.restdb.io/rest/user-collection', {
+        /*fetch('https://assignment2db-2aad.restdb.io/rest/user-collection', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'x-apikey': '678c8feb6f2ec083b7ee6d9c'
-            },
+            },*/
+        fetch('https://assignment2-a8de.restdb.io/rest/user-collection', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-apikey': '67a7456d4d87445754828017'
+        },
             body: JSON.stringify({
                 name: name,
                 email: email,
