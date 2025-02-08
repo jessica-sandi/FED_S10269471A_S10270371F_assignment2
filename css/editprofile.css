@@ -1,64 +1,200 @@
-.container-edit {
-    max-width: 800px;
-    margin: 20px auto;
-    background: #fff;
+/* Style the form container */
+form#edit-profile-form {
+    max-width: 500px;
+    margin: 50px auto;
     padding: 20px;
+    border: 1px solid #ddd;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-.sidebar {
-    float: left;
-    width: 20%;
-    margin-right: 2%;
-}
-.content {
-    float: left;
-    width: 75%;
-}
-.profile-photo {
-    text-align: center;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* Style for labels */
+  form#edit-profile-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+    font-size: 14px;
+  }
+  
+  /* Style for input fields */
+  form#edit-profile-form input[type="text"],
+  form#edit-profile-form input[type="email"],
+  form#edit-profile-form input[type="password"] {
+    width: 100%;
+    padding: 12px;
     margin-bottom: 20px;
-}
-.profile-photo img {
-    width: 100px;
-    height: 100px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    outline: none;
+  }
+  
+  form#edit-profile-form input[type="text"]:focus,
+  form#edit-profile-form input[type="email"]:focus,
+  form#edit-profile-form input[type="password"]:focus {
+    border-color: #5b9bd5;
+    box-shadow: 0 0 4px rgba(91, 155, 213, 0.5);
+  }
+  
+  /* Style for the button */
+  form#edit-profile-form button#update-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #5b9bd5;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  form#edit-profile-form button#update-btn:hover {
+    background-color: #4178c0;
+  }
+  
+  form#edit-profile-form button#update-btn:active {
+    background-color: #2d5b9c;
+  }
+  
+  /* Add responsiveness */
+  @media (max-width: 768px) {
+    form#edit-profile-form {
+      padding: 15px;
+    }
+    
+    form#edit-profile-form input[type="text"],
+    form#edit-profile-form input[type="email"],
+    form#edit-profile-form input[type="password"] {
+      font-size: 14px;
+    }
+    
+    form#edit-profile-form button#update-btn {
+      font-size: 14px;
+    }
+  }
+
+  /* General container styling for edit profile page */
+.container-edit {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* Sidebar styling */
+  .sidebar {
+    flex: 1;
+    max-width: 250px;
+    margin-right: 20px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sidebar ul li {
+    margin-bottom: 15px;
+  }
+  
+  .sidebar ul li a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    transition: color 0.3s ease;
+  }
+  
+  .sidebar ul li a:hover {
+    color: #5b9bd5;
+  }
+  
+  /* Content section styling */
+  .content {
+    flex: 3;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Profile photo section */
+  .profile-photo {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .profile-photo img {
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     object-fit: cover;
-}
-.form-group {
-    margin-bottom: 15px;
-}
-.form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-.form-group input, 
-.form-group textarea, 
-.form-group select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-.form-group textarea {
-    resize: vertical;
-}
-.form-group .optional {
-    font-size: 0.9em;
-    color: #888;
-}
-.form-actions {
-    text-align: right;
-}
-.form-actions button {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+  }
+  
+  .profile-photo button {
     padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
+    background-color: #5b9bd5;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
-}
-.form-actions button:hover {
-    background-color: #0056b3;
-}
+    transition: background-color 0.3s ease;
+  }
+  
+  .profile-photo button:hover {
+    background-color: #4178c0;
+  }
+  
+  .profile-photo button:active {
+    background-color: #2d5b9c;
+  }
+  
+  /* Clear floats */
+  .container-edit::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .container-edit {
+      flex-direction: column;
+    }
+  
+    .sidebar {
+      max-width: 100%;
+      margin-bottom: 20px;
+    }
+  
+    .content {
+      padding: 15px;
+    }
+  
+    .profile-photo img {
+      width: 100px;
+      height: 100px;
+    }
+  
+    .profile-photo button {
+      font-size: 12px;
+      padding: 8px 15px;
+    }
+  }
+  

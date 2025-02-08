@@ -53,10 +53,7 @@
             <div class="sidebar">
                 <ul>
                     <li><a href="#">Edit Profile</a></li>
-                    <li><a href="#">Verification</a></li>
                     <li><a href="#">Change Password</a></li>
-                    <li><a href="#">Notifications</a></li>
-                    <li><a href="#">Data and Privacy</a></li>
                     <li><a href="#">Theme</a></li>
                 </ul>
             </div>
@@ -68,89 +65,22 @@
                     <p><button>Upload a photo</button></p>
                 </div>
     
-                <form>
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" id="username" name="username" value="jessica09006286">
-                    </div>
-    
-                    <div class="form-group">
-                        <label for="first-name">First Name</label>
-                        <input type="text" id="first-name" name="first-name" value="Jessica">
-                    </div>
-    
-                    <div class="form-group">
-                        <label for="last-name">Last Name</label>
-                        <input type="text" id="last-name" name="last-name">
-                    </div>
-    
-                    <div class="form-group">
-                        <label for="bio">Bio</label>
-                        <textarea id="bio" name="bio" maxlength="255"></textarea>
-                    </div>
-    
-                    <div class="form-group">
-                        <label for="business-registration">Business Registration Number <span class="optional">(optional)</span></label>
-                        <input type="text" id="business-registration" name="business-registration">
-                    </div>
-    
-                    <div class="form-group">
-                        <label for="operating-hours">Operating Hours</label>
-                        <input type="text" id="operating-hours" name="operating-hours">
-                    </div>
-    
-                    <div class="form-group">
-                        <label for="location">Location</label>
-                        <select id="location" name="location">
-                            <option value="Singapore" selected>Singapore</option>
-                            <option value="Malaysia">Malaysia</option>
-                            <option value="Indonesia">Indonesia</option>
-                        </select>
-                    </div>
-    
-                    <div class="form-group">
-                        <label for="business-address">Business Address</label>
-                        <input type="text" id="business-address" name="business-address">
-                    </div>
-    
-                    <div class="form-group">
-                        <label for="website">Website URL</label>
-                        <input type="url" id="website" name="website">
-                    </div>
-    
-                    <h2>Private Information</h2>
-    
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" value="je******18@gmail.com" readonly>
-                    </div>
-    
-                    <div class="form-group">
-                        <label for="mobile">Mobile Number</label>
-                        <input type="tel" id="mobile" name="mobile" value="+65 86****30" readonly>
-                    </div>
-    
-                    <div class="form-group">
-                        <label for="gender">Gender</label>
-                        <select id="gender" name="gender">
-                            <option value="Female" selected>Female</option>
-                            <option value="Male">Male</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-    
-                    <div class="form-group">
-                        <label for="birthday">Birthday</label>
-                        <input type="date" id="birthday" name="birthday" value="2005-07-20">
-                    </div>
-    
-                    <div class="form-actions">
-                        <button type="submit">Save Changes</button>
-                    </div>
+                <form id="edit-profile-form">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                    
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                    <button id="update-btn">Update Profile</button>
+
                 </form>
             </div>
             <div style="clear: both;"></div>
         </div>
         <script src="js/editprofile.js"></script>
+        <script src="js/script.js"></script>
     </body>
 </html>

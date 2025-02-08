@@ -1,48 +1,69 @@
-const apiKey = "YOUR_RESTDB_API_KEY";
-        const userCollection = "user-collection";
-        const userId = "CURRENT_USER_ID"; // Replace with logic to fetch the logged-in user's ID.
+document.addEventListener('DOMContentLoaded', async () => {
+    const nameField = document.getElementById('name');
+    const emailField = document.getElementById('email');
+    const passwordField = document.getElementById('password');
+    const updateButton = document.getElementById('update-btn');
 
-        // Fetch user data from RestDB
-        async function fetchUserData() {
-            try {
-                const response = await axios.get(
-                    `https://YOUR_DATABASE_ID.restdb.io/rest/${userCollection}/${userId}`,
-                    { headers: { "x-apikey": apiKey } }
-                );
-                const userData = response.data;
+    // const apiBaseURL = "https://assignment2db-2aad.restdb.io/rest/user-collection";
+    // const apiKey = "678c8feb6f2ec083b7ee6d9c";
+    let recordId = null;
 
-                // Populate the form with the user's data
-                document.getElementById("name").value = userData.name || "";
-                document.getElementById("email").value = userData.email || "";
-                document.getElementById("password").value = userData.password || "";
-            } catch (error) {
-                console.error("Error fetching user data:", error);
+    async function fetchProfile() {
+        try {
+            const response = await fetch(apiBaseURL, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "x-apikey": apiKey
+                }
+            });
+
+            const profiles = await response.json();
+            if (profiles.length > 0) {
+                const profile = profiles[0]; // Fetch the first profile found
+                recordId = profile._id;
+                nameField.value = profile.name || '';
+                emailField.value = profile.email || '';
+                passwordField.value = profile.password || '';
             }
+        } catch (error) {
+            console.error('Error fetching profile:', error);
+        }
+    }
+
+    await fetchProfile();
+
+    updateButton.addEventListener('click', async () => {
+        if (!recordId) {
+            alert('No record found to update.');
+            return;
         }
 
-        // Update user data in RestDB
-        async function updateUserData() {
-            const updatedData = {
-                name: document.getElementById("name").value,
-                email: document.getElementById("email").value,
-                password: document.getElementById("password").value
-            };
+        const updatedUserName = nameField.value;
+        const updatedEmail = emailField.value;
+        const updatedPassword = passwordField.value;
 
-            try {
-                await axios.put(
-                    `https://YOUR_DATABASE_ID.restdb.io/rest/${userCollection}/${userId}`,
-                    updatedData,
-                    { headers: { "x-apikey": apiKey } }
-                );
-                alert("Profile updated successfully!");
-            } catch (error) {
-                console.error("Error updating user data:", error);
-                alert("Failed to update profile. Please try again.");
+        try {
+            const response = await fetch(`${apiBaseURL}/${recordId}`, {
+                method: 'PUT',
+                headers: {
+                    "Content-Type": "application/json",
+                    "x-apikey": apiKey
+                },
+                body: JSON.stringify({
+                    name: updatedUserName,
+                    email: updatedEmail,
+                    password: updatedPassword
+                })
+            });
+
+            if (response.ok) {
+                alert('Profile updated successfully!');
+                await fetchProfile(); // Refresh UI after update
+            } else {
+                alert('Failed to update profile.');
             }
+        } catch (error) {
+            console.error('Error updating profile:', error);
         }
-
-        // Event listener for the update button
-        document.getElementById("update-btn").addEventListener("click", updateUserData);
-
-        // Load the user's data when the page loads
-        window.onload = fetchUserData;
+    });
+});
