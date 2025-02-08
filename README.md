@@ -12,24 +12,24 @@ With features like favorites, shopping cart, chatbot support, user followings, a
 MokeSell is designed for buyers and sellers who want a seamless and engaging online shopping experience. Whether someone is looking to purchase trendy fashion items, resell pre-owned goods, or connect with other shoppers, our platform provides the perfect space to browse, buy, sell, and interact with others.
 ## What Users Want to Achieve & How MokeSell Helps
 
-Our users seek a convenient, secure, and community-driven marketplace where they can:
-✅ Easily list and sell both new and second-hand products.
-✅ Find and purchase unique fashion items at great prices.
-✅ Save favorites and manage their shopping carts.
-✅ Follow their favorite sellers and stay updated on their listings.
-✅ Engage in reviews to ensure trust and quality.
-✅ Get instant support through a chatbot for a smooth shopping experience.
+Our users seek a convenient, secure, and community-driven marketplace where they can:  
+✅ Easily list and sell both new and second-hand products.  
+✅ Find and purchase unique fashion items at great prices.  
+✅ Save favorites and manage their shopping carts.  
+✅ Follow their favorite sellers and stay updated on their listings.  
+✅ Engage in reviews to ensure trust and quality.  
+✅ Get instant support through a chatbot for a smooth shopping experience.\
 
 MokeSell delivers all these features in a visually appealing, user-friendly, and socially engaging platform.
 
--As a teenager who is always wanting to up to date to trends, I want to browse a variety of products, so that I can find and purchase items that match my style and budget.
--As someone who is trying to make money from clothes that I don't wear anymore, I want to list my products easily, so that I can reach potential buyers and make sales.
--As someone who always love to shop and check things online whenever I am free, I want to add items to my favorites, so that I can revisit and purchase them later.
--As someone who is indecisive and take too long while choosing, I want to add items to my cart, so that I can quickly check out when ready.
--As an online shopper who loves checking online shopping websites, I want to follow other users, so that I can stay updated on their new listings.
--As a shopper, I want to leave reviews for sellers, so that I can share my experience and help others make informed decisions and other people's reviews will make me trust the seller too!
--As a start-up seller, I want to receive ratings and reviews, so that I can build credibility, gain more trust and attract more buyers.
--As a user who don't know how to use new websites that much, I want chatbot assistance, so that I can get instant help whenever I need it.
+- As a teenager who is always wanting to up to date to trends, I want to browse a variety of products, so that I can find and purchase items that match my style and budget.
+* As someone who is trying to make money from clothes that I don't wear anymore, I want to list my products easily, so that I can reach potential buyers and make sales.
++ As someone who always love to shop and check things online whenever I am free, I want to add items to my favorites, so that I can revisit and purchase them later.
+- As someone who is indecisive and take too long while choosing, I want to add items to my cart, so that I can quickly check out when ready.
+- As an online shopper who loves checking online shopping websites, I want to follow other users, so that I can stay updated on their new listings.
+- As a shopper, I want to leave reviews for sellers, so that I can share my experience and help others make informed decisions and other people's reviews will make me trust the seller too!
+- As a start-up seller, I want to receive ratings and reviews, so that I can build credibility, gain more trust and attract more buyers.
+- As a user who don't know how to use new websites that much, I want chatbot assistance, so that I can get instant help whenever I need it.
 
 This section is also where you would share links to any wireframes, mockups, diagrams etc. that you created as part of the design process. 
 These files should themselves either be included as a pdf file in the project itself (in an separate directory)
