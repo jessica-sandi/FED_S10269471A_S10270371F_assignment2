@@ -483,5 +483,37 @@ function updateCartItemCount(userID) {
     // Update the count displayed on the cart icon
     cartCount.textContent = totalItemCount > 0 ? totalItemCount : '';
 }
+document.addEventListener("DOMContentLoaded", function () {
+    const profileContainer = document.getElementById("profile-container");
+    const dropdownMenu = document.getElementById("dropdown-menu");
+    const profileText = document.getElementById("profile-text");
+
+    // Toggle dropdown on click
+    profileContainer.addEventListener("click", function (event) {
+        event.stopPropagation(); // Prevent closing immediately
+        profileContainer.classList.toggle("show");
+    });
+
+    // Close dropdown if clicking outside
+    document.addEventListener("click", function (event) {
+        if (!profileContainer.contains(event.target)) {
+            profileContainer.classList.remove("show");
+        }
+    });
+
+    // Check user status and update profile text
+    if (localStorage.getItem("user")) {
+        const user = JSON.parse(localStorage.getItem("user")); // Assuming user info is stored as JSON
+        profileText.textContent = `Welcome, ${user.username}`; // Change text to logged-in state
+    }
+
+    // Handle Logout Click
+    document.getElementById("logout").addEventListener("click", function () {
+        alert("Logging out...");
+        localStorage.removeItem("user"); // Remove user session
+        window.location.href = "login.html"; // Redirect to login page
+    });
+});
+
 
 
