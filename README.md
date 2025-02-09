@@ -144,10 +144,51 @@ The top navigation bar is consistent across all main pages and includes the foll
  
 ## Technologies Used
 
-In this section, you should mention all of the languages, frameworks, libraries, and any other tools that you have used to construct this project. For each, provide its name, a link to its official site and a short sentence of why it was used.
+1. Vanilla JavaScript
+- Why Used? The script relies on standard JavaScript for handling data fetching, DOM manipulation, event handling, and local/session storage management.
+- Official Site: https://www.javascript.com/
+2. Session Storage API
+- Why Used? Session storage is used to temporarily store user-specific data (e.g., authentication status, user preferences) that persists only for the duration of the session and is cleared when the browser tab is closed.
+-	Official Site: https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage
+3. Lottie Animations
+- Why Used? Lottie are used for displaying alerts, improving the user experience with engaging visual feedback.
+- Official Site: [Lottie](https://lottiefiles.com/)
+4. RESTdb API
+- Why Used? RESTdb API is used to store, retrieve, and manage product and user data in a cloud-based NoSQL database for seamless web application functionality.
+- Official Site: https://restdb.io/
+  5. Fetch API
+-	Why Used? Used to send HTTP requests to retrieve product data from local JSON files and RESTdb API.
+-	Official Site: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
+6. Local Storage API
+-	Why Used? Stores fetched product data locally to improve performance and provide offline capabilities./ Stores and retrieves users' favorite products, ensuring persistence across sessions without a backend database.
+-	Official Site: https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
+7. Event Listeners (DOMContentLoaded, Click Events)
+-	Why Used? The script listens for page load and user interactions like search input changes and favorite button clicks.
+8. DOM Manipulation (document.createElement, appendChild, remove)
+-	Why Used? The script dynamically creates and inserts HTML elements (div, p, button, style) into the DOM, ensuring that the alert modal appears when needed and disappears when dismissed.
+-	Official Site: https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model
+9. Event Handling (addEventListener)
+-	Why Used? The script listens for user interaction (button click) to close the alert modal when the "OK" button is clicked.
+- Official Site: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
+10. CSS-in-JS (Dynamic Styling via <style> Tag)
+-	Why Used? The script injects a <style> block into the <head> to define custom styles for the alert modal, ensuring consistent appearance without modifying external stylesheets.
+-	Official Site: CSS-in-JS (https://developer.mozilla.org/en-US/docs/Web/API/HTMLStyleElement)
+11. CSS Transforms (translateX)
+-	Why Used? The script uses CSS transformations to smoothly slide images horizontally, creating a seamless carousel effect.
+-	Official Site: https://developer.mozilla.org/en-US/docs/Web/CSS/transform
+12. Interval-Based Auto-Sliding (setInterval)
+-	Why Used? The carousel automatically transitions images every 3 seconds for a better user experience.
+-	Official Site: https://developer.mozilla.org/en-US/docs/Web/API/Window/setInterval
 
-- [JQuery](https://jquery.com)
-    - The project uses **JQuery** to simplify DOM manipulation.
+
+
+
+
+
+
+
+
+
 
 
 ## Assistive AI
