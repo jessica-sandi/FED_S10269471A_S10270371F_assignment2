@@ -93,10 +93,23 @@
 // Function to fetch and store data in localStorage
 const fetchAndStoreData = () => {
     return Promise.all([
-        fetch('https://mokesell-af7d.restdb.io/rest/product', {
-            headers: { 'x-apikey': '67a7a6a193d83b27dc23521b' }  
-        }).then(response => response.json()),
+        // Fetch local data from product.json
+        fetch('products.json')
+            .then(response => response.json())
+            .catch(error => {
+                console.error('Error fetching product.json:', error);
+                return []; // Return empty array if fetching from product.json fails
+            }),
 
+        // Fetch data from RESTdb API
+        fetch('https://mokesell-af7d.restdb.io/rest/product', {
+            headers: { 'x-apikey': '67a7a6a193d83b27dc23521b' }
+        })
+            .then(response => response.json())
+            .catch(error => {
+                console.error('Error fetching from RESTdb API:', error);
+                return []; // Return empty array if fetching from API fails
+            }),
         // Uncomment below APIs if needed
         /*
         fetch('https://assignment2db-2aad.restdb.io/rest/fashion', {
