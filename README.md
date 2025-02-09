@@ -38,17 +38,104 @@ These wireframes helped us structure the website for optimal usability and visua
 
 ## Features
 
-In this section, you should go over the different parts of your project, and describe each in a sentence or so.
+### 1. User Authentication
+
+    Login/Sign-up:
+        Login: Users log in using their email and password.
+        Sign-up: Users create an account with a username, email, and password.
+        Google reCAPTCHA: Both login and sign-up pages feature Google reCAPTCHA to authenticate users.
+        Input Validation: All form fields are validated (e.g., proper email format, strong password).
+
+### 2. Navigation Bar
+
+The top navigation bar is consistent across all main pages and includes the following sections:
+
+    Logo: Clicking the logo redirects to the homepage (index).
+    Women: Navigates to the women's fashion product page.
+    Men: Navigates to the men's fashion product page.
+    Kids: Navigates to the kids' fashion product page.
+    Profile: Displays the logged-in user’s name with options to:
+        Login (if the user is not logged in).
+        Log out (if the user is logged in).
+        View and edit the user’s profile.
+    Favorite: Leads to the user’s “Favorites” page to view liked items.
+    Cart: Leads to the cart page to view items added to the cart.
+    Notifications: Displays any active discount codes or promotions.
+    Sell: Navigates to the product listing page where users can sell their own items.
+    Chatbot: Provides a FAQ chatbot to answer common user queries.
+
+### 3. Login/Sign-up Pages
+
+    Login: Users enter their email and password.
+    Sign-up: Users enter a username, email, and password.
+    Google reCAPTCHA: A Google reCAPTCHA is implemented for both login and sign-up to prevent bot activity.
+    Input Validation: Ensures the correct format for emails and passwords.
+
+### 4. Homepage (Index Page)
+
+    Carousel: Features a rotating set of promotional items with links to the respective category/product pages.
+    Category Cards: Displays clickable cards for easy navigation based on product categories (e.g., women, men, kids) and subcategories.
+
+### 5. Product Pages
+
+    Categories: Separate pages for Women, Men, and Kids’ fashion products.
+    Product Display: Items are displayed in card format showing:
+       - Product image.
+        -Price.
+        -Condition (new or used).
+    Favorite: Users can click a "like" button to add items to their favorites.
+    Product Details: Clicking on a product card opens a detailed view, including the item’s location and an option to add it to the cart.
+    Quantity Control: Maximum of 3 items per product, unless the stock falls below 3.
+    Product Ratings: Display average ratings for products, if available.
+
+### 6. Cart Page
+
+    Cart Overview: Shows all items added to the cart.
+    Item Removal: Users can remove items from the cart.
+    Total Price: Displays the total price, including GST.
+    Discount Codes: Users can apply discount codes to update the cart price.
+    Checkout: Users can proceed to checkout or continue shopping.
+
+### 7. Checkout & Payment Page
+
+    Shipping Options: Users can choose between:
+        Meet-up: Payment is made via cash on delivery.
+        Delivery: Payment is made via credit card.
+    Card Payment: For delivery, users can enter credit card details, with validation for card number, expiry date, and security code.
+    Order Placement: Once payment details are confirmed, users can place their order.
+
+### 8. Sell Page
+
+    Product Listing: Users can list products they want to sell.
+    Location: Users can add their location using the Google Maps API to provide a meetup location for buyers.
+    Successful Listings: Successfully listed products appear in the appropriate category (women, men, kids, etc.).
+
+### 9. Profile Page
+
+    View Profile: Displays user profile information.
+    Edit Profile: Allows users to edit their profile details (e.g., username, password).
+    Sign Out: Option to sign out of the account.
+
+### 10. Notifications
+
+    Discounts and Promotions: Displays active discount codes and promotional offers for the user.
+    Spin Wheel discount codes will appear here also
+
+### 11. Chatbot
+
+    FAQ Chatbot: Provides instant answers to frequently asked questions about the site and services.
+    
+### 12. Spin Wheel
+
+    To get discount codes
  
-### Existing Features
-- Feature 1 - allows users X to achieve Y, by having them fill out Z
-- ...
-
-In addition, you may also use this section to discuss plans for additional features to be implemented in the future:
-
 ### Features Left to Implement
-- Another feature idea
-
+ - Subcategories for each products
+ - Enable product search by locations
+ - Allow buyer to write reviews
+ - User-Seller communications
+ - Detailed view of user profiles with following/followers feature
+ 
 ## Technologies Used
 
 In this section, you should mention all of the languages, frameworks, libraries, and any other tools that you have used to construct this project. For each, provide its name, a link to its official site and a short sentence of why it was used.
