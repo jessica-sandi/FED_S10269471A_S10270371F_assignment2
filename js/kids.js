@@ -49,8 +49,8 @@ const fetchAndStoreData = () => {
 const renderProducts = (allProducts) => {
     const productsGrid = document.getElementById('products-grid');
     
-    // Loop through men products from both data sources
-    allProducts.filter(product => product.category === 'men' && product.active)
+    // Loop through kids products from both data sources
+    allProducts.filter(product => product.category === 'kids' && product.active)
         .forEach(product => {
             // Create a link to the product detail page with the productID in the URL
             const productLink = document.createElement('a');
