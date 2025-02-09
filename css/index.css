@@ -189,3 +189,37 @@ h1 {
   transition: background-color 0.3s ease;  
   height: 100px; 
 }
+
+
+@media (max-width: 768px) {
+  /* Carousel */
+  .carousel {
+    width: 100%; /* Full width on mobile */
+    height: 180px; /* Smaller height for mobile */
+  }
+
+  .carousel-buttons button {
+    padding: 10px;
+  }
+
+  /* Modal */
+  .modal-content {
+    width: 70%; /* Ensure modal content is responsive */
+    margin: 20% auto; /* Adjust modal margin for mobile */
+  }
+  #wheelPopup canvas {
+    display:inline-block;
+    margin: 0 auto;
+  }
+
+  /* Wheel Popup */
+  #wheelPopup {
+    width: 80%; /* Make popup fit the screen on mobile */
+    padding: 15px; /* Less padding for mobile */
+    align-self: auto;
+  }
+
+  #wheelPopup button {
+    font-size: 12px; /* Slightly smaller buttons */
+  }
+}

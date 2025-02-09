@@ -75,6 +75,25 @@ nav {
 #MenuItems li a:hover {
     text-decoration: underline;
 }
+/* Hamburger Menu Styles */
+.menu-icon {
+    display: none; /* Hide the hamburger menu by default on larger screens */
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+  }
+  
+  .menu-icon .bar {
+    width: 30px;
+    height: 4px;
+    background-color: white;
+    border-radius: 5px;
+  }
+  /* Show the menu when the menu icon is clicked */
+.menu-icon.active + #MenuItems {
+    display: flex;
+    z-index: 100000;
+}
 
 .right-section {
     display: flex;
@@ -522,3 +541,97 @@ button:hover {
 
 
 
+/* Mobile Layout - Smaller Screens (Phones) */
+@media only screen and (max-width: 550px) {
+   /* Basic Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #003366;
+    color: white;
+  }
+  .navbar .logo {
+    display: none;
+  }
+  .navbar .logo .a{
+    text-decoration: none;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  #MenuItems {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    gap: 20px;
+  }
+  
+  #MenuItems li {
+    padding: 10px;
+  }
+  
+  #MenuItems li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+  }
+  
+  /* Hamburger Menu Styles */
+  .menu-icon {
+    display: none; /* Hide the hamburger menu by default on larger screens */
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+  }
+  
+  .menu-icon .bar {
+    width: 30px;
+    height: 4px;
+    padding-left: 3px;
+    background-color: white;
+    border-radius: 5px;
+  }
+  
+  /* Mobile Menu - Hide the menu by default */
+  @media (max-width: 768px) {
+    #MenuItems {
+      display: none;  /* Hide the menu by default on small screens */
+      width: 100%;
+      flex-direction: column;
+      text-align: center;
+      background-color: #003366;
+      padding: 20px 0;
+      position: absolute;
+      top: 60px;  /* Adjust top position */
+      left: 0;
+    }
+  
+    #MenuItems li {
+      padding: 10px 0;
+      width: 100%;
+    }
+  
+    #MenuItems li a {
+      font-size: 20px;
+    }
+  
+    .menu-icon {
+      display: flex;  /* Show hamburger icon on small screens */
+    }
+  
+    .navbar {
+      padding: 15px;
+    }
+  }
+}
+  
+  /* Ensure hamburger icon is hidden on larger screens */
+  @media (min-width: 769px) {
+    .menu-icon {
+      display: none;  /* Hide the hamburger menu on larger screens */
+    }
+}
