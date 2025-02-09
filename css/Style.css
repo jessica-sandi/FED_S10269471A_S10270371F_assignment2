@@ -635,3 +635,49 @@ button:hover {
       display: none;  /* Hide the hamburger menu on larger screens */
     }
 }
+
+/* Footer Styling */
+footer {
+    background-color: #003366;  /* Set background color to #003366 */
+    color: #fff;                /* Text color to white */
+    padding: 40px 20px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 0 10px;
+}
+
+.footer-logo img {
+    max-width: 100%; /* Ensures the logo scales appropriately */
+    width: 100px;    /* Fixed width for the logo */
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #ff5722; /* Hover effect for links */
+}
+
+.footer-copyright {
+    font-size: 14px;
+    color: #bbb;
+    margin-top: 20px;
+}
