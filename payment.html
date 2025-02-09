@@ -9,6 +9,10 @@
     <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
     <link href="css/Style.css" rel="stylesheet">
     <style>
+        .modal-content{
+            margin: auto;
+            margin-top: 150px;
+        }
         /* Global styles */
         #back-btn {
             margin-bottom: 30px;
@@ -130,15 +134,23 @@
     </main>
 
     <!-- Lottie Animation -->
-    <div id="lottie-container" style="display:none;">
+     <!-- overlay and Lottie container -->
+     <div class="overlay" id="overlay">
+        <div class = "modal-content">
         <dotlottie-player 
             src="https://lottie.host/7b0a43e1-aa3f-4c2c-91d7-d06361e11be5/MmsJPLcllb.lottie" 
             background="transparent" 
             speed="1" 
-            style="width: 100%S; height: 300px;" 
+            style="width: 100%; height: 300px;"
             loop 
             autoplay>
         </dotlottie-player>
+        <p>Order received</p>
+        <p>You'll be notified by seller the days to meet / when your order out for delivery</p>
+        </div>
+    </div>
+    <div id="lottie-container" style="display:none;">
+        
     </div>
 
     <script>
@@ -167,7 +179,7 @@
             
             if (deliveryOption === 'meetup') {
                 // If "Meet Up" is selected, skip payment validation
-                document.getElementById('lottie-container').style.display = 'block'; // Show Lottie animation
+                document.getElementById('overlay').style.display = 'block'; // Show Lottie animation
 
                 // After animation ends, redirect user to confirmation page or show success message
                 setTimeout(() => {
@@ -210,7 +222,7 @@
 
             // Simulating successful payment if all validations pass
             if ((cardNumber && cvv && expiryDate || codChecked) && isValid) {
-                document.getElementById('lottie-container').style.display = 'block'; // Show Lottie animation
+                document.getElementById('overlay').style.display = 'block'; // Show Lottie animation
 
                 // After animation ends, redirect user to confirmation page or show success message
                 setTimeout(() => {
