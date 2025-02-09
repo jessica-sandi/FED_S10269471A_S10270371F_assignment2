@@ -84,6 +84,42 @@
             justify-content: center;  /* Ensure it is centered within the parent */
 
         }
+        /* Mobile View Adjustments */
+    @media (max-width: 768px) {
+        .container {
+            width: 80%;
+            height: auto;
+            padding: 15px;
+            box-shadow: none;
+            border-radius: 15px;
+        }
+
+        h2 {
+            font-size: 24px;
+            padding-left: 0;
+            text-align: center;
+        }
+
+        .back-icon {
+            top: 20px;
+            left: 15px;
+            font-size: 16px;
+        }
+
+        input,
+        button {
+            width: 90%;
+        }
+
+        .link {
+            font-size: 14px;
+        }
+
+        .g-recaptcha {
+            width: 100%;
+            margin-top: 20px;
+        }
+    }
     </style>
     <script src="js/alert.js"></script> 
 </head>
