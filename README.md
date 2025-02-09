@@ -467,33 +467,46 @@ In this section you should document the process of using AI tools eg, ChatGPT, G
 16. parts i wrote in readme (#MokeSell, ##Design Process,###Who Is This Website For?, ##What Users Want to Achieve & How MokeSell Helps, ##Technologies Used,##Credits, ###Media, ###Acknowledgements)
 
 ### Nur Asyira Fitri Binte Razali
-1.Created initial VS code
-2.Created the initial restdb database 
-2.User Authentications
-3.Navigation bar including the username showing dynamically beside profile
-4.all of index.html
-5.all cart.html
-6.all payment.html
-7.all productdetail.html
-8.all sell.html
-9.all loginsignup.html (other api manage to create account/ the current api have issue posting UserID)
-    	if account creation fails,
-    	use: 
-    	asdfghjkl@gmail.com
-    	asdfghjkl12345
-    ------*all includes .js and .css and validations for that html------	
-10.notification function
-11.chatbot function
-12.spinwheel functions
-13.Fix API code issues (try to make it work with existing code)
-     by changing keys and api links in codes
-     by fetching from both api and json (api fetch is for sell listed items it works in some of the commented api)
-     by storing it to localstorage
-     by storing specific things to sessionstorage(will be remove aft rerunning the codes)
-14.Implement Gooogle reCAPTCHA, Google Map Api and the Lottie Animations
-15.Allowing user to click from *products pages(men/women/kids htmls)* following product details
- 
-
+1.  integrated it VS Code to repositoru for development.
+2. Database:
+    Set up an initial restdb database for managing the project’s data.
+3. User Authentication:
+    Implemented user login and signup functionalities.
+     If encountered an issue when creating accounts:(the last database we use failed to push UserID)
+        Email: asdfghjkl@gmail.com
+        Password: asdfghjkl12345
+4. Dynamic Navigation Bar:
+    Developed a navigation bar that dynamically displays the username next to the profile icon after user login.
+5. HTML Pages:
+    Completed the following pages:
+        index.html: Landing page for the site.
+        cart.html: Cart page for managing products.
+        payment.html: Payment processing page.
+        productdetail.html: Individual product detail page.
+        sell.html: Page for users to list products for sale.
+        loginsignup.html: Login and signup page (API integration issue with UserID during signup, using a test account).
+   *Included JS and CSS for page functionality and styling.
+    Added input validation for form fields.
+7. Notifications:
+    Implemented a notification function to alert users about discountscodes
+8. Chatbot:
+    Developed a chatbot function for real-time user assistance.
+9. Spinwheel Functionality:
+    Added a spinwheel feature, likely for promotions or rewards.
+10. Fixing API Code Issues:
+    Fixed API issues by:
+        Updating API keys and endpoints.
+        Fetching data from both APIs and JSON sources.
+        Storing relevant data in localStorage and sessionStorage.
+11. Google reCAPTCHA:
+    Integrated Google reCAPTCHA for bot prevention and secure user interactions.
+12. Google Maps API:
+    Integrated the Google Maps API for location-based features or map display.
+13. Lottie Animations:
+    Incorporated Lottie animations for dynamic visual effects (e.g., order confirmation animations).
+14. Product Pages Interaction:
+    Enabled users to navigate from product pages (Men, Women, Kids) to the product detail page for further information.
+15. Read.me ( ## Features, ## Testing, ## Assistive AI, added to ## Credits)
 
 ## Credits
 
@@ -503,6 +516,7 @@ In this section you should document the process of using AI tools eg, ChatGPT, G
 - The captcha used in the site was obtained from https://cloud.google.com/security/products/recaptcha?hl=en.
 - The fonts and icons used in this site were obtained from https://fonts.google.com/icons?selected=Material+Icons+Outlined:favorite:&icon.size=24&icon.color=%23e8eaed&icon.set=Material+Icons.
 - The map used in this site were obtained from https://developers.google.com/maps.
+- Store and Fetch images https://imgbb.com/
 
 
 ### Acknowledgements
