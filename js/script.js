@@ -1,3 +1,6 @@
+document.querySelector('.menu-icon ','.logo').addEventListener('click', function () {
+    this.classList.toggle('active');
+});
 //ACCOUNT HANDLING ON SESSION STORAGE
 // redirect users if not authenticated
 document.addEventListener('click', function(event) {
@@ -480,36 +483,5 @@ function updateCartItemCount(userID) {
     // Update the count displayed on the cart icon
     cartCount.textContent = totalItemCount > 0 ? totalItemCount : '';
 }
-//PROFILE DROP DOWN 
-document.addEventListener("DOMContentLoaded", function () {
-    const profileContainer = document.getElementById("profile-container");
-    const dropdownMenu = document.getElementById("dropdown-menu");
-    const logoutButton = document.getElementById("logout");
-
-    // Toggle dropdown visibility
-    profileContainer.addEventListener("click", function (event) {
-        event.stopPropagation(); // Prevent closing immediately
-        dropdownMenu.classList.toggle("show"); // Toggle visibility of dropdown menu
-    });
-
-    // Close dropdown if clicking outside
-    document.addEventListener("click", function (event) {
-        if (!profileContainer.contains(event.target)) {
-            dropdownMenu.classList.remove("show");
-        }
-    });
-
-    // Handle Logout Click
-    if (logoutButton) {
-        logoutButton.addEventListener("click", function (event) {
-            event.preventDefault(); // Prevent default link action
-            if (confirm("Are you sure you want to log out?")) {
-                localStorage.removeItem("user"); // Clear user session
-                sessionStorage.clear(); // Optional: Clears sessionStorage if used
-                window.location.href = "index.html"; // Redirect to login page
-            }
-        });
-    }
-});
 
 
