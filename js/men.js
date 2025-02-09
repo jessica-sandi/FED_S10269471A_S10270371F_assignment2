@@ -9,7 +9,7 @@ const fetchAndStoreData = () => {
             }),
 
         // Fetch data from RESTdb API
-        fetch('https://mokesell-af7d.restdb.io/rest/product', {
+        fetch('https://mokesell-af7d.restdb.io/rest/fashion', {
             headers: { 'x-apikey': '67a7a6a193d83b27dc23521b' }
         })
             .then(response => response.json())
@@ -42,78 +42,87 @@ const fetchAndStoreData = () => {
     })
     .catch(error => console.error('Error loading data from both sources:', error));
 };
-// Load liked products from localStorage
-const likedProducts = JSON.parse(localStorage.getItem("likedProducts")) || {};
+//search functions
+document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.querySelector(".search-input");
+    const productsGrid = document.getElementById("products-grid");
+    const searchButton = document.querySelector(".search-button");
 
-// Function to render products
-const renderProducts = (allProducts) => {
-    const productsGrid = document.getElementById('products-grid');
+    // Load liked products from localStorage
+    const likedProducts = JSON.parse(localStorage.getItem("likedProducts")) || {};
 
-    allProducts.filter(product => product.category === 'men' && product.active)
-        .forEach(product => {
-            const productLink = document.createElement('a');
-            productLink.href = `productdetail.html?id=${product.productID}`;
-            productLink.className = 'product-card';
+    const allProducts = [
+        ...JSON.parse(localStorage.getItem('localProducts') || '[]'),
+        ...JSON.parse(localStorage.getItem('restdbProducts') || '[]')
+    ];
 
-            productLink.innerHTML = ` 
-                <img src="${product.photosurl}" alt="${product.name}" class="product-image" />
-                <div class="product-name">${product.name}</div>
-                <div class="product-price">S$${product.price.toFixed(2)}</div>
-                <div class="product-condition">${product.condition}</div>
-                <div class="favorite">
-                    <span class="material-icons-outlined ${likedProducts[product.productID] ? 'hearted' : ''}">favorite</span>
-                </div>
-            `;
+    // Function to render products with favorite button functionality
+    const renderProducts = (filteredProducts) => {
+        productsGrid.innerHTML = "";  // Clear grid before adding new products
 
-            const favoriteButton = productLink.querySelector(".favorite");
+        filteredProducts.filter(product => product.category === 'men' && product.active)
+            .forEach(product => {
+                const productLink = document.createElement('a');
+                productLink.href = `productdetail.html?id=${product.productID}`;
+                productLink.className = 'product-card';
 
-            // Handle favorite button click
-            favoriteButton.addEventListener("click", (event) => {
-                event.preventDefault();
+                productLink.innerHTML = `
+                    <img src="${product.photosurl}" alt="${product.name}" class="product-image" />
+                    <div class="product-name">${product.name}</div>
+                    <div class="product-price">S$${product.price.toFixed(2)}</div>
+                    <div class="product-condition">${product.condition}</div>
+                    <div class="favorite">
+                        <span class="material-icons-outlined ${likedProducts[product.productID] ? 'hearted' : ''}">favorite</span>
+                    </div>
+                `;
 
-                if (favoriteButton.classList.contains("hearted")) {
-                    // Unlike and remove from favorites
-                    favoriteButton.classList.remove("hearted");
+                const favoriteButton = productLink.querySelector(".favorite");
 
-                    // Remove from likedProducts in localStorage
-                    delete likedProducts[product.productID];
+                // Handle favorite button click
+                favoriteButton.addEventListener("click", (event) => {
+                    event.preventDefault();
 
-                    // Update localStorage
-                    localStorage.setItem("likedProducts", JSON.stringify(likedProducts));
-
-                    // Remove from the favoriteProducts list in localStorage if it's there
-                    let favoriteProducts = JSON.parse(localStorage.getItem("favoriteProducts")) || [];
-                    favoriteProducts = favoriteProducts.filter(p => p.productID !== product.productID);
-                    localStorage.setItem("favoriteProducts", JSON.stringify(favoriteProducts));
-                } else {
-                    // Like and add to favorites
-                    favoriteButton.classList.add("hearted");
-
-                    // Add to likedProducts in localStorage
-                    likedProducts[product.productID] = true;
-                    localStorage.setItem("likedProducts", JSON.stringify(likedProducts));
-
-                    // Optionally add to the favoriteProducts list
-                    let favoriteProducts = JSON.parse(localStorage.getItem("favoriteProducts")) || [];
-                    if (!favoriteProducts.find(p => p.productID === product.productID)) {
-                        favoriteProducts.push(product);
-                        localStorage.setItem("favoriteProducts", JSON.stringify(favoriteProducts));
+                    if (favoriteButton.classList.contains("hearted")) {
+                        favoriteButton.classList.remove("hearted");
+                        delete likedProducts[product.productID];
+                    } else {
+                        favoriteButton.classList.add("hearted");
+                        likedProducts[product.productID] = true;
                     }
-                }
+
+                    localStorage.setItem("likedProducts", JSON.stringify(likedProducts));
+
+                    // Optionally add or remove from the favoriteProducts list
+                    let favoriteProducts = JSON.parse(localStorage.getItem("favoriteProducts")) || [];
+                    if (likedProducts[product.productID]) {
+                        if (!favoriteProducts.find(p => p.productID === product.productID)) {
+                            favoriteProducts.push(product);
+                        }
+                    } else {
+                        favoriteProducts = favoriteProducts.filter(p => p.productID !== product.productID);
+                    }
+                    localStorage.setItem("favoriteProducts", JSON.stringify(favoriteProducts));
+                });
+
+                productsGrid.appendChild(productLink);
             });
+    };
 
-            productsGrid.appendChild(productLink);
-        });
-};
+    const performSearch = () => {
+        const query = searchInput.value.toLowerCase();
+        const filteredProducts = allProducts.filter(product => 
+            product.name.toLowerCase().includes(query) || 
+            product.condition.toLowerCase().includes(query)
+        );
+        renderProducts(filteredProducts);
+    };
 
-// Load data from localStorage or fetch if not available
-const allProducts = [
-    ...JSON.parse(localStorage.getItem('localProducts') || '[]'),
-    ...JSON.parse(localStorage.getItem('restdbProducts') || '[]')
-];
+    searchInput.addEventListener("input", performSearch);
+    searchButton.addEventListener("click", performSearch);
 
-if (allProducts.length) {
-    renderProducts(allProducts);
-} else {
-    fetchAndStoreData().then(renderProducts);
-}
+    if (allProducts.length) {
+        renderProducts(allProducts);
+    } else {
+        fetchAndStoreData().then(renderProducts);
+    }
+});
