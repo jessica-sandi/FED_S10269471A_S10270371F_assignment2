@@ -128,6 +128,10 @@ The top navigation bar is consistent across all main pages and includes the foll
 ### 12. Spin Wheel
 
     To get discount codes
+    
+### 13. Others
+
+    We added appropriate styling and validations for each codes
  
 ### Features Left to Implement
  - Subcategories for each products
@@ -156,23 +160,238 @@ ChatGPT was used to help with the implementation of the Spotify API (include scr
 
 ## Testing
 
-1. Login/Sign-up page
-- 1.Try to log in with an account that have not signed in yet, an error msg or alert pop up will appear.
-- 2.After that if you try to sign up, you cannot just put anyhow you want, you must put our password validations (like 8 charaters limitand other validations), if not error message about the field will appear.
-- 3.After validations, if you successfully log in, the successful message will appear.
-- 3. We also have captcha, so if you never do captcha properly, the error message will show to try captcha again.
-2. Cart
-- 1. If you try to add item into cart more than the available stock, it will not work.  
-  2. So you can just put inside the cart only available stocks.
-  3.  The max per transaction is 3 so if you maximise more than 3, you will not be able to process.  
-3. Sell Page
-4. Location
-- 1. If location is not found in sell page, the alert/error message will show.
+### 1. Index Page (Homepage)
+
+#### Testing Scenarios:
+
+##### **1. Not Logged In:**
+- **Valid Action:**
+  - If the user is **not logged in** (i.e., session or authentication check fails), the homepage will display a **Lottie animation**.
+  - **Expected Outcome**: The Lottie animation plays and encourages the user to log in or sign up to access website. 
+- **Invalid Action:**
+  - If the user is logged in, the Lottie animation will **not** appear.
+
+##### **2. Logged In:**
+- **Valid Action:**
+  - If the user is **logged in** (i.e., the session is active), no Lottie animation is shown, and the user will see the homepage content as usual (e.g., carousel, categories, etc.).
+  - **Expected Outcome**: The page loads normally without any Lottie animation.
+
+---
+
+### 2. Login/Sign-up Page
+
+#### Testing Scenarios:
+
+##### **1. Login:**
+- **Valid Input:**
+  - Enter a valid email and password.
+  - Click the "Login" button.
+  - **Expected Outcome**: User is logged in and redirected to the homepage.
+
+- **Invalid Input:**
+  - Enter an invalid email or incorrect password.
+  - Click the "Login" button.
+  - **Expected Outcome**: An error message is shown.
+
+- **Empty Fields:**
+  - Leave the email or password field blank.
+  - **Expected Outcome**: An error message appears indicating the missing fields.
+
+- **Google reCAPTCHA:**
+  - Attempt to submit without completing reCAPTCHA.
+  - **Expected Outcome**: reCAPTCHA is required to proceed with login.
+
+##### **2. Sign-up:**
+- **Valid Input:**
+  - Enter a valid username, email, and password.
+  - **Expected Outcome**: User account is created, and the user is logged in and redirected to the homepage.
+
+- **Invalid Input:**
+  - Enter an email without "@" or a weak password (less than 8 characters).
+  - **Expected Outcome**: An error message appears (e.g., "Please enter a valid email").
+
+- **Empty Fields:**
+  - Leave one or more fields empty.
+  - **Expected Outcome**: Error message shows which field is missing.
+
+- **Google reCAPTCHA:**
+  - Attempt to submit without completing reCAPTCHA.
+  - **Expected Outcome**: reCAPTCHA validation triggers an error message.
+
+---
+
+### 3. Cart Page
+
+#### Testing Scenarios:
+
+##### **1. Add Item to Cart:**
+- **Valid Action:**
+  - Click on the "Add to Cart" button for a product.
+  - **Expected Outcome**: Product is added to the cart, and the total price is updated.
+  - **Lottie Animation**: A **"Add to Cart"** animation plays
+
+##### **2. Item Removal:**
+- **Valid Action:**
+  - Click on the "bin" icon below the quantity in the cart.
+  - **Expected Outcome**: The item is removed from the cart, and the total price is updated.
+
+##### **3. Cart Checkout:**
+- **Valid Action:**
+  - Proceed to checkout.
+  - **Expected Outcome**: User is redirected to the checkout page.
+
+##### **4. Cart Total:**
+- **Valid Action:**
+  - Ensure that the total price displayed includes the correct GST and any applied discounts.
+  - **Expected Outcome**: The total price is correctly calculated.
+
+---
+
+### 4. Checkout & Payment Page
+
+#### Testing Scenarios:
+
+##### **1. Shipping Option Selection:**
+- **Valid Action:**
+  - Select "Meet-up" or "Delivery" for shipping options.
+  - **Expected Outcome**: The appropriate payment method is displayed (Cash on delivery or Credit card).
+
+##### **2. Credit Card Input Validation:**
+- **Valid Input:**
+  - Enter valid credit card details (Card number, Expiry date, and CVV).
+  - **Expected Outcome**: The payment is processed and the order is placed.
+
+- **Invalid Input:**
+  - Enter an invalid credit card number or incomplete details.
+  - **Expected Outcome**: An error message appears indicating invalid input (e.g., "Invalid card number").
+
+##### **3. Order Placement:**
+- **Valid Action:**
+  - Complete the checkout process.
+  - **Expected Outcome**: Order confirmation is displayed, and the user is shown a success message with a **Lottie animation**
+
+---
+
+### 5. Profile Page
+
+#### Testing Scenarios:
+
+##### **1. View Profile:**
+- **Valid Action:**
+  - Click "View Profile" when logged in.
+  - **Expected Outcome**: User profile details are shown (e.g., username, email).
+
+##### **2. Edit Profile:**
+- **Valid Action:**
+  - Edit username, email, or password.
+  - **Expected Outcome**: Changes are saved successfully and updated on the profile page.
+
+- **Invalid Action:**
+  - Enter an invalid email or weak password.
+  - **Expected Outcome**: An error message prompts the user to correct the input.
+
+##### **3. Log Out:**
+- **Valid Action:**
+  - Click "Log Out."
+  - **Expected Outcome**: The user is logged out and redirected to the homepage.
+
+---
+
+### 6. Sell Page
+
+#### Testing Scenarios:
+
+##### **1. Add Product Listing:**
+- **Valid Action:**
+  - Upload Image
+  - **Expected Outcome**: Image Preview Shown
+
+##### **1. Add Product Listing:**
+- **Valid Action:**
+  - Input valid product information (name, price, description, location).
+  - **Expected Outcome**: Product is successfully listed, and the listing appears under the correct category.
+
+- **Invalid Action**: 
+  - Leave a required field empty (e.g., no price or product name).
+  - **Expected Outcome**: Error message prompts to fill in the missing fields.
+
+##### **2. Location Input Validation:**
+- **Valid Action:**
+  - Use Google Maps API to input a location for the meetup.
+  - **Expected Outcome**: Location is correctly added to the product listing.
+
+- **Invalid Action:**
+  - Enter a non-existent or invalid location.
+  - **Expected Outcome**: A warning message prompts the user to provide a valid location.
+
+---
+
+### 7. Spin Wheel (Discount Code)
+
+#### Testing Scenarios:
+
+##### **1. Spin Wheel Interaction:**
+- **Valid Action:**
+  - User spins the wheel to get a discount code.
+  - **Expected Outcome**: Discount code is displayed, and the user can apply it to the cart.
+
+##### **2. Invalid Discount Code:**
+- **Valid Action:**
+  - Enter a discount code in the "Apply Discount" field.
+  - **Expected Outcome**: The discount is applied if valid.
   
+- **Invalid Code**: 
+  - Enter an invalid or expired discount code.
+  - **Expected Outcome**: An error message is displayed (e.g., "Invalid discount code").
 
-We added media in css so it works on different browsers and screen sizes and will make the user easy to use on different platforms.
+---
 
-We don't have any bugs but we sometimes have api error for some part.
+### 8. Chatbot
+
+#### Testing Scenarios:
+
+##### **1. FAQ Chatbot:**
+- **Valid Action:**
+  - User clicks on the chatbot and asks a question (e.g., "What are the delivery options").
+  - **Expected Outcome**: The chatbot responds with a valid answer based on predefined FAQs.
+
+---
+
+### 8. Notication Icon
+
+#### Testing Scenarios:
+
+##### **1. FAQ Chatbot:**
+- **Valid Action:**
+  - User clicks on the notification icon
+  - **Expected Outcome**: Show list off available discounts.
+
+---
+
+### 9. Lottie Animations
+
+#### Testing Scenarios:
+
+##### **1. Homepage Animation (if user is not logged in):**
+- **Valid Action:**
+  - If the user is **not logged in** (i.e., session or authentication check fails), a **Lottie animation** will appear on the homepage (index.html) to encourage the user to log in or sign up.
+  - **Expected Outcome**: The animation plays to inform and encourage the user to log in/sign up to proceed with their actions.
+
+##### **2. Add to Cart Animation:**
+- **Valid Action:**
+  - When an item is successfully added to the cart, a **Lottie animation**
+
+##### **3. Order Success Animation:**
+- **Valid Action:**
+  - Once the order is placed successfully, a **Lottie animation** 
+
+---
+
+### Notes:
+- Test across different browsers (Chrome, Firefox, Safari) to ensure cross-browser compatibility.
+- Test responsiveness for mobile and tablet devices.
+- Ensure that any Lottie animations do not interfere with usability and load times.
+
 
 
 ## Credits
