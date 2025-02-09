@@ -396,13 +396,16 @@ ChatGPT was used to help with the implementation of the Spotify API (include scr
 
 ## Credits
 
-### Content
-- The text for section Y was copied from the [Wikipedia article Z](https://en.wikipedia.org/wiki/Z)
-
 ### Media
-- The photos used in this site were obtained from pintrest.
-- The icon 
+- The photos used in this site were obtained from https://www.pinterest.com.
+- The Lottie used in the site were obtained from https://lottiefiles.com/0sor8b76s8z4y38x.
+- The captcha used in the site was obtained from https://cloud.google.com/security/products/recaptcha?hl=en.
+- The fonts and icons used in this site were obtained from https://fonts.google.com/icons?selected=Material+Icons+Outlined:favorite:&icon.size=24&icon.color=%23e8eaed&icon.set=Material+Icons.
+- The map used in this site were obtained from https://developers.google.com/maps.
+
 
 ### Acknowledgements
 
-- I received inspiration for this project from carousell, h&m, mango
+- I received inspiration for this project from carousell https://www.carousell.sg/,
+- h&m https://www2.hm.com/en_sg/index.html?srsltid=AfmBOopTU1TPc8h9oSbMxenoIzBfGEt7fM4PZcz3xU8s7eELyXkBGApR,
+- mango 	https://shop.mango.com/sg/en/h/kids
