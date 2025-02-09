@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // const apiBaseURL = "https://assignment2db-2aad.restdb.io/rest/user-collection";
     // const apiKey = "678c8feb6f2ec083b7ee6d9c";
+    // fetch('https://mokesell-af7d.restdb.io/rest/fashion', {
+    //     headers: { 'x-apikey': '67a7a6a193d83b27dc23521b' }
+    // })
     let recordId = null;
 
     async function fetchProfile() {

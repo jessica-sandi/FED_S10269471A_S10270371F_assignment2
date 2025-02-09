@@ -29,12 +29,22 @@
                         <li><a href="kids.html">KIDS</a></li> 
                     </ul> 
                 </nav> 
-                <div class="right-section">
+                <div class="right-section"> 
                     <div class="profile-container" id="profile-container">
-                        <a href="editprofile.html">
-                          <span class="material-symbols-rounded">account_circle</span>
-                          <span id="profile-text" class="clickable-text">Sign up/Login</span>
-                        </a>
+                        <span class="material-symbols-rounded">account_circle</span>
+                        <span id="profile-text" class="clickable-text">Sign up/Login</span>
+                
+                        <!-- Dropdown Menu -->
+                        <div id="dropdown-menu" class="dropdown-menu">
+                            
+                            <a href="editprofile.html" class="dropdown-item">
+                                <span class="material-symbols-rounded">person</span> Edit Profile
+                            </a>
+                            <a href="#" id="logout" class="dropdown-item">
+                                <span class="material-symbols-rounded">logout</span> Logout
+                            </a>
+                        </div>
+                        
                     </div>
                     <a href="favorite.html" class="material-symbols-rounded" id="favorite">favorite</a> 
                     <div class="cart-container" id="cart-container"> 
