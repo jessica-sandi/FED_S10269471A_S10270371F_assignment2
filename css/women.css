@@ -78,12 +78,7 @@
 }
 
 
-.footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #3a3d5e;
-    margin-top: 20px;
-}
+
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -160,5 +155,57 @@
 
 .dropdown-menu.show {
     display: block; /* Show when .show class is added */
-}
-
+}/* Default Navbar and Hamburger Menu Styles */
+.mobile-nav {
+    display: none;
+    background-color: #003366;
+    position: absolute;
+    top: 60px;
+    width: 100%;
+    text-align: center;
+    z-index: 100;
+  }
+  
+  .mobile-nav ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .mobile-nav li {
+    border-bottom: 1px solid white;
+  }
+  
+  .mobile-nav a {
+    display: block;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+  }
+  
+  .mobile-nav a:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Hamburger icon */
+  .hamburger {
+    display: none;
+    cursor: pointer;
+    color: white;
+    font-size: 32px;
+  }
+  
+  /* Show Hamburger in Mobile View */
+  @media (max-width: 768px) {
+    .hamburger {
+      display: block;
+    }
+  
+    .desktop-view {
+      display: none;
+    }
+  
+    .mobile-nav.show {
+      display: block;
+    }
+  }
+  
