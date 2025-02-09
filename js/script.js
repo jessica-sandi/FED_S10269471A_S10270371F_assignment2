@@ -81,7 +81,7 @@ function handleSellClick() {
     }
 
     // Check if the user data is already available in sessionStorage
-    const storedUserData = sessionStorage.getItem(`user_${userName}`);
+    const storedUserData = sessionStorage.getItem(`userID_${userName}`);
     if (storedUserData) {
         const user = JSON.parse(storedUserData);
         processUserRole(user, userID);
@@ -142,10 +142,13 @@ function processUserRole(user, userID) {
         const userWantsToSell = confirm("You are currently a buyer. Do you want to become a seller?");
         if (userWantsToSell) {
             // Add 'seller' role if the user wants to become a seller
-            updateUserRole(user._id, 'buyer,seller', userID) // Adding 'seller' role while keeping 'buyer'
+            const newRoles = user.role + ',seller'; // Keep 'buyer' role and add 'seller'
+            updateUserRole(user._id, newRoles, userID) // Update the user role
                 .then(() => {
-                    // Redirect the user to sell.html after updating their role
-                    window.location.href = 'sell.html';
+                    // Reload the user data after role update
+                    alert("You are now a seller! Redirecting...");
+                    sessionStorage.setItem('isAuthenticated', 'true'); // Ensure session is marked as authenticated
+                    window.location.href = 'sell.html'; // Redirect to sell page after role update
                 })
                 .catch(error => {
                     alert('Error updating role: ' + error.message);
@@ -158,9 +161,10 @@ function processUserRole(user, userID) {
         // If the user is already a seller, proceed to sell.html
         window.location.href = 'sell.html';
     } else {
-        alert('Unknown role.');
+        alert('Unknown role or invalid user data.');
     }
 }
+
 //UPDATE USER ROLE FROM BUYER TO BUYER,SELLER
 function updateUserRole(userId, newRoles,userID) {
     // Log the userId and roles to make sure they are correct
@@ -187,36 +191,32 @@ function updateUserRole(userId, newRoles,userID) {
             'Content-Type': 'application/json'
         },
         */
-    return fetch(`https://mokesell-af7d.restdb.io/rest/user-collection/${userId}`, {
-        method: 'PUT',
-        headers: {
-            'x-apikey': '667a7a6a193d83b27dc23521b',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ 
-            role: newRoles,
-            sellerID: userID
+        return fetch(`https://mokesell-af7d.restdb.io/rest/user-collection/${userId}`, {
+            method: 'PUT',
+            headers: {
+                'x-apikey': '67a7a6a193d83b27dc23521b',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 
+                role: newRoles, // Update roles dynamically
+                sellerID: userID  
+            })
         })
-    })
-    .then(response => {
-        console.log("Response status:", response.status);
-        return response.text();  // Log the raw response text
-    })
-    .then(text => {
-        console.log("Response text:", text);  // Log the response body (error or success message)
-        if (text) {
-            throw new Error("Failed to update role: " + text);
-        }
-        return JSON.parse(text);  // Parse the JSON if no errors
-    })
-    .then(data => {
-        console.log("Role updated successfully:", data);
-    })
-    .catch(error => {
-        console.error("Error updating role:", error);
-    });
-    
-}
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to update user role');
+            }
+            return response.json(); // Parse JSON response
+        })
+        .then(data => {
+            console.log('User role updated successfully:', data);
+            return data;
+        })
+        .catch(error => {
+            console.error('Error updating role:', error);
+            throw error; // Propagate error to be handled by calling function
+        });
+    }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //CHATBOT MESSAGE

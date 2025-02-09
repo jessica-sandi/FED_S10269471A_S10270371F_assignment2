@@ -1,7 +1,5 @@
-import 'js/alert.js';
-    //SELL PAGE HANDLING 
-    //custom alert
-    function showAlert(message) {
+// Custom Alert Handling
+function showAlert(message) {
     // Create the custom alert modal structure
     const alertModal = document.createElement('div');
     alertModal.id = 'custom-alert';
@@ -33,52 +31,53 @@ import 'js/alert.js';
     });
     
     const style = document.createElement('style');
-        style.innerHTML = `
-            .custom-alert {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-                z-index: 9999; /* Ensure it appears above everything else */
-            }
-            
-            .alert-content {
-                background: #E6E6FA;
-                padding: 20px;
-                border-radius: 25px;
-                max-width: 400px;
-                width: 80%;
-                text-align: center;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            }
-            
-            #alert-message {
-                font-size: 16px;
-                color: #003366;
-                margin-bottom: 20px;
-            }
-            
-            .close-alert {
-                background-color: #003366;
-                color: white;
-                border: none;
-                padding: 10px 20px;
-                border-radius: 30px;
-                cursor: pointer;
-                font-size: 14px;
-            }
-            
-            .close-alert:hover {
-                background-color: #005093;
-            }
-        `;
-        document.head.appendChild(style);
-    }
+    style.innerHTML = `
+        .custom-alert {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            z-index: 9999; /* Ensure it appears above everything else */
+        }
+        
+        .alert-content {
+            background: #E6E6FA;
+            padding: 20px;
+            border-radius: 25px;
+            max-width: 400px;
+            width: 80%;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        #alert-message {
+            font-size: 16px;
+            color: #003366;
+            margin-bottom: 20px;
+        }
+        
+        .close-alert {
+            background-color: #003366;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .close-alert:hover {
+            background-color: #005093;
+        }
+    `;
+    document.head.appendChild(style);
+}
+
 // Toggle visibility based on deal method selection (Meet Up or Delivery)
 function toggleDealMethod() {
     const isMeetUp = document.getElementById('meetup').checked;
@@ -95,7 +94,8 @@ function toggleDealMethod() {
         deliveryOptions.style.display = 'block';
     }
 }
-//LOCATION HANDLING
+
+// Location Handling (Google Maps)
 let map;
 let marker;
 let geocoder;
@@ -165,9 +165,7 @@ function updateLocationField(lat, lng) {
     document.getElementById('location').value = `${lat}, ${lng}`;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//IMAGE HANDLING
-// Upload image to ImgBB and return URL
+// Image Handling (Image Uploading)
 function uploadToImgBB(file) {
     const formData = new FormData();
     formData.append('image', file);
@@ -241,27 +239,7 @@ function removeImage(button) {
     previewDiv.remove();
 }
 
-// Get the latest productID from the collection (or P100 if no products exist)
-/*function getLatestProductId() {
-    return fetch('https://assignment2db-2aad.restdb.io/rest/fashion', {
-        method: 'GET',
-        headers: {
-            'x-apikey': '678c8feb6f2ec083b7ee6d9c'
-        }
-
-function getLatestProductId() {
-    return fetch('https://assignment2-a8de.restdb.io/rest/fashion', {
-        method: 'GET',
-        headers: {
-            'x-apikey': '67a7456d4d87445754828017'
-        }   
-function getLatestProductId() {
-    return fetch('https://mokesell-a998.restdb.io/rest/product', {
-        method: 'GET',
-        headers: {
-            'x-apikey': '67a77d8c4d87445a4b828040'
-        }        
-        */
+// Fetch Latest Product ID
 function getLatestProductId() {
     return fetch('https://mokesell-af7d.restdb.io/rest/fashion', {
         method: 'GET',
@@ -286,6 +264,7 @@ function getLatestProductId() {
         return 'P100';  // If an error occurs, start with P100
     });
 }
+
 // Validate fields before submission
 function validateFields(itemData) {
     const requiredFields = ['name', 'description', 'price', 'category', 'groups', 'condition', 'location', 'stock'];
@@ -297,7 +276,6 @@ function validateFields(itemData) {
     }
     return true;
 }
-
 
 // Store data in RESTDB when form is submitted
 document.getElementById('sellItem').addEventListener('click', () => {
@@ -322,6 +300,7 @@ document.getElementById('sellItem').addEventListener('click', () => {
             listingcreatedAt: new Date().toISOString(),
             listingexpiredAt: new Date(new Date().setDate(new Date().getDate() + 30)).toISOString()
         };
+        
         // Validate the form fields before proceeding
         if (!validateFields(itemData)) {
             return;  // Stop further execution if validation fails
@@ -336,26 +315,6 @@ document.getElementById('sellItem').addEventListener('click', () => {
         });
 
         // Submit item data to RESTDB
-        /*fetch('https://assignment2db-2aad.restdb.io/rest/fashion', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'x-apikey': '678c8feb6f2ec083b7ee6d9c'
-            },
-
-         fetch('https://assignment2-a8de.restdb.io/rest/fashion', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'x-apikey': '67a7456d4d87445754828017'
-            },
-         fetch('https://mokesell-a998.restdb.io/rest/product', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'x-apikey': '667a77d8c4d87445a4b828040'
-            },
-            */
         fetch('https://mokesell-af7d.restdb.io/rest/fashion', {
             method: 'POST',
             headers: {
@@ -368,12 +327,19 @@ document.getElementById('sellItem').addEventListener('click', () => {
         .then(() => {
             console.log('Item successfully added:', itemData);
             // Prompt user to add more items or return to index
+            // 1. Retrieve existing products from localStorage or initialize an empty array
+            let restdbProducts = JSON.parse(localStorage.getItem('restdbProducts')) || [];
+
+            // 2. Append the newly added item to the list
+            restdbProducts.push(itemData);
+
+            // 3. Store the updated list back into localStorage
+            localStorage.setItem('restdbProducts', JSON.stringify(restdbProducts));
             const action = confirm('Item listed successfully! Would you like to add another item? Click "Cancel" to return to the homepage.');
             if (action) {
                 // If user chooses to add another item, reset the form
-                document.getElementById('sellItemForm').reset(); 
-                // Optionally clear images preview
-                document.getElementById('image-preview-container').innerHTML = '';
+                //document.getElementById('sellItemForm').reset();  
+                document.getElementById('image-preview-container').innerHTML = ''; // Optionally clear images preview
             } else {
                 // If user clicks "Cancel", redirect to index.html
                 window.location.href = 'index.html';
@@ -384,6 +350,6 @@ document.getElementById('sellItem').addEventListener('click', () => {
         });
     }).catch(error => {
         console.error('Error fetching the latest product ID:', error);
-        showAlertalert('Failed to generate product ID. Please try again.');
+        showAlert('Failed to generate product ID. Please try again.');
     });
 });
