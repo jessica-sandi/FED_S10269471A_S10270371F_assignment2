@@ -32,12 +32,9 @@ MokeSell delivers all these features in a visually appealing, user-friendly, and
 - As a user who don't know how to use new websites that much, I want chatbot assistance, so that I can get instant help whenever I need it.
   
 We followed a user-centric design approach, creating wireframes and mockups to ensure a smooth and intuitive experience.
-wireframe:
+wireframe: https://www.figma.com/design/eViDzYXrPIrbA10eegyMGR/FED_S10270371F_S10269471A_Assignment2_wireframe?node-id=0-1&t=ngMwH2Frax0UMLze-1  
 These wireframes helped us structure the website for optimal usability and visual appeal, ensuring MokeSell meets the needs of both buyers and sellers effortlessly
 
-This section is also where you would share links to any wireframes, mockups, diagrams etc. that you created as part of the design process. 
-These files should themselves either be included as a pdf file in the project itself (in an separate directory)
-Include the Adobe XD wireframe as a folder. You can include the XD share url. 
 
 ## Features
 
@@ -72,19 +69,24 @@ ChatGPT was used to help with the implementation of the Spotify API (include scr
 
 ## Testing
 
-For any scenarios that have not been automated, test the user stories manually and provide as much detail as is relevant. A particularly useful form for describing your testing process is via scenarios, such as:
+1. Login/Sign-up page
+- 1.Try to log in with an account that have not signed in yet, an error msg or alert pop up will appear.
+- 2.After that if you try to sign up, you cannot just put anyhow you want, you must put our password validations (like 8 charaters limitand other validations), if not error message about the field will appear.
+- 3.After validations, if you successfully log in, the successful message will appear.
+- 3. We also have captcha, so if you never do captcha properly, the error message will show to try captcha again.
+2. Cart
+- 1. If you try to add item into cart more than the available stock, it will not work.  
+  2. So you can just put inside the cart only available stocks.
+  3.  The max per transaction is 3 so if you maximise more than 3, you will not be able to process.  
+3. Sell Page
+4. Location
+- 1. If location is not found in sell page, the alert/error message will show.
+  
 
-1. Contact form:
-    1. Go to the "Contact Us" page
-    2. Try to submit the empty form and verify that an error message about the required fields appears
-    3. Try to submit the form with an invalid email address and verify that a relevant error message appears
-    4. Try to submit the form with all inputs valid and verify that a success message appears.
+We added media in css so it works on different browsers and screen sizes and will make the user easy to use on different platforms.
 
-In addition, you should mention in this section how your project looks and works on different browsers and screen sizes.
+We don't have any bugs but we sometimes have api error for some part.
 
-You should also mention in this section any interesting bugs or problems you discovered during your testing, even if you haven't addressed them yet.
-
-If this section grows too long, you may want to split it off into a separate file and link to it from here.
 
 ## Credits
 
@@ -92,8 +94,9 @@ If this section grows too long, you may want to split it off into a separate fil
 - The text for section Y was copied from the [Wikipedia article Z](https://en.wikipedia.org/wiki/Z)
 
 ### Media
-- The photos used in this site were obtained from ...
+- The photos used in this site were obtained from pintrest.
+- The icon 
 
 ### Acknowledgements
 
-- I received inspiration for this project from X
+- I received inspiration for this project from carousell, h&m, mango
