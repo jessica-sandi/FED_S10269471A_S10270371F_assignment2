@@ -139,6 +139,8 @@ The top navigation bar is consistent across all main pages and includes the foll
  - Allow buyer to write reviews
  - User-Seller communications
  - Detailed view of user profiles with following/followers feature
+ - Edit profile
+ - About us
  
 ## Technologies Used
 
@@ -392,6 +394,22 @@ ChatGPT was used to help with the implementation of the Spotify API (include scr
 - Test responsiveness for mobile and tablet devices.
 - Ensure that any Lottie animations do not interfere with usability and load times.
 
+## Individual Contributions
+### Le Wun Sandi Kyaw
+1. Added product.json data
+2. Pictures for all fashion products
+3. women.html
+4. men.html
+5. kids.html
+6. favorite.html
+7. like buttons to add to fav html
+8. remove option inside favorite.html
+9. Search button across women, men,kids htmls
+10. Dropdown page when you click profile icon
+11. edit profile
+12. log out
+13. footer
+14. Created own background picture for women, men, kids hero picture (behind search bar)
 
 
 ## Credits
