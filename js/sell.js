@@ -1,3 +1,4 @@
+import 'js/alert.js';
     //SELL PAGE HANDLING 
     //custom alert
     function showAlert(message) {
@@ -370,7 +371,7 @@ document.getElementById('sellItem').addEventListener('click', () => {
             const action = confirm('Item listed successfully! Would you like to add another item? Click "Cancel" to return to the homepage.');
             if (action) {
                 // If user chooses to add another item, reset the form
-                document.getElementById('sellItemForm').reset();  // Assuming the form ID is 'sellItemForm'
+                document.getElementById('sellItemForm').reset(); 
                 // Optionally clear images preview
                 document.getElementById('image-preview-container').innerHTML = '';
             } else {

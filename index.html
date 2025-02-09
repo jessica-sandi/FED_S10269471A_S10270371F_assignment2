@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Welcome!MokeSell</title>
-        <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"type="module"></script>
+        <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
@@ -17,15 +17,7 @@
         <div class="overlay" id="overlay">
             <div class="modal-content">
             <!-- lottie Player (DotLottie Component) -->
-            <dotlottie-player 
-                id="lottie-player" 
-                src="https://lottie.host/db38cc8b-35c8-413d-b6f9-4f409d941b5e/szrstterbA.lottie" 
-                background="transparent" 
-                speed="1" 
-                style="width: 100%; height: 300px;" 
-                loop 
-                autoplay>
-            </dotlottie-player>
+            <dotlottie-player src="https://lottie.host/e8343bec-bbdf-425a-a227-b2b1f95471f0/saKrHzHoGh.lottie" background="transparent" speed="1" style="width: 100%; height: 300px" loop autoplay></dotlottie-player>
             <p>Account Required!</p>
             <p>You must be logged in to perform this action.</p>
             </div>
@@ -51,8 +43,9 @@
                             </a>
                         </div>
                         <a href="favorite.html" class="material-symbols-rounded" id="favorite">favorite</a>
-                        <div class="cart-container" id="cart-container">
+                        <div id="cart-container" class="cart-container">
                             <span class="material-symbols-rounded">shopping_cart</span>
+                            <!-- This is where the cart item count will be displayed -->
                         </div>
                         <div class="notification-container">
                             <div class="notification-icon" onclick="togglePopup()">

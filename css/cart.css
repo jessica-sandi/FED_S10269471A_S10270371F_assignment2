@@ -1,0 +1,124 @@
+/* Main container for the Cart */
+.cartpg-container {
+    width: 90%;
+    max-width: 1000px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    margin-top: 100px;
+}
+
+.cartpg-container h2 {
+    font-size: 30px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+/* Cart Item Styling */
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    align-items: center;
+}
+
+.cart-item-details {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.cart-item-image {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.cart-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.cart-item-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.cart-item-price {
+    font-size: 1rem;
+    color: #555;
+}
+
+.cart-item-quantity {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Remove item button (delete icon) */
+.remove-item-btn {
+    font-size: 1.5rem;
+    color: #e74c3c;
+    cursor: pointer;
+}
+
+.remove-item-btn:hover {
+    color: #c0392b;
+}
+
+/* Cart Summary Section */
+#cart-summary {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 20px;
+    margin-top: 20px;
+    border-top: 2px solid #ddd;
+    width: 100%;
+}
+
+/* Total Price */
+#cart-total p {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+}
+
+#cart-total span {
+    color: #e74c3c;
+}
+
+/* Buttons Section: Flexbox for Side by Side */
+#cart-summary .buttons-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%; /* Ensure the buttons take full width */
+    gap: 10px; /* Space between the buttons */
+}
+
+/* Button styling for side by side */
+button {
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 48%; /* Make buttons take 48% of the container width */
+    max-width: 180px;
+}
+
+/* Button to Continue Shopping */
+#continue-shopping-btn {
+    background-color: #003366;
+    color: #E6E6FA;
+}
+
+#continue-shopping-btn:hover {
+    background-color: #2980b9;
+}

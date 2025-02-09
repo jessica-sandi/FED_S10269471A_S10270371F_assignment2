@@ -23,10 +23,10 @@ function showWheelPopup() {
     const ctx = canvas.getContext("2d");
     const prizes = [
         { name: "10% Off", code: "DISC10" },
-        { name: "FreeDelivery", code: "FreeDel" },
+        { name: "2% Off", code: "DISC05" },
         { name: "15% Off", code: "DISC15" },
-        { name: "5% Off", code: "DISC5" },
-        { name: "1% Off", code: "DISC1" },
+        { name: "5% Off", code: "DISC05" },
+        { name: "1% Off", code: "DISC01" },
         { name: "20% Off", code: "DISC20" }
     ];
 

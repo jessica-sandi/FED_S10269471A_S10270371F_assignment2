@@ -1,9 +1,29 @@
 [
     {
-        "productID": "P100",
+        "productID": "P016",
         "userID": "23",
         "rating": 5,
         "reviewText": "Fantastic product! Exactly what I was looking for.",
+        "date": "2025-02-08T12:00:00Z",
+        "helpfulVotes": 10,
+        "name": "NAF",
+        "verifiedPurchase": true
+    },
+    {
+        "productID": "P016",
+        "userID": "24",
+        "rating": 4,
+        "reviewText": "Great Product!",
+        "date": "2025-02-08T12:00:00Z",
+        "helpfulVotes": 10,
+        "name": "fitri",
+        "verifiedPurchase": true
+    },
+    {
+        "productID": "P032",
+        "userID": "23",
+        "rating": 4,
+        "reviewText": "Great Product!",
         "date": "2025-02-08T12:00:00Z",
         "helpfulVotes": 10,
         "name": "NAF",

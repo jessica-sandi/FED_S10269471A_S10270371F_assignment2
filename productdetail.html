@@ -4,8 +4,15 @@
     <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>Product Detail</title>
-    <link href="css/Style.css" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+    <script src="js/alert.js"></script> 
+    <style>
+        .modal-content {
+            background-color: #C0C0FF;
+        }
+    </style>
+    <link href="css/Style.css" rel="stylesheet"> 
 </head>
 <body>
     <main>
@@ -35,22 +42,28 @@
                 <h3>Customer Reviews:</h3>
                 <div id="reviews-container"></div>
             </div>  
+            <!-- Modal for animation -->
+            <div id="cart-success-modal" class="overlay" >
+                <div class="modal-content" style="background-color:#B4E4E1;">
+                    <!-- Lottie animation container -->
+                    <dotlottie-player src="https://lottie.host/8d4bf509-2392-4ce9-acc4-2ef1e1151f6d/NCKEYTXRpl.lottie" background="transparent" speed="1" style="width: 100%; height: 300px" loop autoplay></dotlottie-player>
+                    <p>Item added to cart successfully!</p>
+
+                    <!-- Buttons to either go to cart or return -->
+                    <button id="go-to-cart">Go to Cart</button>
+                    <button id="return">Return</button>
+                </div>
+            </div>
         </div>
     </main>
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const productID = urlParams.get('id');
-        console.log('Product ID:', productID);  // Debugging product ID
+        console.log('Product ID:', productID);
 
         const restDBUrl = "https://mokesell-af7d.restdb.io/rest/fashion";
         const apiKey = "67a7a6a193d83b27dc23521b";
-        //const restDBUrl = "https://mokesell-a998.restdb.io/rest/product";
-        //const apiKey = "67a77d8c4d87445a4b828040";
-        // const restDBUrl = "https://assignment2-a8de.restdb.io/rest/fashion";
-        // const apiKey = "67a7456d4d87445754828017";
-        // const restDBUrl = "https://assignment2db-2aad.restdb.io/rest/fashion"; 
-        // const apiKey = "678c8feb6f2ec083b7ee6d9c"; 
 
         // Check if data exists in localStorage
         if (localStorage.getItem('localProducts') && localStorage.getItem('restdbProducts') && localStorage.getItem('reviewsData')) {
@@ -65,43 +78,39 @@
             fetchDataAndStore();
         }
 
-        // Function to fetch data from RESTdb and store in localStorage
         function fetchDataAndStore() {
             Promise.all([
                 fetch(restDBUrl, {
                     headers: { 'x-apikey': apiKey }
                 }).then(response => response.json()),
-                fetch(`https://mokesell-af7d.restdb.io/rest/rating`, { // Fetch all ratings
+                fetch(`https://mokesell-af7d.restdb.io/rest/rating`, {
                     headers: { 'x-apikey': apiKey }
                 }).then(response => response.json())
             ])
             .then(([restdbProducts, allReviewsData]) => {
-                console.log('Product Data from RESTdb:', restdbProducts);  // Debugging product data
-                console.log('All Reviews Data:', allReviewsData);  // Debugging all reviews data
+                console.log('Product Data from RESTdb:', restdbProducts);
+                console.log('All Reviews Data:', allReviewsData);
 
-                // Store fetched data in localStorage
                 localStorage.setItem('restdbProducts', JSON.stringify(restdbProducts));
                 localStorage.setItem('reviewsData', JSON.stringify(allReviewsData));
 
-                // Load the data to the page
                 loadProductData(null, restdbProducts);
                 loadReviewsData(allReviewsData);
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
-                alert("Failed to load product details. Please try again later.");
+                showAlert("Failed to load product details. Please try again later.");
             });
         }
 
-        // Function to load product data to the page
         function loadProductData(localProducts, restdbProducts) {
-            // Prefer data from localProducts if available
             let product;
             if (localProducts) {
                 product = localProducts.find(p => p.productID === productID);
             }
+                
+            document.title = product.name;
 
-            // Fallback to restdbProducts if not found in localProducts
             if (!product && restdbProducts) {
                 product = restdbProducts.find(p => p.productID === productID);
             }
@@ -134,15 +143,13 @@
             }
         }
 
-        // Function to load reviews data to the page
         function loadReviewsData(reviewsData) {
             const reviews = reviewsData.filter(review => review.productID === productID);
-            console.log('Filtered Reviews:', reviews);  // Debugging filtered reviews
+            console.log('Filtered Reviews:', reviews);
             updateAverageRating(reviews);
             displayReviews(reviews);
         }
 
-        // Function to update the average rating
         function updateAverageRating(reviews) {
             if (reviews.length > 0) {
                 const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
@@ -153,7 +160,6 @@
             }
         }
 
-        // Function to display reviews with Material Icons for star ratings
         function displayReviews(reviews) {
             const reviewsContainer = document.getElementById('reviews-container');
             reviewsContainer.innerHTML = '';
@@ -193,34 +199,75 @@
             }
         }
 
-        // Add to Cart Button functionality
         document.getElementById('add-to-cart-btn').addEventListener('click', () => {
-            const quantity = document.getElementById('quantity').value || 1;
-            const product = {
-                productID: productID,
-                name: document.getElementById('product-name').textContent,
-                price: document.getElementById('product-price').textContent,
-                quantity: quantity
-            };
+    const userID = sessionStorage.getItem('userID');
+    if (!userID) {
+        showAlert('Please log in to add items to the cart.');
+        return;
+    }
 
-            // Retrieve cart from localStorage or initialize empty array
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const quantity = parseInt(document.getElementById('quantity').value) || 1;
+    const availableStock = document.querySelector('#quantity').options.length;
 
-            // Check if the product is already in the cart, if so, update the quantity
-            const existingProductIndex = cart.findIndex(item => item.productID === product.productID);
-            if (existingProductIndex > -1) {
-                cart[existingProductIndex].quantity += parseInt(quantity);
-            } else {
-                cart.push(product);
-            }
+    // Check the available stock and make sure the user does not exceed the limit
+    if (quantity > availableStock) {
+        showAlert(`Sorry, amount exceeded available stock.`);
+        return;
+    }
 
-            // Save updated cart to localStorage
-            localStorage.setItem('cart', JSON.stringify(cart));
+    const product = {
+        productID: productID,
+        name: document.getElementById('product-name').textContent,
+        price: document.getElementById('product-price').textContent,
+        quantity: quantity,
+        userID: userID,
+        imageURL: document.getElementById('detail-image').src,
+        availableStock: availableStock // Store available stock
+    };
 
-            // Redirect to the cart page
-            window.location.href = "cart.html";
-        });
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const existingProductIndex = cart.findIndex(item => item.productID === product.productID && item.userID === userID);
+
+    // If the product already exists in the cart, check the quantity
+    if (existingProductIndex > -1) {
+        const existingProduct = cart[existingProductIndex];
+        const existingQuantity = existingProduct.quantity;
+        const newQuantity = existingQuantity + product.quantity;
+
+        // Check if the new quantity exceeds the available stock
+        if (newQuantity > existingProduct.availableStock) {
+            showAlert(`Sorry, Max 3 quantity/product each order.`);
+            return;
+        }
+
+        // Update the quantity and available stock in the cart
+        cart[existingProductIndex].quantity = newQuantity;
+        cart[existingProductIndex].availableStock = existingProduct.availableStock - newQuantity;
+    } else {
+        // Add new product to cart if not already present
+        cart.push(product);
+    }
+
+    // Deduct the stock from the available stock
+    const remainingStock = product.availableStock - product.quantity;
+    product.availableStock = remainingStock;
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    showCartSuccessAnimation();
+});
+
+function showCartSuccessAnimation() {
+    document.getElementById('cart-success-modal').style.display = 'flex';
+
+    document.getElementById('go-to-cart').addEventListener('click', () => {
+        window.location.href = "cart.html";
+    });
+
+    document.getElementById('return').addEventListener('click', () => {
+        window.history.back();
+    });
+}
+
     </script>
-    <script src="js/script.js"></script>
 </body>
 </html>

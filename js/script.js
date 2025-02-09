@@ -291,6 +291,9 @@ userInput.addEventListener("keypress", function(event) {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //NOTIFICATION HANDLING
 // Variable to store the fetched notifications
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// NOTIFICATION HANDLING
+// Variable to store the fetched notifications
 let notifications = []; 
 
 // Fetch notifications data from external JSON file
@@ -299,7 +302,8 @@ function fetchNotifications() {
         .then(response => response.json())
         .then(data => {
             notifications = data;  // Assign JSON data to notifications variable
-            addSpinVoucherNotification();  // Add spin voucher notification
+            storeDiscountCodesFromNotifications();  // Store discount codes directly in sessionStorage
+            addSpinVoucherNotification();  // Add spin voucher notification (if any)
             updateNotificationCount();  // Update notification count
         })
         .catch(error => console.error('Error loading notifications:', error));
@@ -321,7 +325,35 @@ function addSpinVoucherNotification() {
         
         // Add the spin voucher notification to the notifications array
         notifications.unshift(spinVoucherNotification);
+
+        // Save the spin voucher code to sessionStorage
+        saveDiscountCodesToSession(spinVoucher);
     }
+}
+
+// Save discount codes to sessionStorage (when retrieved from notifications)
+function saveDiscountCodesToSession(discountCode) {
+    // Retrieve existing discount codes from sessionStorage
+    let existingDiscountCodes = JSON.parse(sessionStorage.getItem('discountCodes')) || [];
+
+    // Add the new discount code to the list if it's not already there
+    if (!existingDiscountCodes.includes(discountCode)) {
+        existingDiscountCodes.push(discountCode);
+    }
+
+    // Save the updated list of discount codes back to sessionStorage
+    sessionStorage.setItem('discountCodes', JSON.stringify(existingDiscountCodes));
+}
+
+// Store all discount codes from notifications into sessionStorage
+function storeDiscountCodesFromNotifications() {
+    // Loop through all notifications to extract the discountCode and store them
+    notifications.forEach(notification => {
+        if (notification.discountCode) {
+            // Store the discount code only if it's not already stored
+            saveDiscountCodesToSession(notification.discountCode);
+        }
+    });
 }
 
 // Update the notification count
@@ -404,3 +436,49 @@ function createNotificationPopup() {
 
 // Call this function when the page loads
 fetchNotifications();
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//CART ICON HANDLING
+// Function to update the cart item count in the cart icon
+// Navigate to the cart page when the cart icon is clicked
+document.addEventListener('DOMContentLoaded', function() {
+    // Add event listener to the cart icon after the DOM is fully loaded
+        document.getElementById('cart-container').addEventListener('click', function() {
+            window.location.href = 'cart.html';  // Redirect to the cart page
+        });
+
+        // Assuming userID is stored in sessionStorage
+        const userID = sessionStorage.getItem('userID');
+        if (userID) {
+            updateCartItemCount(userID);
+        }
+    });
+
+function updateCartItemCount(userID) {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Filter items by the logged-in user
+    const userCartItems = cart.filter(item => item.userID === userID);
+
+    // Calculate the total number of items in the cart
+    let totalItemCount = 0;
+    userCartItems.forEach(item => {
+        totalItemCount += parseInt(item.quantity, 10); 
+    });
+
+    // Get the cart icon element
+    const cartIcon = document.getElementById('cart-container');
+    let cartCount = cartIcon.querySelector('.cart-item-count');
+
+    if (!cartCount) {
+        // If the count element doesn't exist, create it
+        cartCount = document.createElement('span');
+        cartCount.className = 'cart-item-count';
+        cartIcon.appendChild(cartCount);
+    }
+
+    // Update the count displayed on the cart icon
+    cartCount.textContent = totalItemCount > 0 ? totalItemCount : '';
+}
+
+
