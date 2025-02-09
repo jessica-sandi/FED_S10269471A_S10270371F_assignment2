@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+    <link href="css/Style.css" rel="stylesheet">
+    <style>
+        /* Global styles */
+        #back-btn {
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+
+        .payment-container {
+            width:60%;
+            background-color: #FCE8E6;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            margin: auto;
+            margin-top: 150px;
+        }
+
+        .payment-details {
+            margin-bottom: 30px;
+        }
+
+        .payment-details label {
+            font-size: 18px;
+            font-weight: 500;
+        }
+    
+        select, input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #E6E6FA;
+        }
+
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        #delivery-fee, #cash-on-delivery {
+            margin-top: 10px;
+        }
+
+        #lottie-container {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .order-summary {
+            font-size: 18px;
+        }
+
+        /* Media queries for responsive design */
+        @media (max-width: 768px) {
+            .payment-container {
+                padding: 15px;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            .payment-details {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="payment-container">
+            <h2>Payment Page</h2>
+
+            <!-- Back Button -->
+            <button id="back-btn" onclick="goBack()" style="margin-bottom: 20px;">&lt; Back</button>
+
+            <div class="payment-details">
+                <h3>Choose Delivery Option</h3>
+                <label for="delivery-option">Delivery Option:</label>
+                <select id="delivery-option">
+                    <option value="meetup">Meet Up</option>
+                    <option value="delivery">Delivery</option>
+                </select>
+
+                <!-- Display Cash on Delivery if Meet Up is selected -->
+                <div id="cash-on-delivery" style="display:none;">
+                    <input type="checkbox" id="cod" checked disabled/> Cash on Delivery
+                </div>
+
+                <!-- Display Delivery Fee if Delivery is selected -->
+                <div id="delivery-fee" style="display:none;">
+                    <p>Delivery Fee: S$5.00</p>
+                </div>
+
+                <!-- Credit Card Information (hidden until Delivery is chosen) -->
+                <div id="card-payment" style="display:none;">
+                    <label for="card-number">Card Number:</label>
+                    <input type="text" id="card-number" placeholder="Enter 16-digit card number" maxlength="16" required>
+
+                    <label for="cvv">CVV:</label>
+                    <input type="text" id="cvv" placeholder="Enter 3-digit CVV" maxlength="3" required>
+
+                    <label for="expiry-date">Expiry Date (MM/YY):</label>
+                    <input type="text" id="expiry-date" placeholder="MM/YY" maxlength="5" required>
+                </div>
+            </div>
+
+            <div class="buttons-container">
+                <button id="place-order-btn">Place Order</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Lottie Animation -->
+    <div id="lottie-container" style="display:none;">
+        <dotlottie-player 
+            src="https://lottie.host/7b0a43e1-aa3f-4c2c-91d7-d06361e11be5/MmsJPLcllb.lottie" 
+            background="transparent" 
+            speed="1" 
+            style="width: 100%S; height: 300px;" 
+            loop 
+            autoplay>
+        </dotlottie-player>
+    </div>
+
+    <script>
+        // Update delivery options and fields based on selection
+        function updateDeliveryOptions() {
+            const deliveryOption = document.getElementById('delivery-option').value;
+            const cashOnDelivery = document.getElementById('cash-on-delivery');
+            const deliveryFee = document.getElementById('delivery-fee');
+            const cardPayment = document.getElementById('card-payment');
+
+            if (deliveryOption === 'delivery') {
+                deliveryFee.style.display = 'block';
+                cardPayment.style.display = 'block';
+                cashOnDelivery.style.display = 'none'; // Hide Cash on Delivery option for Delivery
+                document.getElementById('cod').checked = false; // Uncheck COD if Delivery is chosen
+            } else {
+                deliveryFee.style.display = 'none';
+                cardPayment.style.display = 'none';
+                cashOnDelivery.style.display = 'block'; // Show Cash on Delivery option for Meet Up
+            }
+        }
+
+        // Validate payment details and place order
+        function placeOrder() {
+            const deliveryOption = document.getElementById('delivery-option').value;
+            
+            if (deliveryOption === 'meetup') {
+                // If "Meet Up" is selected, skip payment validation
+                document.getElementById('lottie-container').style.display = 'block'; // Show Lottie animation
+
+                // After animation ends, redirect user to confirmation page or show success message
+                setTimeout(() => {
+                    localStorage.removeItem('cart');
+                    window.location.href = 'index.html'; // Redirect to confirmation page
+                }, 3000); // Delay to show Lottie animation
+                return; // Skip further processing
+            }
+
+            // For Delivery option, validate card details
+            const cardNumber = document.getElementById('card-number').value.trim();
+            const cvv = document.getElementById('cvv').value.trim();
+            const expiryDate = document.getElementById('expiry-date').value.trim();
+            const codChecked = document.getElementById('cod').checked;
+
+            // Regular expressions for validation
+            const cardNumberRegex = /^\d{16}$/;
+            const cvvRegex = /^\d{3}$/;
+            const expiryDateRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
+
+            let isValid = true;
+
+            // Validate card number
+            if (!cardNumberRegex.test(cardNumber)) {
+                alert("Please enter a valid 16-digit card number.");
+                isValid = false;
+            }
+
+            // Validate CVV
+            if (!cvvRegex.test(cvv)) {
+                alert("Please enter a valid 3-digit CVV.");
+                isValid = false;
+            }
+
+            // Validate expiry date
+            if (!expiryDateRegex.test(expiryDate)) {
+                alert("Please enter a valid expiry date in MM/YY format.");
+                isValid = false;
+            }
+
+            // Simulating successful payment if all validations pass
+            if ((cardNumber && cvv && expiryDate || codChecked) && isValid) {
+                document.getElementById('lottie-container').style.display = 'block'; // Show Lottie animation
+
+                // After animation ends, redirect user to confirmation page or show success message
+                setTimeout(() => {
+                    localStorage.removeItem('cart');
+                    window.location.href = 'index.html'; // Redirect to confirmation page
+                }, 3000); // Delay to show Lottie animation
+            } else {
+                alert("Please provide valid payment details!");
+            }
+        }
+
+        // Back button function
+        function goBack() {
+            window.history.back(); // Navigate to the previous page
+        }
+
+        // Event listeners
+        document.getElementById('delivery-option').addEventListener('change', updateDeliveryOptions);
+        document.getElementById('place-order-btn').addEventListener('click', placeOrder);
+
+        // Load delivery options and default order summary
+        window.onload = updateDeliveryOptions;
+    </script>
+</body>
+</html>

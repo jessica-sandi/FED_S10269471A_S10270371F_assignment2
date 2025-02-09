@@ -241,12 +241,8 @@
         
             // Event listener for the checkout button
             document.getElementById('checkout-btn').addEventListener('click', () => {
-                // Store cart data in sessionStorage for the checkout page
-                const cartData = JSON.parse(localStorage.getItem('cart')) || [];
-                sessionStorage.setItem('cart', JSON.stringify(cartData));
-
                 // Redirect to checkout page
-                window.location.href = 'checkout.html';
+                window.location.href = 'payment.html';
             });
             // Event listener for the continue shopping button
             document.getElementById('continue-shopping-btn').addEventListener('click', () => {

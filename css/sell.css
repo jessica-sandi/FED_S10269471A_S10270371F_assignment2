@@ -183,7 +183,7 @@ h3 {
     /* Image Upload section */
     .image-upload {
         margin-right: 0; /* Remove margin on the right for mobile */;
-        width: 90%; /* Make the image upload container take full width */
+        width: 80%; /* Make the image upload container take full width */
         height: auto; /* Allow height to adjust based on content */
         padding: 15px; /* Adjust padding */
         margin: auto;

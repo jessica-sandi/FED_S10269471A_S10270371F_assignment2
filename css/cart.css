@@ -2,7 +2,7 @@
 .cartpg-container {
     width: 90%;
     max-width: 1000px;
-    background-color: white;
+    background-color: #FCE8E6; /* Light Peach */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
@@ -14,6 +14,8 @@
     font-size: 30px;
     text-align: left;
     margin-bottom: 20px;
+    color: #003366; /* Dark Blue */
+    padding-left: 10px;
 }
 
 /* Cart Item Styling */
@@ -28,6 +30,7 @@
 .cart-item-details {
     display: flex;
     align-items: center;
+    justify-content: left;
     gap: 15px;
 }
 
@@ -35,17 +38,19 @@
     width: 250px;
     height: 250px;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: 10px;
+    border: 1px solid #003366;
 }
 
 .cart-item-info {
     display: flex;
     flex-direction: column;
     gap: 5px;
+    padding-left: 30px;
 }
 
 .cart-item-name {
-    font-size: 1.1rem;
+    font-size: 25px;
     font-weight: 600;
     color: #333;
 }
@@ -58,17 +63,18 @@
 .cart-item-quantity {
     font-size: 1rem;
     color: #555;
+    padding-left: 15px;
 }
 
 /* Remove item button (delete icon) */
 .remove-item-btn {
     font-size: 1.5rem;
-    color: #e74c3c;
+    color: #FF6F61; /* Soft Red */
     cursor: pointer;
 }
 
 .remove-item-btn:hover {
-    color: #c0392b;
+    color: #FFABAB; /* Slight Peach */
 }
 
 /* Cart Summary Section */
@@ -86,11 +92,11 @@
 #cart-total p {
     font-size: 20px;
     font-weight: 600;
-    color: #333;
+    color: #003366; /* Dark Blue */
 }
 
 #cart-total span {
-    color: #e74c3c;
+    color: #FF6F61; /* Soft Red */
 }
 
 /* Buttons Section: Flexbox for Side by Side */
@@ -102,7 +108,7 @@
 }
 
 /* Button styling for side by side */
-button {
+.cart summary button {
     padding: 12px 20px;
     font-size: 1rem;
     border: none;
@@ -111,14 +117,25 @@ button {
     transition: background-color 0.3s;
     width: 48%; /* Make buttons take 48% of the container width */
     max-width: 180px;
+    background-color: #003366; /* Dark Blue */
+    color: #E6E6FA; /* Soft Light Blue */
+}
+
+button:hover {
+    background-color: #2A2A3D; /* Darker Bluish-Gray */
 }
 
 /* Button to Continue Shopping */
 #continue-shopping-btn {
-    background-color: #003366;
-    color: #E6E6FA;
+    background-color: #003366; /* Dark Blue */
+    color: #E6E6FA; /* Soft Light Blue */
 }
 
 #continue-shopping-btn:hover {
-    background-color: #2980b9;
+    background-color: #2980b9; /* Slightly lighter blue */
+}
+
+/* Additional Hover Effect for Buttons */
+button:focus {
+    background-color: #F8D7D2; /* Light Peach (hover effect) */
 }
