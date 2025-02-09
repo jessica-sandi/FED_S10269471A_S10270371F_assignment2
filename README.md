@@ -1,5 +1,6 @@
 # FED_S10269471A_S10270371F_assignment2
-
+### Github Page
+github link : https://jessica-sandi.github.io/FED_S10269471A_S10270371F_assignment2/
 # MokeSell
 
 Tired of clutter? Looking for unique finds? MokeSell is the ultimate online marketplace where you can buy and resell both new and pre-owned items with ease! Whether you're upgrading your wardrobe or hunting for the best deals, MokeSell connects you with a vibrant community of buyers and sellers.
@@ -182,6 +183,17 @@ The top navigation bar across all main pages and includes the following sections
 12. Interval-Based Auto-Sliding (setInterval)
 -	Why Used? The carousel automatically transitions images every 3 seconds for a better user experience.
 -	Official Site: https://developer.mozilla.org/en-US/docs/Web/API/Window/setInterval
+13. JQuery
+-	Why Used? The project uses JQuery to simplify DOM manipulation, event handling, and Ajax requests. JQuery helps reduce the amount of code needed for complex interactions and ensures compatibility across different browsers.
+- Official Site: https://jquery.com/
+14. Material Icons
+-	Why Used? Material Icons are used for the heart icon (for favoriting products), providing a clean, consistent visual language in line with Material Design principles.
+15. Google Maps API:
+-	Why Used?  This is used for location handling, including initializing the map, setting the user's current location, displaying a draggable marker, and integrating autocomplete for searching places and used for the autocomplete functionality to search and select locations.
+-	Official Site:  https://developers.google.com/maps
+16. ImgBB API:
+-	Why Used?  Used for uploading images and getting back URLs for the uploaded images. The script uploads images to ImgBB and stores the URLs in the item data that is eventually submitted.
+-	Official Site: https://imgbb.com/
 
 ## Assistive AI
 
@@ -434,17 +446,11 @@ In this section you should document the process of using AI tools eg, ChatGPT, G
 - **Valid Action:**
   - Once the order is placed successfully, a **Lottie animation** 
 
----
-
-### Notes:
-- Test across different browsers (Chrome, Firefox, Safari) to ensure cross-browser compatibility.
-- Test responsiveness for mobile and tablet devices.
-- Ensure that any Lottie animations do not interfere with usability and load times.
 
 ## Individual Contributions
 ### Le Wun Sandi Kyaw
 1. Added product.json data
-2. Pictures for all fashion products
+2. Browsed pictures for all fashion products
 3. women.html
 4. men.html
 5. kids.html
@@ -456,7 +462,10 @@ In this section you should document the process of using AI tools eg, ChatGPT, G
 11. edit profile
 12. log out
 13. footer
-14. Created own background picture for women, men, kids hero picture (behind search bar)
+14. Created own background pictures for women, men, kids hero pictures (behind search bar)
+15. edited video for video presentation
+16. parts i wrote in readme (#MokeSell, ##Design Process,###Who Is This Website For?, ##What Users Want to Achieve & How MokeSell Helps, ##Technologies Used,##Credits, ###Media, ###Acknowledgements)
+
 ### Nur Asyira Fitri Binte Razali
 1.Created initial VS code
 2.Created the initial restdb database 
